@@ -11,3 +11,4 @@ jobs:
         uses: FreeRTOS/CI-CD-Github-Actions/doxygen-generation@main
         with:
           ref: gh-pages-test
+          add_release: "true"

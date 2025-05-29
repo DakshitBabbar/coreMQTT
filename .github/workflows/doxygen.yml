@@ -1,7 +1,7 @@
 name: Doxygen Generation
 on:
   push:
-    branches: [main]
+    branches: [gh-pages-test]
   workflow_dispatch:
 jobs:
   doxygen-generation:
@@ -9,3 +9,5 @@ jobs:
     steps:
       - name: Doxygen generation
         uses: FreeRTOS/CI-CD-Github-Actions/doxygen-generation@main
+        with:
+          ref: gh-pages-test

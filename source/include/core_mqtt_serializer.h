@@ -24,7 +24,7 @@
 
 /**
  * @file core_mqtt_serializer.h
- * @brief User-facing functions for serializing and deserializing MQTT 3.1.1
+ * @brief User-facing functions for serializing and deserializing MQTT 5.0
  * packets. This header should be included for building a lighter weight MQTT
  * client than the managed CSDK MQTT library API in core_mqtt.h, by using the
  * serializer and de-serializer functions exposed in this file's API.
@@ -43,7 +43,6 @@
 /* *INDENT-ON */
 
 #include "transport_interface.h"
-#include "core_mqtt_config_defaults.h"
 
 /* MQTT packet types. */
 
@@ -72,178 +71,6 @@
  * @brief The size of MQTT PUBACK, PUBREC, PUBREL, and PUBCOMP packets, per MQTT spec.
  */
 #define MQTT_PUBLISH_ACK_PACKET_SIZE    ( 4UL )
-
-/* Structures defined in this file. */
-struct MQTTFixedBuffer;
-struct MQTTConnectInfo;
-struct MQTTSubscribeInfo;
-struct MQTTPublishInfo;
-struct MQTTPacketInfo;
-struct MQTTSubscribeProperties ;
-struct MQTTConnectProperties;
-struct MQTTUserProperty;
-struct MQTTAuthInfo;
-/**
- * @ingroup mqtt_enum_types
- * @brief Return codes from MQTT functions.
- */
-typedef enum MQTTStatus
-{
-    MQTTSuccess = 0,                /**< Function completed successfully. */
-    MQTTBadParameter,               /**< At least one parameter was invalid. */
-    MQTTNoMemory,                   /**< A provided buffer was too small. */
-    MQTTSendFailed,                 /**< The transport send function failed. */
-    MQTTRecvFailed,                 /**< The transport receive function failed. */
-    MQTTBadResponse,                /**< An invalid packet was received from the server. */
-    MQTTServerRefused,              /**< The server refused a CONNECT or SUBSCRIBE. */
-    MQTTNoDataAvailable,            /**< No data available from the transport interface. */
-    MQTTIllegalState,               /**< An illegal state in the state record. */
-    MQTTStateCollision,             /**< A collision with an existing state record entry. */
-    MQTTKeepAliveTimeout,           /**< Timeout while waiting for PINGRESP. */
-    MQTTNeedMoreBytes,              /**< MQTT_ProcessLoop/MQTT_ReceiveLoop has received
-                                    incomplete data; it should be called again (probably after
-                                    a delay). */
-    MQTTEndOfProperties,
-
-    MQTTStatusConnected,            /**< MQTT connection is established with the broker. */
-    MQTTStatusNotConnected,         /**< MQTT connection is not established with the broker. */
-    MQTTStatusDisconnectPending,    /**< Transport Interface has failed and MQTT connection needs to be closed. */
-    MQTTPublishStoreFailed,         /**< User provided API to store a copy of outgoing publish for retransmission  purposes,
-                                    has failed. */
-    MQTTPublishRetrieveFailed       /**< User provided API to retrieve the copy of a publish while reconnecting
-                                    with an unclean session has failed. */
-} MQTTStatus_t;
-
-/**
- * @ingroup mqtt_enum_types
- * @brief MQTT Quality of Service values.
- */
-typedef enum MQTTQoS
-{
-    MQTTQoS0 = 0, /**< Delivery at most once. */
-    MQTTQoS1 = 1, /**< Delivery at least once. */
-    MQTTQoS2 = 2  /**< Delivery exactly once. */
-} MQTTQoS_t;
-
-/**
- * @ingroup mqtt_enum_types
- * @brief MQTT reason codes.
- *
- * These values are defined in the MQTT 5.0 specification.
- */
-typedef enum MQTTSuccessFailReasonCode
-{
-    /* PUBACK reason codes */
-    MQTT_REASON_PUBACK_SUCCESS = 0x00,                    /**< Publish was successfully received and accepted. */
-    MQTT_REASON_PUBACK_NO_MATCHING_SUBSCRIBERS = 0x10,    /**< Publish was accepted but there are no subscribers. */
-    MQTT_REASON_PUBACK_UNSPECIFIED_ERROR = 0x80,         /**< Unspecified error occurred for the PUBACK. */
-    MQTT_REASON_PUBACK_IMPLEMENTATION_SPECIFIC_ERROR = 0x83, /**< Implementation specific error for the PUBACK. */
-    MQTT_REASON_PUBACK_NOT_AUTHORIZED = 0x87,            /**< Client is not authorized to publish. */
-    MQTT_REASON_PUBACK_TOPIC_NAME_INVALID = 0x90,        /**< Topic name is not valid. */
-    MQTT_REASON_PUBACK_PACKET_IDENTIFIER_IN_USE = 0x91,  /**< Packet identifier is already in use. */
-    MQTT_REASON_PUBACK_QUOTA_EXCEEDED = 0x97,            /**< Implementation or system quota exceeded. */
-    MQTT_REASON_PUBACK_PAYLOAD_FORMAT_INVALID = 0x99,    /**< Payload format is invalid. */
-
-    /* PUBREC reason codes */
-    MQTT_REASON_PUBREC_SUCCESS = 0x00,                   /**< Publish was successfully received for QoS 2. */
-    MQTT_REASON_PUBREC_NO_MATCHING_SUBSCRIBERS = 0x10,   /**< Publish received but no matching subscribers. */
-    MQTT_REASON_PUBREC_UNSPECIFIED_ERROR = 0x80,        /**< Unspecified error occurred for the PUBREC. */
-    MQTT_REASON_PUBREC_IMPLEMENTATION_SPECIFIC_ERROR = 0x83, /**< Implementation specific error for the PUBREC. */
-    MQTT_REASON_PUBREC_NOT_AUTHORIZED = 0x87,           /**< Client is not authorized to publish. */
-    MQTT_REASON_PUBREC_TOPIC_NAME_INVALID = 0x90,       /**< Topic name is not valid. */
-    MQTT_REASON_PUBREC_PACKET_IDENTIFIER_IN_USE = 0x91, /**< Packet identifier is already in use. */
-    MQTT_REASON_PUBREC_QUOTA_EXCEEDED = 0x97,           /**< Implementation or system quota exceeded. */
-    MQTT_REASON_PUBREC_PAYLOAD_FORMAT_INVALID = 0x99,   /**< Payload format is invalid. */
-
-    /* PUBREL reason codes */
-    MQTT_REASON_PUBREL_SUCCESS = 0x00,                  /**< Publish release was successful. */
-    MQTT_REASON_PUBREL_PACKET_IDENTIFIER_NOT_FOUND = 0x92, /**< Packet identifier was not found. */
-
-    /* PUBCOMP reason codes */
-    MQTT_REASON_PUBCOMP_SUCCESS = 0x00,                 /**< Publish complete was successful. */
-    MQTT_REASON_PUBCOMP_PACKET_IDENTIFIER_NOT_FOUND = 0x92, /**< Packet identifier was not found. */
-
-    /* CONNACK reason codes */
-    MQTT_REASON_CONNACK_SUCCESS = 0x00,                 /**< Connection accepted. */
-    MQTT_REASON_CONNACK_UNSPECIFIED_ERROR = 0x80,       /**< Unspecified error occurred during connection. */
-    MQTT_REASON_CONNACK_MALFORMED_PACKET = 0x81,        /**< Received packet was malformed. */
-    MQTT_REASON_CONNACK_PROTOCOL_ERROR = 0x82,          /**< Protocol error occurred. */
-    MQTT_REASON_CONNACK_IMPLEMENTATION_SPECIFIC_ERROR = 0x83, /**< Implementation specific error. */
-    MQTT_REASON_CONNACK_UNSUPPORTED_PROTOCOL_VERSION = 0x84, /**< Protocol version not supported. */
-    MQTT_REASON_CONNACK_CLIENT_IDENTIFIER_NOT_VALID = 0x85, /**< Client identifier is not valid. */
-    MQTT_REASON_CONNACK_BAD_USER_NAME_OR_PASSWORD = 0x86, /**< Username or password is malformed. */
-    MQTT_REASON_CONNACK_NOT_AUTHORIZED = 0x87,          /**< Client is not authorized to connect. */
-    MQTT_REASON_CONNACK_SERVER_UNAVAILABLE = 0x88,      /**< Server is unavailable. */
-    MQTT_REASON_CONNACK_SERVER_BUSY = 0x89,             /**< Server is busy. */
-    MQTT_REASON_CONNACK_BANNED = 0x8A,                  /**< Client has been banned. */
-    MQTT_REASON_CONNACK_BAD_AUTHENTICATION_METHOD = 0x8C, /**< Authentication method is not supported. */
-    MQTT_REASON_CONNACK_TOPIC_NAME_INVALID = 0x90,      /**< Topic name is invalid. */
-    MQTT_REASON_CONNACK_PACKET_TOO_LARGE = 0x95,        /**< Packet size exceeds maximum allowed. */
-    MQTT_REASON_CONNACK_QUOTA_EXCEEDED = 0x97,          /**< Implementation or system quota exceeded. */
-    MQTT_REASON_CONNACK_PAYLOAD_FORMAT_INVALID = 0x99,  /**< Payload format is invalid. */
-    MQTT_REASON_CONNACK_RETAIN_NOT_SUPPORTED = 0x9A,    /**< Retain is not supported. */
-    MQTT_REASON_CONNACK_QOS_NOT_SUPPORTED = 0x9B,       /**< QoS level is not supported. */
-    MQTT_REASON_CONNACK_USE_ANOTHER_SERVER = 0x9C,      /**< Client should temporarily use another server. */
-    MQTT_REASON_CONNACK_SERVER_MOVED = 0x9D,            /**< Client should permanently use another server. */
-    MQTT_REASON_CONNACK_CONNECTION_RATE_EXCEEDED = 0x9F, /**< Connection rate limit exceeded. */
-
-    /* SUBACK reason codes */
-    MQTT_REASON_SUBACK_GRANTED_QOS0 = 0x00,             /**< Subscription accepted with maximum QoS 0. */
-    MQTT_REASON_SUBACK_GRANTED_QOS1 = 0x01,             /**< Subscription accepted with maximum QoS 1. */
-    MQTT_REASON_SUBACK_GRANTED_QOS2 = 0x02,             /**< Subscription accepted with maximum QoS 2. */
-    MQTT_REASON_SUBACK_UNSPECIFIED_ERROR = 0x80,        /**< Unspecified error occurred for the subscription. */
-    MQTT_REASON_SUBACK_IMPLEMENTATION_SPECIFIC_ERROR = 0x83, /**< Implementation specific error. */
-    MQTT_REASON_SUBACK_NOT_AUTHORIZED = 0x87,           /**< Client is not authorized to subscribe. */
-    MQTT_REASON_SUBACK_TOPIC_FILTER_INVALID = 0x8F,     /**< Topic filter is not valid. */
-    MQTT_REASON_SUBACK_PACKET_IDENTIFIER_IN_USE = 0x91, /**< Packet identifier is already in use. */
-    MQTT_REASON_SUBACK_QUOTA_EXCEEDED = 0x97,           /**< Implementation or system quota exceeded. */
-    MQTT_REASON_SUBACK_SHARED_SUBSCRIPTIONS_NOT_SUPPORTED = 0x9E, /**< Shared subscriptions are not supported. */
-    MQTT_REASON_SUBACK_SUBSCRIPTION_IDENTIFIERS_NOT_SUPPORTED = 0xA1, /**< Subscription identifiers are not supported. */
-    MQTT_REASON_SUBACK_WILDCARD_SUBSCRIPTIONS_NOT_SUPPORTED = 0xA2, /**< Wildcard subscriptions are not supported. */
-
-    /* UNSUBACK reason codes */
-    MQTT_REASON_UNSUBACK_SUCCESS = 0x00,                /**< Unsubscribe was successful. */
-    MQTT_REASON_UNSUBACK_NO_SUBSCRIPTION_EXISTED = 0x11, /**< No matching subscription existed. */
-    MQTT_REASON_UNSUBACK_UNSPECIFIED_ERROR = 0x80,      /**< Unspecified error occurred for the unsubscribe. */
-    MQTT_REASON_UNSUBACK_IMPLEMENTATION_SPECIFIC_ERROR = 0x83, /**< Implementation specific error. */
-    MQTT_REASON_UNSUBACK_NOT_AUTHORIZED = 0x87,         /**< Client is not authorized to unsubscribe. */
-    MQTT_REASON_UNSUBACK_TOPIC_FILTER_INVALID = 0x8F,   /**< Topic filter is not valid. */
-    MQTT_REASON_UNSUBACK_PACKET_IDENTIFIER_IN_USE = 0x91, /**< Packet identifier is already in use. */
-
-    /* DISCONNECT reason codes */
-    MQTT_REASON_DISCONNECT_NORMAL_DISCONNECTION = 0x00,  /**< Normal client-initiated disconnect. */
-    MQTT_REASON_DISCONNECT_DISCONNECT_WITH_WILL_MESSAGE = 0x04, /**< Client disconnecting with Will Message. */
-    MQTT_REASON_DISCONNECT_UNSPECIFIED_ERROR = 0x80,     /**< Unspecified error occurred. */
-    MQTT_REASON_DISCONNECT_MALFORMED_PACKET = 0x81,      /**< Received packet was malformed. */
-    MQTT_REASON_DISCONNECT_PROTOCOL_ERROR = 0x82,        /**< Protocol error occurred. */
-    MQTT_REASON_DISCONNECT_IMPLEMENTATION_SPECIFIC_ERROR = 0x83, /**< Implementation specific error. */
-    MQTT_REASON_DISCONNECT_NOT_AUTHORIZED = 0x87,        /**< Client is not authorized. */
-    MQTT_REASON_DISCONNECT_SERVER_BUSY = 0x89,           /**< Server is busy. */
-    MQTT_REASON_DISCONNECT_SERVER_SHUTTING_DOWN = 0x8B,  /**< Server is shutting down. */
-    MQTT_REASON_DISCONNECT_BAD_AUTHENTICATION_METHOD = 0x8C, /**< Authentication method is invalid. */
-    MQTT_REASON_DISCONNECT_KEEP_ALIVE_TIMEOUT = 0x8D,    /**< Keep alive timeout occurred. */
-    MQTT_REASON_DISCONNECT_SESSION_TAKEN_OVER = 0x8E,    /**< Another connection using same client ID. */
-    MQTT_REASON_DISCONNECT_TOPIC_FILTER_INVALID = 0x8F,  /**< Topic filter is not valid. */
-    MQTT_REASON_DISCONNECT_TOPIC_NAME_INVALID = 0x90,    /**< Topic name is not valid. */
-    MQTT_REASON_DISCONNECT_RECEIVE_MAXIMUM_EXCEEDED = 0x93, /**< Receive maximum value exceeded. */
-    MQTT_REASON_DISCONNECT_TOPIC_ALIAS_INVALID = 0x94,   /**< Topic alias is invalid. */
-    MQTT_REASON_DISCONNECT_PACKET_TOO_LARGE = 0x95,      /**< Packet size exceeds maximum allowed. */
-    MQTT_REASON_DISCONNECT_MESSAGE_RATE_TOO_HIGH = 0x96, /**< Message rate too high. */
-    MQTT_REASON_DISCONNECT_QUOTA_EXCEEDED = 0x97,        /**< Implementation or system quota exceeded. */
-    MQTT_REASON_DISCONNECT_ADMINISTRATIVE_ACTION = 0x98,  /**< Disconnected due to administrative action. */
-    MQTT_REASON_DISCONNECT_PAYLOAD_FORMAT_INVALID = 0x99, /**< Payload format is invalid. */
-    MQTT_REASON_DISCONNECT_RETAIN_NOT_SUPPORTED = 0x9A,   /**< Retain is not supported. */
-    MQTT_REASON_DISCONNECT_QOS_NOT_SUPPORTED = 0x9B,      /**< QoS level is not supported. */
-    MQTT_REASON_DISCONNECT_USE_ANOTHER_SERVER = 0x9C,     /**< Client should temporarily use another server. */
-    MQTT_REASON_DISCONNECT_SERVER_MOVED = 0x9D,           /**< Client should permanently use another server. */
-    MQTT_REASON_DISCONNECT_SHARED_SUBSCRIPTIONS_NOT_SUPPORTED = 0x9E, /**< Shared subscriptions are not supported. */
-    MQTT_REASON_DISCONNECT_CONNECTION_RATE_EXCEEDED = 0x9F, /**< Connection rate limit exceeded. */
-    MQTT_REASON_DISCONNECT_MAXIMUM_CONNECT_TIME = 0xA0,    /**< Maximum connection time authorized exceeded. */
-    MQTT_REASON_DISCONNECT_SUBSCRIPTION_IDENTIFIERS_NOT_SUPPORTED = 0xA1, /**< Subscription identifiers are not supported. */
-    MQTT_REASON_DISCONNECT_WILDCARD_SUBSCRIPTIONS_NOT_SUPPORTED = 0xA2    /**< Wildcard subscriptions are not supported. */
-
-} MQTTSuccessFailReasonCode_t;
-
 
 #define MQTT_SUBSCRIBE_QOS1                    ( 0 ) /**< @brief MQTT SUBSCRIBE QoS1 flag. */
 #define MQTT_SUBSCRIBE_QOS2                    ( 1 ) /**< @brief MQTT SUBSCRIBE QoS2 flag. */
@@ -395,6 +222,198 @@ typedef enum MQTTSuccessFailReasonCode
 #define MQTT_SUBSCRIPTION_ID_ID          ( 0x0B )
 
 
+/* Structures defined in this file. */
+struct MQTTFixedBuffer;
+struct MQTTConnectInfo;
+struct MQTTSubscribeInfo;
+struct MQTTPublishInfo;
+struct MQTTPacketInfo;
+struct MQTTConnectProperties;
+struct MQTTUserProperty;
+
+/**
+ * @ingroup mqtt_enum_types
+ * @brief Return codes from MQTT functions.
+ */
+typedef enum MQTTStatus
+{
+    MQTTSuccess = 0,                /**< Function completed successfully. */
+    MQTTBadParameter,               /**< At least one parameter was invalid. */
+    MQTTNoMemory,                   /**< A provided buffer was too small. */
+    MQTTSendFailed,                 /**< The transport send function failed. */
+    MQTTRecvFailed,                 /**< The transport receive function failed. */
+    MQTTBadResponse,                /**< An invalid packet was received from the server. */
+    MQTTServerRefused,              /**< The server refused a CONNECT or SUBSCRIBE. */
+    MQTTNoDataAvailable,            /**< No data available from the transport interface. */
+    MQTTIllegalState,               /**< An illegal state in the state record. */
+    MQTTStateCollision,             /**< A collision with an existing state record entry. */
+    MQTTKeepAliveTimeout,           /**< Timeout while waiting for PINGRESP. */
+    MQTTNeedMoreBytes,              /**< MQTT_ProcessLoop/MQTT_ReceiveLoop has received
+                                    incomplete data; it should be called again (probably after
+                                    a delay). */
+    MQTTEndOfProperties,            /**< End of properties reached while parsing MQTT packet. */
+    MQTTStatusConnected,            /**< MQTT connection is established with the broker. */
+    MQTTStatusNotConnected,         /**< MQTT connection is not established with the broker. */
+    MQTTStatusDisconnectPending,    /**< Transport Interface has failed and MQTT connection needs to be closed. */
+    MQTTPublishStoreFailed,         /**< User provided API to store a copy of outgoing publish for retransmission  purposes,
+                                    has failed. */
+    MQTTPublishRetrieveFailed,       /**< User provided API to retrieve the copy of a publish while reconnecting
+                                    with an unclean session has failed. */
+    MQTTEventCallbackFailed         /**< Error in the user provided event callback function. */
+} MQTTStatus_t;
+
+/**
+ * @ingroup mqtt_enum_types
+ * @brief MQTT Quality of Service values.
+ */
+typedef enum MQTTQoS
+{
+    MQTTQoS0 = 0, /**< Delivery at most once. */
+    MQTTQoS1 = 1, /**< Delivery at least once. */
+    MQTTQoS2 = 2  /**< Delivery exactly once. */
+} MQTTQoS_t;
+
+/**
+ * @ingroup mqtt_enum_types
+ * @brief MQTT reason codes.
+ *
+ * These values are defined in the MQTT 5.0 specification.
+ */
+typedef enum MQTTSuccessFailReasonCode
+{
+    /* PUBACK reason codes */
+    MQTT_REASON_PUBACK_SUCCESS = 0x00,                    /**< Publish was successfully received and accepted. */
+    MQTT_REASON_PUBACK_NO_MATCHING_SUBSCRIBERS = 0x10,    /**< Publish was accepted but there are no subscribers. */
+    MQTT_REASON_PUBACK_UNSPECIFIED_ERROR = 0x80,         /**< Unspecified error occurred for the PUBACK. */
+    MQTT_REASON_PUBACK_IMPLEMENTATION_SPECIFIC_ERROR = 0x83, /**< Implementation specific error for the PUBACK. */
+    MQTT_REASON_PUBACK_NOT_AUTHORIZED = 0x87,            /**< Client is not authorized to publish. */
+    MQTT_REASON_PUBACK_TOPIC_NAME_INVALID = 0x90,        /**< Topic name is not valid. */
+    MQTT_REASON_PUBACK_PACKET_IDENTIFIER_IN_USE = 0x91,  /**< Packet identifier is already in use. */
+    MQTT_REASON_PUBACK_QUOTA_EXCEEDED = 0x97,            /**< Implementation or system quota exceeded. */
+    MQTT_REASON_PUBACK_PAYLOAD_FORMAT_INVALID = 0x99,    /**< Payload format is invalid. */
+
+    /* PUBREC reason codes */
+    MQTT_REASON_PUBREC_SUCCESS = 0x00,                   /**< Publish was successfully received for QoS 2. */
+    MQTT_REASON_PUBREC_NO_MATCHING_SUBSCRIBERS = 0x10,   /**< Publish received but no matching subscribers. */
+    MQTT_REASON_PUBREC_UNSPECIFIED_ERROR = 0x80,        /**< Unspecified error occurred for the PUBREC. */
+    MQTT_REASON_PUBREC_IMPLEMENTATION_SPECIFIC_ERROR = 0x83, /**< Implementation specific error for the PUBREC. */
+    MQTT_REASON_PUBREC_NOT_AUTHORIZED = 0x87,           /**< Client is not authorized to publish. */
+    MQTT_REASON_PUBREC_TOPIC_NAME_INVALID = 0x90,       /**< Topic name is not valid. */
+    MQTT_REASON_PUBREC_PACKET_IDENTIFIER_IN_USE = 0x91, /**< Packet identifier is already in use. */
+    MQTT_REASON_PUBREC_QUOTA_EXCEEDED = 0x97,           /**< Implementation or system quota exceeded. */
+    MQTT_REASON_PUBREC_PAYLOAD_FORMAT_INVALID = 0x99,   /**< Payload format is invalid. */
+
+    /* PUBREL reason codes */
+    MQTT_REASON_PUBREL_SUCCESS = 0x00,                  /**< Publish release was successful. */
+    MQTT_REASON_PUBREL_PACKET_IDENTIFIER_NOT_FOUND = 0x92, /**< Packet identifier was not found. */
+
+    /* PUBCOMP reason codes */
+    MQTT_REASON_PUBCOMP_SUCCESS = 0x00,                 /**< Publish complete was successful. */
+    MQTT_REASON_PUBCOMP_PACKET_IDENTIFIER_NOT_FOUND = 0x92, /**< Packet identifier was not found. */
+
+    /* CONNACK reason codes */
+    MQTT_REASON_CONNACK_SUCCESS = 0x00,                 /**< Connection accepted. */
+    MQTT_REASON_CONNACK_UNSPECIFIED_ERROR = 0x80,       /**< Unspecified error occurred during connection. */
+    MQTT_REASON_CONNACK_MALFORMED_PACKET = 0x81,        /**< Received packet was malformed. */
+    MQTT_REASON_CONNACK_PROTOCOL_ERROR = 0x82,          /**< Protocol error occurred. */
+    MQTT_REASON_CONNACK_IMPLEMENTATION_SPECIFIC_ERROR = 0x83, /**< Implementation specific error. */
+    MQTT_REASON_CONNACK_UNSUPPORTED_PROTOCOL_VERSION = 0x84, /**< Protocol version not supported. */
+    MQTT_REASON_CONNACK_CLIENT_IDENTIFIER_NOT_VALID = 0x85, /**< Client identifier is not valid. */
+    MQTT_REASON_CONNACK_BAD_USER_NAME_OR_PASSWORD = 0x86, /**< Username or password is malformed. */
+    MQTT_REASON_CONNACK_NOT_AUTHORIZED = 0x87,          /**< Client is not authorized to connect. */
+    MQTT_REASON_CONNACK_SERVER_UNAVAILABLE = 0x88,      /**< Server is unavailable. */
+    MQTT_REASON_CONNACK_SERVER_BUSY = 0x89,             /**< Server is busy. */
+    MQTT_REASON_CONNACK_BANNED = 0x8A,                  /**< Client has been banned. */
+    MQTT_REASON_CONNACK_BAD_AUTHENTICATION_METHOD = 0x8C, /**< Authentication method is not supported. */
+    MQTT_REASON_CONNACK_TOPIC_NAME_INVALID = 0x90,      /**< Topic name is invalid. */
+    MQTT_REASON_CONNACK_PACKET_TOO_LARGE = 0x95,        /**< Packet size exceeds maximum allowed. */
+    MQTT_REASON_CONNACK_QUOTA_EXCEEDED = 0x97,          /**< Implementation or system quota exceeded. */
+    MQTT_REASON_CONNACK_PAYLOAD_FORMAT_INVALID = 0x99,  /**< Payload format is invalid. */
+    MQTT_REASON_CONNACK_RETAIN_NOT_SUPPORTED = 0x9A,    /**< Retain is not supported. */
+    MQTT_REASON_CONNACK_QOS_NOT_SUPPORTED = 0x9B,       /**< QoS level is not supported. */
+    MQTT_REASON_CONNACK_USE_ANOTHER_SERVER = 0x9C,      /**< Client should temporarily use another server. */
+    MQTT_REASON_CONNACK_SERVER_MOVED = 0x9D,            /**< Client should permanently use another server. */
+    MQTT_REASON_CONNACK_CONNECTION_RATE_EXCEEDED = 0x9F, /**< Connection rate limit exceeded. */
+
+    /* SUBACK reason codes */
+    MQTT_REASON_SUBACK_GRANTED_QOS0 = 0x00,             /**< Subscription accepted with maximum QoS 0. */
+    MQTT_REASON_SUBACK_GRANTED_QOS1 = 0x01,             /**< Subscription accepted with maximum QoS 1. */
+    MQTT_REASON_SUBACK_GRANTED_QOS2 = 0x02,             /**< Subscription accepted with maximum QoS 2. */
+    MQTT_REASON_SUBACK_UNSPECIFIED_ERROR = 0x80,        /**< Unspecified error occurred for the subscription. */
+    MQTT_REASON_SUBACK_IMPLEMENTATION_SPECIFIC_ERROR = 0x83, /**< Implementation specific error. */
+    MQTT_REASON_SUBACK_NOT_AUTHORIZED = 0x87,           /**< Client is not authorized to subscribe. */
+    MQTT_REASON_SUBACK_TOPIC_FILTER_INVALID = 0x8F,     /**< Topic filter is not valid. */
+    MQTT_REASON_SUBACK_PACKET_IDENTIFIER_IN_USE = 0x91, /**< Packet identifier is already in use. */
+    MQTT_REASON_SUBACK_QUOTA_EXCEEDED = 0x97,           /**< Implementation or system quota exceeded. */
+    MQTT_REASON_SUBACK_SHARED_SUBSCRIPTIONS_NOT_SUPPORTED = 0x9E, /**< Shared subscriptions are not supported. */
+    MQTT_REASON_SUBACK_SUBSCRIPTION_IDENTIFIERS_NOT_SUPPORTED = 0xA1, /**< Subscription identifiers are not supported. */
+    MQTT_REASON_SUBACK_WILDCARD_SUBSCRIPTIONS_NOT_SUPPORTED = 0xA2, /**< Wildcard subscriptions are not supported. */
+
+    /* UNSUBACK reason codes */
+    MQTT_REASON_UNSUBACK_SUCCESS = 0x00,                /**< Unsubscribe was successful. */
+    MQTT_REASON_UNSUBACK_NO_SUBSCRIPTION_EXISTED = 0x11, /**< No matching subscription existed. */
+    MQTT_REASON_UNSUBACK_UNSPECIFIED_ERROR = 0x80,      /**< Unspecified error occurred for the unsubscribe. */
+    MQTT_REASON_UNSUBACK_IMPLEMENTATION_SPECIFIC_ERROR = 0x83, /**< Implementation specific error. */
+    MQTT_REASON_UNSUBACK_NOT_AUTHORIZED = 0x87,         /**< Client is not authorized to unsubscribe. */
+    MQTT_REASON_UNSUBACK_TOPIC_FILTER_INVALID = 0x8F,   /**< Topic filter is not valid. */
+    MQTT_REASON_UNSUBACK_PACKET_IDENTIFIER_IN_USE = 0x91, /**< Packet identifier is already in use. */
+
+    /* DISCONNECT reason codes */
+    MQTT_REASON_DISCONNECT_NORMAL_DISCONNECTION = 0x00,  /**< Normal client-initiated disconnect. */
+    MQTT_REASON_DISCONNECT_DISCONNECT_WITH_WILL_MESSAGE = 0x04, /**< Client disconnecting with Will Message. */
+    MQTT_REASON_DISCONNECT_UNSPECIFIED_ERROR = 0x80,     /**< Unspecified error occurred. */
+    MQTT_REASON_DISCONNECT_MALFORMED_PACKET = 0x81,      /**< Received packet was malformed. */
+    MQTT_REASON_DISCONNECT_PROTOCOL_ERROR = 0x82,        /**< Protocol error occurred. */
+    MQTT_REASON_DISCONNECT_IMPLEMENTATION_SPECIFIC_ERROR = 0x83, /**< Implementation specific error. */
+    MQTT_REASON_DISCONNECT_NOT_AUTHORIZED = 0x87,        /**< Client is not authorized. */
+    MQTT_REASON_DISCONNECT_SERVER_BUSY = 0x89,           /**< Server is busy. */
+    MQTT_REASON_DISCONNECT_SERVER_SHUTTING_DOWN = 0x8B,  /**< Server is shutting down. */
+    MQTT_REASON_DISCONNECT_BAD_AUTHENTICATION_METHOD = 0x8C, /**< Authentication method is invalid. */
+    MQTT_REASON_DISCONNECT_KEEP_ALIVE_TIMEOUT = 0x8D,    /**< Keep alive timeout occurred. */
+    MQTT_REASON_DISCONNECT_SESSION_TAKEN_OVER = 0x8E,    /**< Another connection using same client ID. */
+    MQTT_REASON_DISCONNECT_TOPIC_FILTER_INVALID = 0x8F,  /**< Topic filter is not valid. */
+    MQTT_REASON_DISCONNECT_TOPIC_NAME_INVALID = 0x90,    /**< Topic name is not valid. */
+    MQTT_REASON_DISCONNECT_RECEIVE_MAXIMUM_EXCEEDED = 0x93, /**< Receive maximum value exceeded. */
+    MQTT_REASON_DISCONNECT_TOPIC_ALIAS_INVALID = 0x94,   /**< Topic alias is invalid. */
+    MQTT_REASON_DISCONNECT_PACKET_TOO_LARGE = 0x95,      /**< Packet size exceeds maximum allowed. */
+    MQTT_REASON_DISCONNECT_MESSAGE_RATE_TOO_HIGH = 0x96, /**< Message rate too high. */
+    MQTT_REASON_DISCONNECT_QUOTA_EXCEEDED = 0x97,        /**< Implementation or system quota exceeded. */
+    MQTT_REASON_DISCONNECT_ADMINISTRATIVE_ACTION = 0x98,  /**< Disconnected due to administrative action. */
+    MQTT_REASON_DISCONNECT_PAYLOAD_FORMAT_INVALID = 0x99, /**< Payload format is invalid. */
+    MQTT_REASON_DISCONNECT_RETAIN_NOT_SUPPORTED = 0x9A,   /**< Retain is not supported. */
+    MQTT_REASON_DISCONNECT_QOS_NOT_SUPPORTED = 0x9B,      /**< QoS level is not supported. */
+    MQTT_REASON_DISCONNECT_USE_ANOTHER_SERVER = 0x9C,     /**< Client should temporarily use another server. */
+    MQTT_REASON_DISCONNECT_SERVER_MOVED = 0x9D,           /**< Client should permanently use another server. */
+    MQTT_REASON_DISCONNECT_SHARED_SUBSCRIPTIONS_NOT_SUPPORTED = 0x9E, /**< Shared subscriptions are not supported. */
+    MQTT_REASON_DISCONNECT_CONNECTION_RATE_EXCEEDED = 0x9F, /**< Connection rate limit exceeded. */
+    MQTT_REASON_DISCONNECT_MAXIMUM_CONNECT_TIME = 0xA0,    /**< Maximum connection time authorized exceeded. */
+    MQTT_REASON_DISCONNECT_SUBSCRIPTION_IDENTIFIERS_NOT_SUPPORTED = 0xA1, /**< Subscription identifiers are not supported. */
+    MQTT_REASON_DISCONNECT_WILDCARD_SUBSCRIPTIONS_NOT_SUPPORTED = 0xA2,    /**< Wildcard subscriptions are not supported. */
+
+    MQTT_INVALID_REASON_CODE = 0xFF /**< @brief Invalid reason code. */
+
+} MQTTSuccessFailReasonCode_t;
+
+/**
+ * @ingroup mqtt_enum_types
+ * @brief Retain Handling types.
+ */
+typedef enum MQTTRetainHandling{
+    retainSendOnSub = 0, /**< Send retained messages at the time of subscription. */
+    retainSendOnSubIfNotPresent = 1,  /**< Send retained messages at subscription only if subscription does not currently exist. */
+    retainDoNotSendonSub = 2 /**< Do not send retained messages at the time of subscription. */
+}MQTTRetainHandling_t;
+
+/**
+ * @ingroup mqtt_enum_types
+ * @brief MQTT Subscription packet types.
+ */
+typedef enum MQTTSubscriptionType
+{
+    MQTT_TYPE_SUBSCRIBE,  /**< @brief The type is a SUBSCRIBE packet. */
+    MQTT_TYPE_UNSUBSCRIBE /**< @brief The type is a UNSUBSCRIBE packet. */
+} MQTTSubscriptionType_t;
+
 /**
  * @ingroup mqtt_struct_types
  * @brief Buffer passed to MQTT library.
@@ -454,27 +473,6 @@ typedef struct MQTTConnectInfo
      */
     uint16_t passwordLength;
 } MQTTConnectInfo_t;
-
-/**
- * @ingroup mqtt_enum_types
- * @brief Retain Handling types.
- */
-typedef enum MQTTRetainHandling{
-    retainSendOnSub = 0, /**< Send retained messages at the time of subscription. */
-    retainSendOnSubIfNotPresent = 1,  /**< Send retained messages at subscription only if subscription does not currently exist. */
-    retainDoNotSendonSub = 2 /**< Do not send retained messages at the time of subscription. */
-}MQTTRetainHandling_t;
-
-
-/**
- * @ingroup mqtt_enum_types
- * @brief MQTT Subscription packet types.
- */
-typedef enum MQTTSubscriptionType
-{
-    MQTT_TYPE_SUBSCRIBE,  /**< @brief The type is a SUBSCRIBE packet. */
-    MQTT_TYPE_UNSUBSCRIBE /**< @brief The type is a UNSUBSCRIBE packet. */
-} MQTTSubscriptionType_t;
 
 /**
  * @ingroup mqtt_struct_types
@@ -602,16 +600,6 @@ typedef struct MQTTConnectProperties
      */
     uint32_t serverMaxPacketSize;
 
-    /**
-     * @brief Client identifier assigned by the client.
-     */
-    const char* pClientIdentifier;
-
-     /**
-     * @brief Length of the assigned client identifier.
-     */
-    uint16_t clientIdLength;
-
      /**
      * @brief Two Byte Integer representing the Topic Alias Maximum value.
      */
@@ -620,7 +608,7 @@ typedef struct MQTTConnectProperties
      /**
      * @brief Whether wildcard subscription is available.
      */
-    uint8_t isWildcardAvaiable;
+    uint8_t isWildcardAvailable;
 
      /**
      * @brief Whether the Server supports Subscription Identifiers.
@@ -638,7 +626,7 @@ typedef struct MQTTConnectProperties
     uint16_t serverKeepAlive;
 
 
-} MQTTConnectProperties_t;
+} MQTTConnectionProperties_t;
 
  /**
  * @ingroup mqtt_struct_types
@@ -711,54 +699,6 @@ typedef struct MQTTPublishInfo
      * @brief Length of the properties.
      */
     size_t propertyLength;
-     /**
-     * @brief  Four Byte Integer representing the Will Delay Interval in seconds.
-     */
-    uint32_t willDelay;
-     /**
-     * @brief Payload Format Indicator.
-     **/
-      uint8_t payloadFormat;
-     /**
-     * @brief Topic alias value.
-     **/
-    uint16_t topicAlias;
-     /**
-     * @brief Four Byte Integer representing the Message Expiry Interval.
-     */
-    uint32_t msgExpiryInterval;
-     /**
-     * @brief Whether the message expiry is specified.
-     */
-    bool msgExpiryPresent;
-     /**
-     * @brief Length of the content type.
-     */
-    uint16_t contentTypeLength;
-     /**
-     * @brief UTF-8 Encoded String describing the content of the Will Message.
-     */
-    const char *pContentType;
-     /**
-     * @brief Length of the response topic.
-     */
-    uint16_t responseTopicLength;
-     /**
-     * @brief UTF-8 Encoded String which is used as the Topic Name for a response message.
-     */
-    const char *pResponseTopic;
-     /**
-     * @brief Length of the correlation data.
-     */
-    uint16_t correlationLength;
-     /**
-     * @brief To identify which request the Response Message is for.
-     */
-    const void *pCorrelationData;
-    /**
-     * @brief Subscription ID.
-     */
-    size_t subscriptionId ;
 
 } MQTTPublishInfo_t;
 
@@ -793,11 +733,14 @@ typedef struct MQTTPacketInfo
 /**
  * @brief Get packet size and Remaining Length of an MQTT SUBSCRIBE packet.
  *
- * This function must be called before #sendSubscribeWithoutCopy in order to get
+ * This function must be called before #MQTT_SerializeSubscribe in order to get
  * the size of the MQTT SUBSCRIBE packet that is generated from the list of
- * #MQTTSubscribeInfo_t and optional subscribe properties.
- * The remaining length returned in @p pRemainingLength and 
- * the packet size returned in @p pPacketSize are valid
+ * #MQTTSubscribeInfo_t and #MQTTPropBuilder_t (optional subscribe properties).
+ * The size of the #MQTTFixedBuffer_t supplied to #MQTT_SerializeSubscribe must
+ * be at least @p pPacketSize. The provided @p pSubscriptionList is valid for
+ * serialization with #MQTT_SerializeSubscribe
+ * only if this function returns #MQTTSuccess. The remaining length returned in
+ * @p pRemainingLength and the packet size returned in @p pPacketSize are valid
  * only if this function returns #MQTTSuccess.
  *
  * @param[in] pSubscriptionList List of MQTT subscription info.
@@ -838,17 +781,18 @@ typedef struct MQTTPacketInfo
  *
  * // Get the size requirement for the subscribe packet.
  * status = MQTT_GetSubscribePacketSize(
- *      &subscriptionList[ 0 ], 
- *      NUMBER_OF_SUBSCRIPTIONS, 
+ *      &subscriptionList[ 0 ],
+ *      NUMBER_OF_SUBSCRIPTIONS,
  *      &subscribeProperties,
- *      &remainingLength, 
+ *      &remainingLength,
  *      &packetSize,
  *      maxPacketSize
  * );
  *
  * if( status == MQTTSuccess )
  * {
- *      // The subscribe packet can now be sent to the broker.
+ *      // The application should allocate or use a static #MQTTFixedBuffer_t
+ *      // of size >= packetSize to serialize the subscribe request.
  * }
  * @endcode
  */
@@ -901,7 +845,8 @@ MQTTStatus_t MQTT_GetSubscribePacketSize( const MQTTSubscribeInfo_t * pSubscript
  * // scope for this example.
  * packetId = getNewPacketId();
  *
- * // Assume subscriptionList and subscribeProperties have been initialized. Get the subscribe packet size.
+ * // Assume subscriptionList and subscribeProperties have been initialized.
+ * Get the subscribe packet size.
  * status = MQTT_GetSubscribePacketSize(
  *      &subscriptionList[ 0 ], NUMBER_OF_SUBSCRIPTIONS, &subscribeProperties,
  *      &remainingLength, &packetSize
@@ -937,11 +882,14 @@ MQTTStatus_t MQTT_SerializeSubscribe( const MQTTSubscribeInfo_t * pSubscriptionL
 /**
  * @brief Get packet size and Remaining Length of an MQTT UNSUBSCRIBE packet.
  *
- * This function must be called before #sendSubscribeWithoutCopy in order to
+ * This function must be called before #MQTT_SerializeUnsubscribe in order to
  * get the size of the MQTT UNSUBSCRIBE packet that is generated from the list
- * of #MQTTSubscribeInfo_t and optional propertyLength. The remaining length returned in
- * @p pRemainingLength and the packet size returned in @p pPacketSize are valid
- * only if this function returns #MQTTSuccess.
+ * of #MQTTSubscribeInfo_t and #MQTTPropBuilder_t (optional unsubscribe properties).
+ * The size of the #MQTTFixedBuffer_t supplied to #MQTT_SerializeUnsubscribe must be
+ * at least @p pPacketSize. The provided @p pSubscriptionList is valid for serialization
+ * with #MQTT_SerializeUnsubscribe only if this function returns #MQTTSuccess.
+ * The remaining length returned in @p pRemainingLength and the packet size returned
+ * in @p pPacketSize are valid only if this function returns #MQTTSuccess.
  *
  * @param[in] pSubscriptionList List of MQTT subscription info.
  * @param[in] subscriptionCount The number of elements in pSubscriptionList.
@@ -971,10 +919,15 @@ MQTTStatus_t MQTT_SerializeSubscribe( const MQTTSubscribeInfo_t * pSubscriptionL
  *
  * //Initialize the property buffer. The details are out of scope for this example.
  * initializePropertyBuffer( &unsubscribeProperties );
- * 
+ *
  * // Get the size requirement for the unsubscribe packet.
  * status = MQTT_GetUnsubscribePacketSize(
- *      &subscriptionList[ 0 ], NUMBER_OF_SUBSCRIPTIONS, &unsubscribeProperties, &remainingLength, &packetSize, maxPacketSize);
+ *      &subscriptionList[ 0 ],
+ *      NUMBER_OF_SUBSCRIPTIONS,
+ *      &unsubscribeProperties,
+ *      &remainingLength,
+ *      &packetSize,
+ *      maxPacketSize);
  *
  * if( status == MQTTSuccess )
  * {
@@ -1068,10 +1021,10 @@ MQTTStatus_t MQTT_GetUnsubscribePacketSize( const MQTTSubscribeInfo_t* pSubscrip
 /* @[declare_mqtt_serializeunsubscribe] */
 MQTTStatus_t MQTT_SerializeUnsubscribe( const MQTTSubscribeInfo_t * pSubscriptionList,
     size_t subscriptionCount,
-    const MQTTPropBuilder_t * pUnsubscribeProperties, 
+    const MQTTPropBuilder_t * pUnsubscribeProperties,
     uint16_t packetId,
     size_t remainingLength,
-    const MQTTFixedBuffer_t * pFixedBuffer ); 
+    const MQTTFixedBuffer_t * pFixedBuffer );
 /* @[declare_mqtt_serializeunsubscribe] */
 
 /**
@@ -1201,12 +1154,13 @@ MQTTStatus_t MQTT_SerializePublishHeaderWithoutTopic( const MQTTPublishInfo_t * 
  * // Variables used in this example.
  * MQTTStatus_t status;
  * MQTTPublishInfo_t publishInfo = { 0 };
- * MQTTPropBuilder_t publishProperties = { 0 };
+ * MQTTPropBuilder_t publishProperties ;
  * MQTTFixedBuffer_t fixedBuffer;
  * uint8_t buffer[ BUFFER_SIZE ];
  * size_t remainingLength = 0, packetSize = 0, headerSize = 0;
  * uint16_t packetId;
  * int32_t bytesSent;
+ * uint32_t maxPacketSize = pContext->connectionProperties.serverMaxPacketSize;
  *
  * fixedBuffer.pBuffer = buffer;
  * fixedBuffer.size = BUFFER_SIZE;
@@ -1217,8 +1171,8 @@ MQTTStatus_t MQTT_SerializePublishHeaderWithoutTopic( const MQTTPublishInfo_t * 
  *
  * // Assume publishInfo and publishProperties have been initialized. Get the publish packet size.
  * status = MQTT_GetPublishPacketSize(
- *      &publishInfo, &publishProperties, &remainingLength, &packetSize
- * );
+ *      &publishInfo, &publishProperties, &remainingLength, &packetSize, maxPacketSize
+);
  * assert( status == MQTTSuccess );
  * // The payload will not be serialized, so the the fixed buffer does not need to hold it.
  * assert( ( packetSize - publishInfo.payloadLength ) <= BUFFER_SIZE );
@@ -1256,7 +1210,7 @@ MQTTStatus_t MQTT_SerializePublishHeader( const MQTTPublishInfo_t * pPublishInfo
 
 /**
  * @brief Serialize an MQTT PUBACK, PUBREC, PUBREL, or PUBCOMP into the given
- * buffer.
+ * buffer. These PUBLISH ACKS are serialized without reason codes or properties.
  *
  * @param[out] pFixedBuffer Buffer for packet serialization.
  * @param[in] packetType Byte of the corresponding packet fixed header per the
@@ -1300,8 +1254,6 @@ MQTTStatus_t MQTT_SerializeAck( const MQTTFixedBuffer_t * pFixedBuffer,
                                 uint8_t packetType,
                                 uint16_t packetId );
 /* @[declare_mqtt_serializeack] */
-
-
 
 /**
  * @brief Get the size of an MQTT PINGREQ packet.
@@ -1380,9 +1332,12 @@ MQTTStatus_t MQTT_SerializePingreq( const MQTTFixedBuffer_t * pFixedBuffer );
  * @param[out] pPublishInfo Struct containing information about the publish.
  * @param[in] propBuffer Buffer to hold the properties.
  * @param[in] maxPacketSize Maximum packet size.
- * @param[in] topicAliasMax Maximum topic alias specified in the CONNECT packet. 
+ * @param[in] topicAliasMax Maximum topic alias specified in the CONNECT packet.
  *
- * @return #MQTTBadParameter, #MQTTBadResponse, or #MQTTSuccess.
+ * @return
+ * - #MQTTBadParameter if invalid parameters are passed
+ * - #MQTTBadResponse if invalid packet is read
+ * - #MQTTSuccess otherwise.
  *
  * <b>Example</b>
  * @code{c}
@@ -1401,9 +1356,9 @@ MQTTStatus_t MQTT_SerializePingreq( const MQTTFixedBuffer_t * pFixedBuffer );
  * MQTTPacketInfo_t incomingPacket;
  * MQTTPublishInfo_t publishInfo = { 0 };
  * MQTTPropBuilder_t propBuffer ;
- * uint32_t maxPacketSize;
  * uint16_t packetId;
- * uint16_t topicAliasMax ; 
+ * uint32_t maxPacketSize = pContext->connectionProperties.maxPacketSize;
+ * uint16_t topicAliasMax = pContext->connectionProperties.topicAliasMax;
  *
  * int32_t bytesRecvd;
  * // A buffer to hold remaining data of the incoming packet.
@@ -1427,7 +1382,8 @@ MQTTStatus_t MQTT_SerializePingreq( const MQTTFixedBuffer_t * pFixedBuffer );
  * // Deserialize the publish information if the incoming packet is a publish.
  * if( ( incomingPacket.type & 0xF0 ) == MQTT_PACKET_TYPE_PUBLISH )
  * {
- *      status = MQTT_DeserializePublish( &incomingPacket, &packetId, &publishInfo, &propBuffer, maxPacketSize, topicAliasMax );
+ *      status = MQTT_DeserializePublish( &incomingPacket, &packetId, &publishInfo,
+ *                                        &propBuffer, maxPacketSize, topicAliasMax );
  *      if( status == MQTTSuccess )
  *      {
  *          // The deserialized publish information can now be used from `publishInfo`.
@@ -1618,9 +1574,14 @@ uint8_t * MQTT_SerializeUnsubscribeHeader( size_t remainingLength,
 /**
  * @brief Get the size and Remaining Length of an MQTT Version 5 CONNECT packet.
  *
- * This function must be called before #sendConnectWithoutCopy in order to get
- * the size of the MQTT CONNECT packet that is generated from #MQTTConnectInfo_t,
- * optional #MQTTPublishInfo_t and optional connect and will properties.
+ * This function must be called before #MQTT_SerializeConnect in order to get
+ * the size of the MQTT CONNECT packet that is generated from #MQTTConnectInfo_t, #MQTTPublishInfo_t
+ * and optional MQTTPropBuilder_t. The size of the #MQTTFixedBuffer_t supplied
+ * to #MQTT_SerializeConnect must be at least @p pPacketSize. The provided
+ * @p pConnectInfo and @p pWillInfo are valid for serialization with
+ * #MQTT_SerializeConnect only if this function returns #MQTTSuccess. The
+ * remaining length returned in @p pRemainingLength and the packet size returned
+ * in @p pPacketSize are valid only if this function returns #MQTTSuccess.
  *
  * @param[in] pConnectInfo MQTT CONNECT packet parameters.
  * @param[in] pWillInfo Last Will and Testament. Pass NULL if not used.
@@ -1639,7 +1600,7 @@ uint8_t * MQTT_SerializeUnsubscribeHeader( size_t remainingLength,
  * MQTTStatus_t status;
  * MQTTConnectInfo_t connectInfo = { 0 };
  * MQTTPublishInfo_t willInfo = { 0 };
- * MQTTPropBuilder_t connectProperties = { 0 };
+ * MQTTPropBuilder_t connectionProperties = { 0 };
  * MQTTPropBuilder_t willProperties = { 0 };
  * size_t remainingLength = 0, packetSize = 0;
  *
@@ -1650,16 +1611,16 @@ uint8_t * MQTT_SerializeUnsubscribeHeader( size_t remainingLength,
  * initializeWillInfo( &willInfo );
  *
  * // Initialize connect properties and will properties, the details are out of scope for this example.
- * initializeConnectProperties( &connectProperties );
+ * initializeConnectProperties( &connectionProperties );
  * initializeWillProperties( &willProperties );
- * 
+ *
  * // Get the size requirement for the connect packet.
  * status = MQTT_GetConnectPacketSize(
- *      &connectInfo, 
- *      &willInfo, 
- *      &connectProperties, 
- *      &willProperties, 
- *      &remainingLength, 
+ *      &connectInfo,
+ *      &willInfo,
+ *      &connectionProperties,
+ *      &willProperties,
+ *      &remainingLength,
  *      &packetSize
  * );
  *
@@ -1674,7 +1635,7 @@ uint8_t * MQTT_SerializeUnsubscribeHeader( size_t remainingLength,
 MQTTStatus_t MQTT_GetConnectPacketSize( const MQTTConnectInfo_t * pConnectInfo,
                                         const MQTTPublishInfo_t * pWillInfo,
                                         const MQTTPropBuilder_t *pConnectProperties,
-                                        const MQTTPropBuilder_t *pWillProperties, 
+                                        const MQTTPropBuilder_t *pWillProperties,
                                         size_t * pRemainingLength,
                                         size_t * pPacketSize );
 /* @[declare_mqtt_getconnectpacketsize] */
@@ -1683,10 +1644,10 @@ MQTTStatus_t MQTT_GetConnectPacketSize( const MQTTConnectInfo_t * pConnectInfo,
  * @brief Serialize an MQTT CONNECT packet in the given fixed buffer @p pFixedBuffer.
  *
  * #MQTT_GetConnectPacketSize should be called with @p pConnectInfo, @p pWillInfo,
- * @p pConnectProperties, and @p pWillProperties before invoking this function to get 
- * the size of the required #MQTTFixedBuffer_t and @p remainingLength. The 
- * @p remainingLength must be the same as returned by #MQTT_GetConnectPacketSize. 
- * The #MQTTFixedBuffer_t must be at least as large as the size returned by 
+ * @p pConnectProperties, and @p pWillProperties before invoking this function to get
+ * the size of the required #MQTTFixedBuffer_t and @p remainingLength. The
+ * @p remainingLength must be the same as returned by #MQTT_GetConnectPacketSize.
+ * The #MQTTFixedBuffer_t must be at least as large as the size returned by
  * #MQTT_GetConnectPacketSize.
  *
  * @param[in] pConnectInfo MQTT CONNECT packet parameters.
@@ -1707,7 +1668,7 @@ MQTTStatus_t MQTT_GetConnectPacketSize( const MQTTConnectInfo_t * pConnectInfo,
  * MQTTStatus_t status;
  * MQTTConnectInfo_t connectInfo = { 0 };
  * MQTTPublishInfo_t willInfo = { 0 };
- * MQTTPropBuilder_t connectProperties = { 0 };
+ * MQTTPropBuilder_t connectionProperties = { 0 };
  * MQTTPropBuilder_t willProperties = { 0 };
  * MQTTFixedBuffer_t fixedBuffer;
  * uint8_t buffer[ BUFFER_SIZE ];
@@ -1716,23 +1677,23 @@ MQTTStatus_t MQTT_GetConnectPacketSize( const MQTTConnectInfo_t * pConnectInfo,
  * fixedBuffer.pBuffer = buffer;
  * fixedBuffer.size = BUFFER_SIZE;
  *
- * // Assume connectInfo, willInfo, and properties are initialized. 
+ * // Assume connectInfo, willInfo, and properties are initialized.
  * // Get the size requirement for the connect packet.
  * status = MQTT_GetConnectPacketSize(
- *      &connectInfo, &willInfo, &connectProperties, &willProperties,
+ *      &connectInfo, &willInfo, &connectionProperties, &willProperties,
  *      &remainingLength, &packetSize
  * );
  * assert( status == MQTTSuccess );
  * assert( packetSize <= BUFFER_SIZE );
  *
  * // Serialize the connect packet into the fixed buffer.
- * status = MQTT_SerializeConnect( 
- *      &connectInfo, 
+ * status = MQTT_SerializeConnect(
+ *      &connectInfo,
  *      &willInfo,
- *      &connectProperties,
+ *      &connectionProperties,
  *      &willProperties,
- *      remainingLength, 
- *      &fixedBuffer 
+ *      remainingLength,
+ *      &fixedBuffer
  * );
  *
  * if( status == MQTTSuccess )
@@ -1744,7 +1705,7 @@ MQTTStatus_t MQTT_GetConnectPacketSize( const MQTTConnectInfo_t * pConnectInfo,
 /* @[declare_mqtt_serializeconnect] */
 MQTTStatus_t MQTT_SerializeConnect( const MQTTConnectInfo_t * pConnectInfo,
                                     const MQTTPublishInfo_t * pWillInfo,
-                                    const MQTTPropBuilder_t * pConnectProperties, 
+                                    const MQTTPropBuilder_t * pConnectProperties,
                                     const MQTTPropBuilder_t * pWillProperties,
                                     size_t remainingLength,
                                     const MQTTFixedBuffer_t * pFixedBuffer );
@@ -1801,7 +1762,7 @@ MQTTStatus_t MQTT_ValidatePublishParams(const MQTTPublishInfo_t* pPublishInfo,
  *
  * #MQTT_ValidatePublishParams should be called with @p pPublishInfo before invoking this function
  * to validate the publish parameters. This function must be called before #sendPublishWithoutCopy
- * in order to get the size of the MQTT PUBLISH packet that is generated from #MQTTPublishInfo_t 
+ * in order to get the size of the MQTT PUBLISH packet that is generated from #MQTTPublishInfo_t
  * and optional publish properties. The remaining length returned in @p pRemainingLength and the
  * packet size returned in @p pPacketSize are valid only if this function
  * returns #MQTTSuccess.
@@ -1857,10 +1818,10 @@ MQTTStatus_t MQTT_ValidatePublishParams(const MQTTPublishInfo_t* pPublishInfo,
  */
 /* @[declare_mqtt_getpublishpacketsize] */
 MQTTStatus_t MQTT_GetPublishPacketSize( const MQTTPublishInfo_t * pPublishInfo,
-                                        const MQTTPropBuilder_t * pPublishProperties, 
+                                        const MQTTPropBuilder_t * pPublishProperties,
                                         size_t * pRemainingLength,
                                         size_t * pPacketSize,
-                                        uint32_t maxPacketSize); 
+                                        uint32_t maxPacketSize);
 /* @[declare_mqtt_getpublishpacketsize] */
 
 
@@ -1874,21 +1835,15 @@ MQTTStatus_t MQTT_GetPublishPacketSize( const MQTTPublishInfo_t * pPublishInfo,
  *                            For other packet types: this parameter is ignored.
  * @param[out] pReasonCode Struct to store reason code(s) from the acknowledgment packet.
  *                        Contains the success/failure status of the corresponding request.
- * @param[in] requestProblem Request problem value set in the connect packet.
- *                          Indicates if there was an issue with the original request.
- * @param[in] maxPacketSize Maximum packet size allowed by the client.
- *                         Used for validation of incoming packet size.
- * @param[out] propBuffer Struct to store the deserialized acknowledgment properties.
+ * @param[out] pPropBuffer Struct to store the deserialized acknowledgment properties.
  *                       Will contain any MQTT v5.0 properties included in the ack packet.
  * @param[in,out] pConnectProperties Struct to store the deserialized connect/connack properties.
- *                                  Used only for CONNACK packets to store connection-specific properties.
- *                                  For other packet types, this parameter can be NULL.
+ *                                   This parameter cannot be NULL.
  *
  * @return Returns one of the following:
  * - #MQTTSuccess if the packet was successfully deserialized
  * - #MQTTBadParameter if invalid parameters are passed
- * - #MQTTBadResponse if the packet is malformed
- * - #MQTTServerRefused if the server explicitly rejected the request
+ * - #MQTTServerRefused if the server explicitly rejected the request, either in the CONNACK or a SUBACK.
  * - #MQTTBadResponse if the packet type is invalid or packet parsing fails
  *
  * <b>Example</b>
@@ -1899,11 +1854,9 @@ MQTTStatus_t MQTT_GetPublishPacketSize( const MQTTPublishInfo_t * pPublishInfo,
  * MQTTPacketInfo_t incomingPacket;
  * uint16_t packetId;
  * bool sessionPresent;
- * MQTTReasonCodeInfo_t reasonCode;
- * bool requestProblem;
- * uint32_t maxPacketSize;
- * MQTTPropBuilder_t propBuffer;
- * MQTTConnectProperties_t connectProperties;
+ * MQTTReasonCodeInfo_t reasonCode ; // Can be set to NULL if the incoming packet is CONNACK or PINGRESP
+ * MQTTPropBuilder_t propBuffer; // Can be set to NULL if the user does not want any incoming properties.
+ * MQTTConnectionProperties_t connectionProperties = pContext->connectionProperties;  // Cannot be set to NULL.
  *
  * // Receive an incoming packet and populate all fields. The details are out of scope
  * // for this example.
@@ -1914,12 +1867,10 @@ MQTTStatus_t MQTT_GetPublishPacketSize( const MQTTPublishInfo_t * pPublishInfo,
  *                             &packetId,
  *                             &sessionPresent,
  *                             &reasonCode,
- *                             requestProblem,
- *                             maxPacketSize,
  *                             &propBuffer,
- *                             &connectProperties);
+ *                             &connectionProperties);
  * if(status == MQTTSuccess)
- * {
+ * {s
  *     // Ack information is now available.
  * }
  * @endcode
@@ -1927,12 +1878,10 @@ MQTTStatus_t MQTT_GetPublishPacketSize( const MQTTPublishInfo_t * pPublishInfo,
 /* @[declare_mqtt_deserializeack] */
 MQTTStatus_t MQTT_DeserializeAck( const MQTTPacketInfo_t * pIncomingPacket,
                                 uint16_t * pPacketId,
-                                bool * pSessionPresent, 
+                                bool * pSessionPresent,
                                 MQTTReasonCodeInfo_t * pReasonCode,
-                                bool requestProblem,
-                                uint32_t maxPacketSize,
-                                MQTTPropBuilder_t * propBuffer,
-                                MQTTConnectProperties_t * pConnectProperties ); 
+                                MQTTPropBuilder_t * pPropBuffer,
+                                MQTTConnectionProperties_t * pConnectProperties );
 /* @[declare_mqtt_deserializeack] */
 
 /**
@@ -1965,12 +1914,9 @@ uint8_t* MQTT_SerializeAckFixed(uint8_t* pIndex,
 /** @endcond */
 
 /**
- * @brief Serialize an MQTT PUBLISH ACK packet into the given buffer.
+ * @brief Get the size of an outgoing PUBLISH ACK packet.
  *
- * The input #MQTTFixedBuffer_t.size must be at least as large as the size
- * returned by #MQTT_GetAckPacketSize.
- *
- * @note If reason code is success and property length is zero then #MQTT_SerializeAck can also be used.
+ * @note If no reason code is sent and property length is zero then #MQTT_SerializeAck can be used directly.
  *
  * @param[out]  pRemainingLength The remaining length of the packet to be serialized.
  * @param[out]  pPacketSize The size of the packet to be serialized.
@@ -2030,7 +1976,7 @@ MQTTStatus_t MQTT_GetAckPacketSize(size_t* pRemainingLength,
  * size_t remainingLength = 0;
  * size_t packetSize = 0;
  * uint32_t maxPacketSize;
- * MQTTPropBuilder_t disconnectProperties ; 
+ * MQTTPropBuilder_t disconnectProperties ;
  * MQTTSuccessFailReasonCode_t reasonCode;
  *
  * //Set property builder. The details are out of scope for this example.
@@ -2038,7 +1984,7 @@ MQTTStatus_t MQTT_GetAckPacketSize(size_t* pRemainingLength,
  *
  * //Set the parameters.
  * // Get the size requirement for the disconnect packet.
- * status = MQTT_GetDisconnectPacketSize(&disconnectProperties, &remainingLength,&packetSize,maxPacketSize, reasonCode);   
+ * status = MQTT_GetDisconnectPacketSize(&disconnectProperties, &remainingLength,&packetSize,maxPacketSize, reasonCode);
  *
  * if( status == MQTTSuccess )
  * {
@@ -2047,7 +1993,7 @@ MQTTStatus_t MQTT_GetAckPacketSize(size_t* pRemainingLength,
  * @endcode
  */
 /* @[declare_mqtt_getdisconnectpacketsize] */
-MQTTStatus_t MQTT_GetDisconnectPacketSize(  const MQTTPropBuilder_t * pDisconnectProperties, 
+MQTTStatus_t MQTT_GetDisconnectPacketSize(  const MQTTPropBuilder_t * pDisconnectProperties,
                                             size_t* pRemainingLength,
                                             size_t* pPacketSize,
                                             uint32_t maxPacketSize,
@@ -2086,7 +2032,7 @@ MQTTStatus_t MQTT_GetDisconnectPacketSize(  const MQTTPropBuilder_t * pDisconnec
  * fixedBuffer.size = BUFFER_SIZE;
  *
  * // Get the disconnect packet size.
- * status = MQTT_GetDisconnectPacketSize( &disconnectProperties, 
+ * status = MQTT_GetDisconnectPacketSize( &disconnectProperties,
  *                                        MQTT_REASON_DISCONNECT_NORMAL_DISCONNECTION,
  *                                        &remainingLength,
  *                                        &packetSize );
@@ -2139,9 +2085,9 @@ uint8_t * MQTT_SerializeDisconnectFixed(uint8_t * pIndex,
  * @param[in] pPacket #MQTTPacketInfo_t containing the buffer.
  * @param[in] maxPacketSize Maximum packet size allowed by the client.
  * @param[out] pDisconnectInfo Struct containing disconnect reason code
- * @param[out] propBuffer MQTTPropBuilder_t to store the deserialized properties.
+ * @param[out] pPropBuffer MQTTPropBuilder_t to store the deserialized properties.
  *
- * @return #MQTTBadParameter, #MQTTServerRefused, #MQTTBadResponse or #MQTTSuccess.
+ * @return #MQTTBadParameter, #MQTTBadResponse or #MQTTSuccess.
  *
  * <b>Example</b>
  * @code{c}
@@ -2174,7 +2120,7 @@ uint8_t * MQTT_SerializeDisconnectFixed(uint8_t * pIndex,
 MQTTStatus_t MQTT_DeserializeDisconnect(const MQTTPacketInfo_t* pPacket,
                                           uint32_t maxPacketSize,
                                           MQTTReasonCodeInfo_t* pDisconnectInfo,
-                                          MQTTPropBuilder_t* propBuffer);
+                                          MQTTPropBuilder_t* pPropBuffer);
 /* @[declare_mqtt_deserializedisconnect] */
 
 
@@ -2199,13 +2145,13 @@ MQTTStatus_t MQTT_DeserializeDisconnect(const MQTTPacketInfo_t* pPacket,
  * // Variables used in this example.
  * MQTTStatus_t status;
  * MQTTPropBuilder_t propBuilder = { 0 };
- * MQTTConnectProperties_t connectProperties = { 0 };
+ * MQTTConnectionProperties_t connectionProperties = { 0 };
  *
  * // Initialize property builder with desired properties
  * // ...
  *
  * // Update connect properties
- * status = updateContextWithConnectProps(&propBuilder, &connectProperties);
+ * status = updateContextWithConnectProps(&propBuilder, &connectionProperties);
  *
  * if(status == MQTTSuccess)
  * {
@@ -2214,7 +2160,7 @@ MQTTStatus_t MQTT_DeserializeDisconnect(const MQTTPacketInfo_t* pPacket,
  * @endcode
  */
 
-MQTTStatus_t updateContextWithConnectProps(const MQTTPropBuilder_t* pPropBuilder, MQTTConnectProperties_t* pConnectProperties);
+MQTTStatus_t updateContextWithConnectProps(const MQTTPropBuilder_t* pPropBuilder, MQTTConnectionProperties_t* pConnectProperties);
 
 
 /**
@@ -2576,6 +2522,7 @@ MQTTStatus_t MQTTPropAdd_ReasonString(MQTTPropBuilder_t* pPropertyBuilder,
  *
  * @return Returns one of the following:
  * - #MQTTSuccess if the properties are valid
+ * - #MQTTBadParameter if invalid parameters are passed
  * - #MQTTBadResponse if an invalid packet is read
  */
 /* @[declare_mqtt_validatepublishproperties] */
@@ -2603,24 +2550,24 @@ MQTTStatus_t MQTT_ValidateSubscribeProperties(uint8_t isSubscriptionIdAvailable,
  *
  * @param[in] connectSessionExpiry The session expiry interval that was specified
  *                                in the CONNECT packet. Used to validate that the
- *                                DISCONNECT session expiry is not non-zero while 
+ *                                DISCONNECT session expiry is not non-zero while
  *                                connectSessionExpiry is zero.
  * @param[in] pPropertyBuilder Pointer to the property builder structure containing subscribe properties.
- * 
+ *
  * @return Returns one of the following:
- * - #MQTTSuccess , #MQTTBadParameter or #MQTTBadResponse. 
+ * - #MQTTSuccess , #MQTTBadParameter or #MQTTBadResponse.
  */
 /* @[declare_mqtt_validatedisconnectproperties] */
-MQTTStatus_t MQTT_ValidateDisconnectProperties( uint32_t connectSessionExpiry, const MQTTPropBuilder_t * pPropertyBuilder); 
+MQTTStatus_t MQTT_ValidateDisconnectProperties( uint32_t connectSessionExpiry, const MQTTPropBuilder_t * pPropertyBuilder);
 /* @[declare_mqtt_validatedisconnectproperties] */
 
 /**
- * @brief Validates the properties specified for an WILL Properties in the MQTT CONNECT packet.
+ * @brief Validates the properties specified for WILL Properties in the MQTT CONNECT packet.
  *
  * @param[in] pPropertyBuilder Pointer to the property builder structure containing will properties.
- * 
+ *
  * @return Returns one of the following:
- * - #MQTTSuccess , #MQTTBadParameter or #MQTTBadResponse. 
+ * - #MQTTSuccess , #MQTTBadParameter or #MQTTBadResponse.
  */
 /* @[declare_mqtt_validatewillproperties] */
 MQTTStatus_t MQTT_ValidateWillProperties( const MQTTPropBuilder_t * pPropertyBuilder);
@@ -2628,26 +2575,26 @@ MQTTStatus_t MQTT_ValidateWillProperties( const MQTTPropBuilder_t * pPropertyBui
 
 /**
  * @brief Validates the properties specified for an MQTT UNSUBSCRIBE packet.
- * 
+ *
  * @param[in] pPropertyBuilder Pointer to the property builder structure containing unsubscribe properties.
- * 
+ *
  * @return Returns one of the following:
- * - #MQTTSuccess , #MQTTBadParameter or #MQTTBadResponse. 
+ * - #MQTTSuccess , #MQTTBadParameter or #MQTTBadResponse.
  */
 /* @[declare_mqtt_validateunsubscribeproperties] */
-MQTTStatus_t MQTT_ValidateUnsubscribeProperties( const MQTTPropBuilder_t * pPropertyBuilder); 
+MQTTStatus_t MQTT_ValidateUnsubscribeProperties( const MQTTPropBuilder_t * pPropertyBuilder);
 /* @[declare_mqtt_validateunsubscribeproperties] */
 
 /**
  * @brief Validates the properties specified for an MQTT PUBLISH ACK packet.
- * 
+ *
  * @param[in] pPropertyBuilder Pointer to the property builder structure containing unsubscribe properties.
- * 
+ *
  * @return Returns one of the following:
- * - #MQTTSuccess , #MQTTBadParameter or #MQTTBadResponse. 
+ * - #MQTTSuccess , #MQTTBadParameter or #MQTTBadResponse.
  */
 /* @[declare_mqtt_validatepublishackproperties] */
-MQTTStatus_t MQTT_ValidatePublishAckProperties( const MQTTPropBuilder_t * pPropertyBuilder ); 
+MQTTStatus_t MQTT_ValidatePublishAckProperties( const MQTTPropBuilder_t * pPropertyBuilder );
 /* @[declare_mqtt_validatepublishackproperties] */
 
 /**
@@ -2994,9 +2941,9 @@ MQTTStatus_t MQTTPropGet_ConnSubId(MQTTPropBuilder_t* propBuffer, uint8_t* isSub
  * @param[out] isSharedSubAvailable Pointer to store whether shared subscriptions are supported
  *                                 1 if available, 0 if not available
  *
- * @return MQTTSuccess if property was found and retrieved successfully
- *         MQTTBadParameter if propBuffer or isSharedSubAvailable is NULL
- *         MQTTBadResponse if property value is invalid in buffer
+ * @return #MQTTSuccess if property was found and retrieved successfully
+ *         #MQTTBadParameter if propBuffer or isSharedSubAvailable is NULL
+ *         #MQTTBadResponse if property value is invalid in buffer
  */
 /* @[declare_mqttpropget_connsharedsubavailable] */
 MQTTStatus_t MQTTPropGet_ConnSharedSubAvailable( MQTTPropBuilder_t * propBuffer,
@@ -3008,9 +2955,9 @@ MQTTStatus_t MQTTPropGet_ConnSharedSubAvailable( MQTTPropBuilder_t * propBuffer,
  * @param[in] propBuffer The property buffer containing CONNACK properties
  * @param[out] serverKeepAlive Pointer to store the server-specified keep alive interval in seconds
  *
- * @return MQTTSuccess if property was found and retrieved successfully
- *         MQTTBadParameter if propBuffer or serverKeepAlive is NULL
- *         MQTTBadResponse if property value is invalid in buffer
+ * @return #MQTTSuccess if property was found and retrieved successfully
+ *         #MQTTBadParameter if propBuffer or serverKeepAlive is NULL
+ *         #MQTTBadResponse if property value is invalid in buffer
  */
 /* @[declare_mqttpropget_connserverkeepalive] */
 MQTTStatus_t MQTTPropGet_ConnServerKeepAlive( MQTTPropBuilder_t * propBuffer,
@@ -3024,9 +2971,9 @@ MQTTStatus_t MQTTPropGet_ConnServerKeepAlive( MQTTPropBuilder_t * propBuffer,
  * @param[out] pResponseInfo Pointer to store the response information string
  * @param[out] responseInfoLength Pointer to store length of response information
  *
- * @return MQTTSuccess if property was found and retrieved successfully
- *         MQTTBadParameter if propBuffer, pResponseInfo, or responseInfoLength is NULL
- *         MQTTBadResponse if property value is invalid in buffer
+ * @return #MQTTSuccess if property was found and retrieved successfully
+ *         #MQTTBadParameter if propBuffer, pResponseInfo, or responseInfoLength is NULL
+ *         #MQTTBadResponse if property value is invalid in buffer
  */
 /* @[declare_mqttpropget_connresponseinfo] */
 MQTTStatus_t MQTTPropGet_ConnResponseInfo( MQTTPropBuilder_t * propBuffer,
@@ -3041,9 +2988,9 @@ MQTTStatus_t MQTTPropGet_ConnResponseInfo( MQTTPropBuilder_t * propBuffer,
  * @param[out] pAuthMethod Pointer to store the authentication method string
  * @param[out] authMethodLength Pointer to store length of authentication method
  *
- * @return MQTTSuccess if property was found and retrieved successfully
- *         MQTTBadParameter if propBuffer, pAuthMethod, or authMethodLength is NULL
- *         MQTTBadResponse if property value is invalid in buffer
+ * @return #MQTTSuccess if property was found and retrieved successfully
+ *         #MQTTBadParameter if propBuffer, pAuthMethod, or authMethodLength is NULL
+ *         #MQTTBadResponse if property value is invalid in buffer
  */
 
 /* @[declare_mqttpropget_connauthmethod] */
@@ -3059,9 +3006,9 @@ MQTTStatus_t MQTTPropGet_ConnAuthMethod(MQTTPropBuilder_t * propBuffer,
  * @param[out] pAuthData Pointer to store the authentication data
  * @param[out] authDataLength Pointer to store length of authentication data
  *
- * @return MQTTSuccess if property was found and retrieved successfully
- *         MQTTBadParameter if propBuffer, pAuthData, or authDataLength is NULL
- *         MQTTBadResponse if property value is invalid in buffer
+ * @return #MQTTSuccess if property was found and retrieved successfully
+ *         #MQTTBadParameter if propBuffer, pAuthData, or authDataLength is NULL
+ *         #MQTTBadResponse if property value is invalid in buffer
  */
 
 /* @[declare_mqttpropget_connauthdata] */
@@ -3070,7 +3017,6 @@ MQTTStatus_t MQTTPropGet_ConnAuthData(MQTTPropBuilder_t * propBuffer,
                                         uint16_t * authDataLength);
 
 /* @[declare_mqttpropget_connauthdata] */
-
 
 /**
  * @brief Gets the next property identifier from the incoming MQTT packet properties.
@@ -3088,6 +3034,53 @@ MQTTStatus_t MQTTPropGet_ConnAuthData(MQTTPropBuilder_t * propBuffer,
 /* @[declare_mqtt_incominggetnextprop] */
 MQTTStatus_t MQTT_IncomingGetNextProp(MQTTPropBuilder_t* propBuffer, uint8_t* propertyId);
 /* @[declare_mqtt_incominggetnextprop] */
+
+/**
+ * @brief Initialize the property builder.
+ *
+ * @param[out] pPropertyBuilder Property builder to initialize.
+ * @param[in] buffer Buffer to store the properties.
+ * @param[in] length Length of the buffer.
+ *
+ * @return
+ * - #MQTTBadParameter if invalid parameters are passed.
+ * - #MQTTSuccess otherwise.
+ */
+/* @[declare_mqttpropertybuilder_init] */
+MQTTStatus_t MQTTPropertyBuilder_Init( MQTTPropBuilder_t * pPropertyBuilder,
+                                        uint8_t * buffer,
+                                        size_t length );
+/* @[declare_mqttpropertybuilder_init] */
+
+/**
+ * @brief Decodes the property length field in a SUBACK packet.
+ *
+ * @param[in] pIndex Pointer to the start of the properties in the SUBACK packet.
+ * @param[in] remainingLength The remaining length of the MQTT packet being parsed, without Packet ID.
+ * @param[out] subackPropertyLength The decoded property length including the size of its encoded representation.
+ *
+ * @return #MQTTSuccess if the property length is successfully decoded;
+ *         #MQTTBadResponse if the decoded property length is greater than the remaining length.
+ */
+MQTTStatus_t decodeSubackPropertyLength( const uint8_t * pIndex, size_t remainingLength, size_t * subackPropertyLength );
+
+/**
+ * @brief Initialize an MQTTConnectionProperties_t.
+ *
+ * @note This function initializes the connect properties to default values.
+ *       This function should only be used if using only serializer functions
+ *       throughout the connection. It is also important to only call this function
+ *       before sending the connect packet.
+ *
+ * @param[in] pConnectProperties The connect properties to initialize.
+ *
+ * @return
+ * - #MQTTBadParameter if pConnectProperties is NULL.
+ * - #MQTTSuccess otherwise.
+ */
+/* @[declare_mqtt_initconnect] */
+MQTTStatus_t MQTT_InitConnect( MQTTConnectionProperties_t * pConnectProperties );
+/* @[declare_mqtt_initconnect] */
 
 /* *INDENT-OFF* */
 #ifdef __cplusplus

@@ -84,6 +84,7 @@ these low-level functions can be used directly:
 - @ref mqtt_deserializeack_function <br>
 - @ref mqtt_deserializedisconnect_function <br>
 - @ref mqtt_getincomingpackettypeandlength_function <br>
+- @ref mqtt_initconnect_function <br>
 
 @section mqtt_sessions Sessions and State
 
@@ -116,8 +117,8 @@ the function waits until the CONNACK is received.
 For the @ref mqtt_connect_function, if this value is set to 0, then instead of a time-based loop, it will attempt to call the transport receive function up to a maximum number of retries,
 which is defined by @ref MQTT_MAX_CONNACK_RECEIVE_RETRY_COUNT.
 
-For @ref mqtt_processloop_function and @ref mqtt_receiveloop_function, the timeout functionality is handled by the user application. It is up to the user to define the number of times these functions will be called, provided that there are no network errors. 
-A single call to the function consists of an attempt to receive all available bytes from the network, and if the read was successful, then attempt(s) to receive the rest of the packet (with retry attempts governed by @ref MQTT_RECV_POLLING_TIMEOUT_MS), followed by the deserialization of the received packet. 
+For @ref mqtt_processloop_function and @ref mqtt_receiveloop_function, the timeout functionality is handled by the user application. It is up to the user to define the number of times these functions will be called, provided that there are no network errors.
+A single call to the function consists of an attempt to receive all available bytes from the network, and if the read was successful, then attempt(s) to receive the rest of the packet (with retry attempts governed by @ref MQTT_RECV_POLLING_TIMEOUT_MS), followed by the deserialization of the received packet.
 After this a call to application callback is invoked, followed by sending acknowledgement response, if needed
 (with retry attempts governed by @ref MQTT_SEND_TIMEOUT_MS).
 If the first read did not succeed, then instead the library checks if a ping request needs to be sent (only for the process loop).
@@ -182,7 +183,7 @@ Some configuration settings are C pre-processor constants, and some are function
 @page mqtt_functions Functions
 @brief Primary functions of the MQTT library:<br><br>
 @subpage mqtt_init_function <br>
-@subpage mqtt_propertybuilder_init_function <br>
+@subpage mqttpropertybuilder_init_function <br>
 @subpage mqtt_connect_function <br>
 @subpage mqtt_subscribe_function <br>
 @subpage mqtt_publish_function <br>
@@ -219,7 +220,7 @@ Serializer functions of the MQTT library:<br><br>
 @subpage mqtt_deserializeack_function <br>
 @subpage mqtt_deserializedisconnect_function <br>
 @subpage mqtt_getincomingpackettypeandlength_function <br>
-
+@subpage mqtt_initconnect_function <br>
 
 Property Add functions:<br><br>
 @subpage mqttpropadd_subscribeid_function <br>
@@ -232,7 +233,7 @@ Property Add functions:<br><br>
 @subpage mqttpropadd_connrequestprobinfo_function <br>
 @subpage mqttpropadd_connauthmethod_function <br>
 @subpage mqttpropadd_connauthdata_function <br>
-@subpage mqttpropadd_willdelayinterval_function <br> 
+@subpage mqttpropadd_willdelayinterval_function <br>
 @subpage mqttpropadd_pubpayloadformat_function <br>
 @subpage mqttpropadd_pubmessageexpiry_function <br>
 @subpage mqttpropadd_pubtopicalias_function <br>
@@ -271,10 +272,6 @@ Property Get functions:<br><br>
 @page mqtt_init_function MQTT_Init
 @snippet core_mqtt.h declare_mqtt_init
 @copydoc MQTT_Init
-
-@page mqtt_propertybuilder_init_function MQTT_PropertyBuilder_Init
-@snippet core_mqtt.h declare_mqtt_propertybuilder_init
-@copydoc MQTT_PropertyBuilder_Init
 
 @page mqtt_connect_function MQTT_Connect
 @snippet core_mqtt.h declare_mqtt_connect
@@ -323,6 +320,10 @@ Property Get functions:<br><br>
 @page mqtt_publishtoresend_function MQTT_PublishToResend
 @snippet core_mqtt_state.h declare_mqtt_publishtoresend
 @copydoc MQTT_PublishToResend
+
+@page mqttpropertybuilder_init_function MQTTPropertyBuilder_Init
+@snippet core_mqtt_serializer.h declare_mqttpropertybuilder_init
+@copydoc MQTTPropertyBuilder_Init
 
 @page mqtt_getconnectpacketsize_function MQTT_GetConnectPacketSize
 @snippet core_mqtt_serializer.h declare_mqtt_getconnectpacketsize
@@ -583,6 +584,10 @@ Property Get functions:<br><br>
 @page mqtt_incominggetnextprop_function MQTT_IncomingGetNextProp
 @snippet core_mqtt_serializer.h declare_mqtt_incominggetnextprop
 @copydoc MQTT_IncomingGetNextProp
+
+@page mqtt_initconnect_function MQTT_InitConnect
+@snippet core_mqtt_serializer.h declare_mqtt_initconnect
+@copydoc MQTT_InitConnect
 
 */
 

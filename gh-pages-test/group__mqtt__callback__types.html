@@ -31,7 +31,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">coreMQTT<span id="projectnumber">&#160;v3.0.0</span>
+   <div id="projectname">coreMQTT<span id="projectnumber">&#160;v2.3.1+</span>
    </div>
    <div id="projectbrief">MQTT 5.0 Client Library</div>
   </td>
@@ -111,9 +111,9 @@ Typedefs</h2></td></tr>
 <tr class="memitem:gae3bea55b0e49e5208b8c5709a5ea23aa"><td class="memItemLeft" align="right" valign="top">typedef uint32_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__mqtt__callback__types.html#gae3bea55b0e49e5208b8c5709a5ea23aa">MQTTGetCurrentTimeFunc_t</a>) (void)</td></tr>
 <tr class="memdesc:gae3bea55b0e49e5208b8c5709a5ea23aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Application provided function to query the time elapsed since a given epoch in milliseconds.  <br /></td></tr>
 <tr class="separator:gae3bea55b0e49e5208b8c5709a5ea23aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa92f7854cdd6da0b50c3d7e9ded79a8c"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__mqtt__callback__types.html#gaa92f7854cdd6da0b50c3d7e9ded79a8c">MQTTEventCallback_t</a>) (struct MQTTContext *pContext, struct MQTTPacketInfo *pPacketInfo, struct MQTTDeserializedInfo *pDeserializedInfo, enum MQTTSuccessFailReasonCode *pReasonCode, struct MQTTPropBuilder *sendPropsBuffer, struct MQTTPropBuilder *getPropsBuffer)</td></tr>
-<tr class="memdesc:gaa92f7854cdd6da0b50c3d7e9ded79a8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Application callback for receiving incoming publishes and incoming acks, as well as adding properties to outgoing publish acks.  <br /></td></tr>
-<tr class="separator:gaa92f7854cdd6da0b50c3d7e9ded79a8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5ff18bbacb958f5973e7bc4ab035f98b"><td class="memItemLeft" align="right" valign="top">typedef bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__mqtt__callback__types.html#ga5ff18bbacb958f5973e7bc4ab035f98b">MQTTEventCallback_t</a>) (struct MQTTContext *pContext, struct MQTTPacketInfo *pPacketInfo, struct MQTTDeserializedInfo *pDeserializedInfo, enum MQTTSuccessFailReasonCode *pReasonCode, struct MQTTPropBuilder *pSendPropsBuffer, struct MQTTPropBuilder *pGetPropsBuffer)</td></tr>
+<tr class="memdesc:ga5ff18bbacb958f5973e7bc4ab035f98b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Application callback for receiving incoming publishes and incoming acks, as well as adding properties to outgoing publish acks.  <br /></td></tr>
+<tr class="separator:ga5ff18bbacb958f5973e7bc4ab035f98b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga227df31d6daf07e5d833537c12130167"><td class="memItemLeft" align="right" valign="top">typedef int32_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__mqtt__callback__types.html#ga227df31d6daf07e5d833537c12130167">TransportRecv_t</a>) (<a class="el" href="group__mqtt__struct__types.html#ga7769e434e7811caed8cd6fd7f9ec26ec">NetworkContext_t</a> *pNetworkContext, void *pBuffer, size_t bytesToRecv)</td></tr>
 <tr class="memdesc:ga227df31d6daf07e5d833537c12130167"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transport interface for receiving data on the network.  <br /></td></tr>
 <tr class="separator:ga227df31d6daf07e5d833537c12130167"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -147,14 +147,14 @@ As the timer is supposed to be a millisecond timer returning a 32-bit value, it 
 
 </div>
 </div>
-<a id="gaa92f7854cdd6da0b50c3d7e9ded79a8c" name="gaa92f7854cdd6da0b50c3d7e9ded79a8c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaa92f7854cdd6da0b50c3d7e9ded79a8c">&#9670;&#160;</a></span>MQTTEventCallback_t</h2>
+<a id="ga5ff18bbacb958f5973e7bc4ab035f98b" name="ga5ff18bbacb958f5973e7bc4ab035f98b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5ff18bbacb958f5973e7bc4ab035f98b">&#9670;&#160;</a></span>MQTTEventCallback_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef void(* MQTTEventCallback_t) (struct MQTTContext *pContext, struct MQTTPacketInfo *pPacketInfo, struct MQTTDeserializedInfo *pDeserializedInfo, enum MQTTSuccessFailReasonCode *pReasonCode, struct MQTTPropBuilder *sendPropsBuffer, struct MQTTPropBuilder *getPropsBuffer)</td>
+          <td class="memname">typedef bool(* MQTTEventCallback_t) (struct MQTTContext *pContext, struct MQTTPacketInfo *pPacketInfo, struct MQTTDeserializedInfo *pDeserializedInfo, enum MQTTSuccessFailReasonCode *pReasonCode, struct MQTTPropBuilder *pSendPropsBuffer, struct MQTTPropBuilder *pGetPropsBuffer)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -166,9 +166,9 @@ As the timer is supposed to be a millisecond timer returning a 32-bit value, it 
     <tr><td class="paramdir">[in]</td><td class="paramname">pContext</td><td>Initialized MQTT context. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">pPacketInfo</td><td>Information on the type of incoming MQTT packet. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">pDeserializedInfo</td><td>Deserialized information from incoming packet. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">pReasonCode</td><td>Reason code for the incoming packet. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">sendPropsBuffer</td><td>Properties to be sent in the outgoing packet. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">getPropsBuffer</td><td>Properties to be received in the incoming packet.</td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pReasonCode</td><td>Reason code for the incoming packet. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pSendPropsBuffer</td><td>Properties to be sent in the outgoing packet. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pGetPropsBuffer</td><td>Properties to be received in the incoming packet.</td></tr>
   </table>
   </dd>
 </dl>
@@ -221,7 +221,10 @@ As the timer is supposed to be a millisecond timer returning a 32-bit value, it 
 <dl class="section note"><dt>Note</dt><dd>Add optional properties to outgoing publish ack packets by calling these functions:</dd></dl>
 <ul>
 <li><a class="el" href="core__mqtt__serializer_8h.html#a0dbffa853c25206a99f87a44a5280438" title="Adds User Property to the MQTT property builder.">MQTTPropAdd_UserProp</a></li>
-<li><a class="el" href="core__mqtt__serializer_8h.html#ae8c80019e58eb6d2d4771e535395b061" title="Adds Reason String property to the MQTT property builder.">MQTTPropAdd_ReasonString</a> </li>
+<li><a class="el" href="core__mqtt__serializer_8h.html#ae8c80019e58eb6d2d4771e535395b061" title="Adds Reason String property to the MQTT property builder.">MQTTPropAdd_ReasonString</a> <dl class="section return"><dt>Returns</dt><dd></dd></dl>
+</li>
+<li>true Event callback was able to process the packet</li>
+<li>false This is not an error but just a flag that tells the user that the eventcallback was unable to process a packet due to application specific reasons. The application should recall the processloop after making sure that it would be able to process the received packet again. </li>
 </ul>
 
 </div>

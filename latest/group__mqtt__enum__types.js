@@ -43,11 +43,13 @@ var group__mqtt__enum__types =
       [ "MQTTStateCollision", "group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca8d05b92240dea6df08eab5a9e3799c11", null ],
       [ "MQTTKeepAliveTimeout", "group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca076ca8965e836a06e707a94adb26144f", null ],
       [ "MQTTNeedMoreBytes", "group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa97df53014d919df5ecd54398f89f9b9", null ],
+      [ "MQTTEndOfProperties", "group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caeb817a941b956ae02f011976fa1ce645", null ],
       [ "MQTTStatusConnected", "group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa13a678a441c9ef6b88d6d8be8a64090", null ],
       [ "MQTTStatusNotConnected", "group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca074273b04f70b93c1f20702096cac273", null ],
       [ "MQTTStatusDisconnectPending", "group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca230baa3eaabf50e6b319f792a82bb863", null ],
       [ "MQTTPublishStoreFailed", "group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca61a3e19715d8ee1ee330c9bbd4b2708a", null ],
-      [ "MQTTPublishRetrieveFailed", "group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca274b61e8a2aea2cf551353c6d09a6eb2", null ]
+      [ "MQTTPublishRetrieveFailed", "group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca274b61e8a2aea2cf551353c6d09a6eb2", null ],
+      [ "MQTTEventCallbackFailed", "group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca9a19fd9b3228ebcdf2a461c97e53d580", null ]
     ] ],
     [ "MQTTQoS_t", "group__mqtt__enum__types.html#gae308a5928d7f537379c29a894228093a", [
       [ "MQTTQoS0", "group__mqtt__enum__types.html#ggae308a5928d7f537379c29a894228093aaad51b23a1ae1417f96d8f343c788d1d2", null ],
@@ -147,7 +149,8 @@ var group__mqtt__enum__types =
       [ "MQTT_REASON_DISCONNECT_CONNECTION_RATE_EXCEEDED", "group__mqtt__enum__types.html#gga377edfeeb661cf054a3c7c598637450ea4beedd8b2cdb30d03f0651d852fbbbd9", null ],
       [ "MQTT_REASON_DISCONNECT_MAXIMUM_CONNECT_TIME", "group__mqtt__enum__types.html#gga377edfeeb661cf054a3c7c598637450ea3fdbd45bd2c7955b8ed3aa441c5e0dca", null ],
       [ "MQTT_REASON_DISCONNECT_SUBSCRIPTION_IDENTIFIERS_NOT_SUPPORTED", "group__mqtt__enum__types.html#gga377edfeeb661cf054a3c7c598637450ea173f54ae8b2e495b94ae0431e96590ae", null ],
-      [ "MQTT_REASON_DISCONNECT_WILDCARD_SUBSCRIPTIONS_NOT_SUPPORTED", "group__mqtt__enum__types.html#gga377edfeeb661cf054a3c7c598637450ea944e2976e661db8f7831cec36cdd731c", null ]
+      [ "MQTT_REASON_DISCONNECT_WILDCARD_SUBSCRIPTIONS_NOT_SUPPORTED", "group__mqtt__enum__types.html#gga377edfeeb661cf054a3c7c598637450ea944e2976e661db8f7831cec36cdd731c", null ],
+      [ "MQTT_INVALID_REASON_CODE", "group__mqtt__enum__types.html#gga377edfeeb661cf054a3c7c598637450eaa174c5b038a43f24722fc1bf35bb3b05", null ]
     ] ],
     [ "MQTTRetainHandling_t", "group__mqtt__enum__types.html#ga276a86010075cf64d522fe56cabee1e3", [
       [ "retainSendOnSub", "group__mqtt__enum__types.html#gga276a86010075cf64d522fe56cabee1e3ad87d133aa73a39124fa12597b9d7c449", null ],

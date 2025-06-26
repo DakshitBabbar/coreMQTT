@@ -31,7 +31,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">coreMQTT<span id="projectnumber">&#160;v3.0.0</span>
+   <div id="projectname">coreMQTT<span id="projectnumber">&#160;v2.3.1+</span>
    </div>
    <div id="projectbrief">MQTT 5.0 Client Library</div>
   </td>
@@ -151,7 +151,7 @@ uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>nextPacketId</b><
 <tr class="memdesc:aabe1d302a16771292151013e8e30c582"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function used to get millisecond timestamps. <br /></td></tr>
 <tr class="separator:aabe1d302a16771292151013e8e30c582"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73bd9259db9c3a9b84518cbf928ed91f"><td class="memItemLeft" align="right" valign="top"><a id="a73bd9259db9c3a9b84518cbf928ed91f" name="a73bd9259db9c3a9b84518cbf928ed91f"></a>
-<a class="el" href="group__mqtt__callback__types.html#gaa92f7854cdd6da0b50c3d7e9ded79a8c">MQTTEventCallback_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>appCallback</b></td></tr>
+<a class="el" href="group__mqtt__callback__types.html#ga5ff18bbacb958f5973e7bc4ab035f98b">MQTTEventCallback_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>appCallback</b></td></tr>
 <tr class="memdesc:a73bd9259db9c3a9b84518cbf928ed91f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback function used to give deserialized MQTT packets to the application. <br /></td></tr>
 <tr class="separator:a73bd9259db9c3a9b84518cbf928ed91f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a01acf90953e830ba3e7f44182cb1d482"><td class="memItemLeft" align="right" valign="top"><a id="a01acf90953e830ba3e7f44182cb1d482" name="a01acf90953e830ba3e7f44182cb1d482"></a>
@@ -182,14 +182,10 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>pingReqSendTimeMs
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>waitingForPingResp</b></td></tr>
 <tr class="memdesc:ac7073f43645f7b7c0c5b7763980004bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">If the library is currently awaiting a PINGRESP. <br /></td></tr>
 <tr class="separator:ac7073f43645f7b7c0c5b7763980004bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a047ae100fbd9c7db279ddfb247d634da"><td class="memItemLeft" align="right" valign="top"><a id="a047ae100fbd9c7db279ddfb247d634da" name="a047ae100fbd9c7db279ddfb247d634da"></a>
-<a class="el" href="struct_m_q_t_t_connect_properties__t.html">MQTTConnectProperties_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>connectProperties</b></td></tr>
-<tr class="memdesc:a047ae100fbd9c7db279ddfb247d634da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Connect and Connack Properties. <br /></td></tr>
-<tr class="separator:a047ae100fbd9c7db279ddfb247d634da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab41358f43de159a3df911b7e19903833"><td class="memItemLeft" align="right" valign="top"><a id="ab41358f43de159a3df911b7e19903833" name="ab41358f43de159a3df911b7e19903833"></a>
-<a class="el" href="struct_m_q_t_t_reason_code_info__t.html">MQTTReasonCodeInfo_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>pDisconnectInfo</b></td></tr>
-<tr class="memdesc:ab41358f43de159a3df911b7e19903833"><td class="mdescLeft">&#160;</td><td class="mdescRight">To store disconnect information. <br /></td></tr>
-<tr class="separator:ab41358f43de159a3df911b7e19903833"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9914b8259063a3ee3b77b90de0ad6507"><td class="memItemLeft" align="right" valign="top"><a id="a9914b8259063a3ee3b77b90de0ad6507" name="a9914b8259063a3ee3b77b90de0ad6507"></a>
+<a class="el" href="struct_m_q_t_t_connection_properties__t.html">MQTTConnectionProperties_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>connectionProperties</b></td></tr>
+<tr class="memdesc:a9914b8259063a3ee3b77b90de0ad6507"><td class="mdescLeft">&#160;</td><td class="mdescRight">Persistent Connection Properties, populated in the CONNECT and the CONNACK. <br /></td></tr>
+<tr class="separator:a9914b8259063a3ee3b77b90de0ad6507"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac205fc33078b0cfa0dfc62807bd9574f"><td class="memItemLeft" align="right" valign="top"><a id="ac205fc33078b0cfa0dfc62807bd9574f" name="ac205fc33078b0cfa0dfc62807bd9574f"></a>
 <a class="el" href="core__mqtt_8h.html#ae4ae1546af467967e2c996daeb78e0ba">MQTTStorePacketForRetransmit</a>&#160;</td><td class="memItemRight" valign="bottom"><b>storeFunction</b></td></tr>
 <tr class="memdesc:ac205fc33078b0cfa0dfc62807bd9574f"><td class="mdescLeft">&#160;</td><td class="mdescRight">User defined API used to store outgoing publishes. <br /></td></tr>

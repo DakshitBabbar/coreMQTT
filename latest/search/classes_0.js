@@ -1,7 +1,7 @@
 var searchData=
 [
   ['mqttconnectinfo_5ft_0',['MQTTConnectInfo_t',['../struct_m_q_t_t_connect_info__t.html',1,'']]],
-  ['mqttconnectproperties_5ft_1',['MQTTConnectProperties_t',['../struct_m_q_t_t_connect_properties__t.html',1,'']]],
+  ['mqttconnectionproperties_5ft_1',['MQTTConnectionProperties_t',['../struct_m_q_t_t_connection_properties__t.html',1,'']]],
   ['mqttcontext_5ft_2',['MQTTContext_t',['../struct_m_q_t_t_context__t.html',1,'']]],
   ['mqttdeserializedinfo_5ft_3',['MQTTDeserializedInfo_t',['../struct_m_q_t_t_deserialized_info__t.html',1,'']]],
   ['mqttfixedbuffer_5ft_4',['MQTTFixedBuffer_t',['../struct_m_q_t_t_fixed_buffer__t.html',1,'']]],

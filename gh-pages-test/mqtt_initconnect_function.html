@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>coreMQTT: MQTT_PropertyBuilder_Init</title>
+<title>coreMQTT: MQTT_InitConnect</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">coreMQTT<span id="projectnumber">&#160;v3.0.0</span>
+   <div id="projectname">coreMQTT<span id="projectnumber">&#160;v2.3.1+</span>
    </div>
    <div id="projectbrief">MQTT 5.0 Client Library</div>
   </td>
@@ -71,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search/",'.html');
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('mqtt_propertybuilder_init_function.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('mqtt_initconnect_function.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -97,26 +97,23 @@ $(document).ready(function(){initNavTree('mqtt_propertybuilder_init_function.htm
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">MQTT_PropertyBuilder_Init </div></div>
+  <div class="headertitle"><div class="title">MQTT_InitConnect </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><div class="fragment"><div class="line"><a class="code hl_enumeration" href="group__mqtt__enum__types.html#gaba7ec045874a1c3432f99173367f735c">MQTTStatus_t</a> <a class="code hl_function" href="core__mqtt_8h.html#a91ff4ad8264c8fbb8a29f8a26f31773d">MQTT_PropertyBuilder_Init</a>( <a class="code hl_struct" href="struct_m_q_t_t_prop_builder__t.html">MQTTPropBuilder_t</a> * pPropertyBuilder,</div>
-<div class="line">                                        uint8_t * buffer,</div>
-<div class="line">                                        <span class="keywordtype">size_t</span> length );</div>
-<div class="ttc" id="acore__mqtt_8h_html_a91ff4ad8264c8fbb8a29f8a26f31773d"><div class="ttname"><a href="core__mqtt_8h.html#a91ff4ad8264c8fbb8a29f8a26f31773d">MQTT_PropertyBuilder_Init</a></div><div class="ttdeci">MQTTStatus_t MQTT_PropertyBuilder_Init(MQTTPropBuilder_t *pPropertyBuilder, uint8_t *buffer, size_t length)</div><div class="ttdoc">Initialize the property builder.</div><div class="ttdef"><b>Definition:</b> core_mqtt.c:4352</div></div>
-<div class="ttc" id="agroup__mqtt__enum__types_html_gaba7ec045874a1c3432f99173367f735c"><div class="ttname"><a href="group__mqtt__enum__types.html#gaba7ec045874a1c3432f99173367f735c">MQTTStatus_t</a></div><div class="ttdeci">MQTTStatus_t</div><div class="ttdoc">Return codes from MQTT functions.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:91</div></div>
-<div class="ttc" id="astruct_m_q_t_t_prop_builder__t_html"><div class="ttname"><a href="struct_m_q_t_t_prop_builder__t.html">MQTTPropBuilder_t</a></div><div class="ttdoc">Property builder for MQTT packets.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:662</div></div>
-</div><!-- fragment --><p>Initialize the property builder.  </p>
+<div class="textblock"><div class="fragment"><div class="line"><a class="code hl_enumeration" href="group__mqtt__enum__types.html#gaba7ec045874a1c3432f99173367f735c">MQTTStatus_t</a> <a class="code hl_function" href="core__mqtt__serializer_8h.html#ad2cb962fb1564e92cb7d931ef1759d5e">MQTT_InitConnect</a>( <a class="code hl_struct" href="struct_m_q_t_t_connection_properties__t.html">MQTTConnectionProperties_t</a> * pConnectProperties );</div>
+<div class="ttc" id="acore__mqtt__serializer_8h_html_ad2cb962fb1564e92cb7d931ef1759d5e"><div class="ttname"><a href="core__mqtt__serializer_8h.html#ad2cb962fb1564e92cb7d931ef1759d5e">MQTT_InitConnect</a></div><div class="ttdeci">MQTTStatus_t MQTT_InitConnect(MQTTConnectionProperties_t *pConnectProperties)</div><div class="ttdoc">Initialize an MQTTConnectionProperties_t.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:7282</div></div>
+<div class="ttc" id="agroup__mqtt__enum__types_html_gaba7ec045874a1c3432f99173367f735c"><div class="ttname"><a href="group__mqtt__enum__types.html#gaba7ec045874a1c3432f99173367f735c">MQTTStatus_t</a></div><div class="ttdeci">MQTTStatus_t</div><div class="ttdoc">Return codes from MQTT functions.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:239</div></div>
+<div class="ttc" id="astruct_m_q_t_t_connection_properties__t_html"><div class="ttname"><a href="struct_m_q_t_t_connection_properties__t.html">MQTTConnectionProperties_t</a></div><div class="ttdoc">Struct to hold connect and connack properties.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:551</div></div>
+</div><!-- fragment --><p>Initialize an <a class="el" href="struct_m_q_t_t_connection_properties__t.html" title="Struct to hold connect and connack properties.">MQTTConnectionProperties_t</a>.  </p>
+<dl class="section note"><dt>Note</dt><dd>This function initializes the connect properties to default values. This function should only be used if using only serializer functions throughout the connection. It is also important to only call this function before sending the connect packet.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">pPropertyBuilder</td><td>Property builder to initialize. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">buffer</td><td>Buffer to store the properties. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">length</td><td>Length of the buffer.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pConnectProperties</td><td>The connect properties to initialize.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><ul>
-<li><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa39030c93b0263b2699502a074f003b5">MQTTBadParameter</a> if invalid parameters are passed.</li>
+<li><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa39030c93b0263b2699502a074f003b5">MQTTBadParameter</a> if pConnectProperties is NULL.</li>
 <li><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a> otherwise.   </li>
 </ul>
 </dd></dl>

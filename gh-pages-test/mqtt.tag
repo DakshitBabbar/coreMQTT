@@ -11,20 +11,6 @@
     <class kind="struct">MQTTVec</class>
     <member kind="define">
       <type>#define</type>
-      <name>MQTT_PRE_SEND_HOOK</name>
-      <anchorfile>core__mqtt_8c.html</anchorfile>
-      <anchor>a18f9369f0d6d553db6d1af1bd7156545</anchor>
-      <arglist>(pContext)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>MQTT_POST_SEND_HOOK</name>
-      <anchorfile>core__mqtt_8c.html</anchorfile>
-      <anchor>a205b7112b6bb0697f85b9e25512c67be</anchor>
-      <arglist>(pContext)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
       <name>MQTT_PRE_STATE_UPDATE_HOOK</name>
       <anchorfile>core__mqtt_8c.html</anchorfile>
       <anchor>acba4b6e51723d384aa9140313effdf8b</anchor>
@@ -144,9 +130,9 @@
     </member>
     <member kind="function" static="yes">
       <type>static MQTTStatus_t</type>
-      <name>sendPublishAcks</name>
+      <name>sendPublishAcksWithoutProperty</name>
       <anchorfile>core__mqtt_8c.html</anchorfile>
-      <anchor>ab4b719d2f726b049c279dcb37fcba840</anchor>
+      <anchor>acceb15d0cd3fe0ce049caadb547879a3</anchor>
       <arglist>(MQTTContext_t *pContext, uint16_t packetId, MQTTPublishState_t publishState)</arglist>
     </member>
     <member kind="function" static="yes">
@@ -263,17 +249,10 @@
     </member>
     <member kind="function" static="yes">
       <type>static MQTTStatus_t</type>
-      <name>MQTT_InitConnect</name>
-      <anchorfile>core__mqtt_8c.html</anchorfile>
-      <anchor>ab0fbbe4fa5344eed72e7cd34fb6407d5</anchor>
-      <arglist>(MQTTConnectProperties_t *pConnectProperties)</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static MQTTStatus_t</type>
       <name>validatePublishAckReasonCode</name>
       <anchorfile>core__mqtt_8c.html</anchorfile>
-      <anchor>aefd06ca690c85243752583a40e256623</anchor>
-      <arglist>(MQTTSuccessFailReasonCode_t reasonCode)</arglist>
+      <anchor>a9c2dc0cf3431f5deb86581b8448f13a1</anchor>
+      <arglist>(MQTTSuccessFailReasonCode_t reasonCode, uint8_t packetType)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static MQTTStatus_t</type>
@@ -314,8 +293,8 @@
       <type>static void</type>
       <name>addSubscriptionOptions</name>
       <anchorfile>core__mqtt_8c.html</anchorfile>
-      <anchor>a833c1e91f8d5d37953198c6263a8cd85</anchor>
-      <arglist>(const MQTTSubscribeInfo_t pSubscriptionInfo, uint8_t *subscriptionOptionsArray, size_t currentOptionIndex)</arglist>
+      <anchor>a7e0dbed0a29728cde3eec4acaa4973b8</anchor>
+      <arglist>(const MQTTSubscribeInfo_t subscriptionInfo, uint8_t *pSubscriptionOptionsArray, size_t currentOptionIndex)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static bool</type>
@@ -326,10 +305,10 @@
     </member>
     <member kind="function" static="yes">
       <type>static MQTTStatus_t</type>
-      <name>validateSubscribeTopicFilter</name>
+      <name>validateTopicFilter</name>
       <anchorfile>core__mqtt_8c.html</anchorfile>
-      <anchor>aee8f28aceda8060d07f853d5e6d72d95</anchor>
-      <arglist>(const MQTTContext_t *pContext, const MQTTSubscribeInfo_t *pSubscriptionList, size_t iterator)</arglist>
+      <anchor>ad9744a59e52744e2e6c8f3c024eab5be</anchor>
+      <arglist>(const MQTTContext_t *pContext, const MQTTSubscribeInfo_t *pSubscriptionList, size_t iterator, MQTTSubscriptionType_t subscriptionType)</arglist>
     </member>
     <member kind="function">
       <type>MQTTStatus_t</type>
@@ -342,8 +321,8 @@
       <type>MQTTStatus_t</type>
       <name>MQTT_InitStatefulQoS</name>
       <anchorfile>core__mqtt_8c.html</anchorfile>
-      <anchor>ab60a5273df6903bba29e1eb0ea3b83aa</anchor>
-      <arglist>(MQTTContext_t *pContext, MQTTPubAckInfo_t *pOutgoingPublishRecords, size_t outgoingPublishCount, MQTTPubAckInfo_t *pIncomingPublishRecords, size_t incomingPublishCount, uint8_t *pBuffer, size_t bufferLength)</arglist>
+      <anchor>a5cccbe5ebf767a6da5fc83db6ca8cbdf</anchor>
+      <arglist>(MQTTContext_t *pContext, MQTTPubAckInfo_t *pOutgoingPublishRecords, size_t outgoingPublishCount, MQTTPubAckInfo_t *pIncomingPublishRecords, size_t incomingPublishCount, uint8_t *pAckPropsBuf, size_t ackPropsBufLength)</arglist>
     </member>
     <member kind="function">
       <type>MQTTStatus_t</type>
@@ -464,13 +443,6 @@
       <anchor>ab65e1ed5db559aa7d9158e9311048b7e</anchor>
       <arglist>(uint8_t *pAllocatedMem, const MQTTVec_t *pVec)</arglist>
     </member>
-    <member kind="function">
-      <type>MQTTStatus_t</type>
-      <name>MQTT_PropertyBuilder_Init</name>
-      <anchorfile>core__mqtt_8c.html</anchorfile>
-      <anchor>a91ff4ad8264c8fbb8a29f8a26f31773d</anchor>
-      <arglist>(MQTTPropBuilder_t *pPropertyBuilder, uint8_t *buffer, size_t length)</arglist>
-    </member>
   </compound>
   <compound kind="file">
     <name>core_mqtt_serializer.c</name>
@@ -478,6 +450,7 @@
     <filename>core__mqtt__serializer_8c.html</filename>
     <includes id="core__mqtt__serializer_8h" name="core_mqtt_serializer.h" local="yes" imported="no">core_mqtt_serializer.h</includes>
     <includes id="core__mqtt__utils_8h" name="core_mqtt_utils.h" local="yes" imported="no">core_mqtt_utils.h</includes>
+    <includes id="core__mqtt__config__defaults_8h" name="core_mqtt_config_defaults.h" local="yes" imported="no">core_mqtt_config_defaults.h</includes>
     <member kind="define">
       <type>#define</type>
       <name>MQTT_PACKET_CONNECT_HEADER_SIZE</name>
@@ -620,6 +593,13 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>MQTT_PACKET_CONNACK_MINIMUM_SIZE</name>
+      <anchorfile>core__mqtt__serializer_8c.html</anchorfile>
+      <anchor>af64e05d9575ed0e7b4b9c88477b36be9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>MQTT_SUBSCRIPTION_ID_POS</name>
       <anchorfile>core__mqtt__serializer_8c.html</anchorfile>
       <anchor>a244f6f3a77139d1ff13e1fb2c737caf1</anchor>
@@ -669,13 +649,6 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>MQTT_USER_PROPERTY_POS</name>
-      <anchorfile>core__mqtt__serializer_8c.html</anchorfile>
-      <anchor>a91ffa763a97b8d36e2b4f96d63a9256a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
       <name>MQTT_AUTHENTICATION_METHOD_POS</name>
       <anchorfile>core__mqtt__serializer_8c.html</anchorfile>
       <anchor>a808e34151fed55fb4190fd2a4f3decb8</anchor>
@@ -704,37 +677,30 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>MQTT_PUBLISH_TOPIC_ALIAS_POS</name>
+      <name>MQTT_TOPIC_ALIAS_POS</name>
       <anchorfile>core__mqtt__serializer_8c.html</anchorfile>
-      <anchor>a6dea189e7dd19179b61d43f9fc6855aa</anchor>
+      <anchor>a1aacf46037c3058099e7766488c4248a</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>MQTT_PUBLISH_RESPONSE_TOPIC_POS</name>
+      <name>MQTT_RESPONSE_TOPIC_POS</name>
       <anchorfile>core__mqtt__serializer_8c.html</anchorfile>
-      <anchor>a00acb6938d3fb735e0ece311d5ecc83a</anchor>
+      <anchor>a0bfb8a9178a259f948c55ae747ac041b</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>MQTT_PUBLISH_CORRELATION_DATA_POS</name>
+      <name>MQTT_CORRELATION_DATA_POS</name>
       <anchorfile>core__mqtt__serializer_8c.html</anchorfile>
-      <anchor>a5fad8e1304e16eb5fc872a22d3578612</anchor>
+      <anchor>abd9c8a97bc07727e410ea6ea285ab889</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>MQTT_PUBLISH_SUBSCRIPTION_IDENTIFIER_POS</name>
+      <name>MQTT_CONTENT_TYPE_POS</name>
       <anchorfile>core__mqtt__serializer_8c.html</anchorfile>
-      <anchor>a49d0a18c6b7726467c9d81cd8a3c45c8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>MQTT_PUBLISH_CONTENT_TYPE_POS</name>
-      <anchorfile>core__mqtt__serializer_8c.html</anchorfile>
-      <anchor>a96d5a11b95a9f3a1a4c1d220b9a54614</anchor>
+      <anchor>a20e4de68f9ca86b85bc87f643f622b61</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -757,6 +723,13 @@
       <anchorfile>core__mqtt__serializer_8c.html</anchorfile>
       <anchor>a6f6b43661df6f9e9e9e7123ab01e9eb5</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>WRITE_UINT32</name>
+      <anchorfile>core__mqtt__serializer_8c.html</anchorfile>
+      <anchor>ab842a87bcd94fd85f394b2b687118526</anchor>
+      <arglist>(addr, val)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
@@ -846,8 +819,8 @@
       <type>static MQTTStatus_t</type>
       <name>deserializePublish</name>
       <anchorfile>core__mqtt__serializer_8c.html</anchorfile>
-      <anchor>a4f9fff11d3be696521aa8e6627e999a5</anchor>
-      <arglist>(const MQTTPacketInfo_t *pIncomingPacket, uint16_t *pPacketId, MQTTPublishInfo_t *pPublishInfo, MQTTPropBuilder_t *propBuffer, uint16_t topicAliasMax)</arglist>
+      <anchor>aa86da9f52a89f2b4018f00ec984817bc</anchor>
+      <arglist>(const MQTTPacketInfo_t *pIncomingPacket, uint16_t *pPacketId, MQTTPublishInfo_t *pPublishInfo, MQTTPropBuilder_t *pPropBuffer, uint16_t topicAliasMax)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static MQTTStatus_t</type>
@@ -867,8 +840,8 @@
       <type>static MQTTStatus_t</type>
       <name>decodeVariableLength</name>
       <anchorfile>core__mqtt__serializer_8c.html</anchorfile>
-      <anchor>aed73b25cda4bc68412d9037b2f69c407</anchor>
-      <arglist>(const uint8_t *pBuffer, size_t *pLength)</arglist>
+      <anchor>a0be6851c43afbe59081a6f4ac84ccc83</anchor>
+      <arglist>(const uint8_t *pBuffer, size_t bufferLength, size_t *pLength)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static MQTTStatus_t</type>
@@ -916,8 +889,8 @@
       <type>static MQTTStatus_t</type>
       <name>deserializeConnackProperties</name>
       <anchorfile>core__mqtt__serializer_8c.html</anchorfile>
-      <anchor>afb3c71e2b3a8fa0028b81223608a3c55</anchor>
-      <arglist>(MQTTConnectProperties_t *pConnackProperties, size_t length, uint8_t *pIndex, MQTTPropBuilder_t *propBuffer)</arglist>
+      <anchor>ab48345d7631266bb959457b569b271e2</anchor>
+      <arglist>(MQTTConnectionProperties_t *pConnackProperties, size_t length, uint8_t *pIndex, MQTTPropBuilder_t *pPropBuffer)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static MQTTStatus_t</type>
@@ -937,15 +910,15 @@
       <type>static MQTTStatus_t</type>
       <name>decodeAckProperties</name>
       <anchorfile>core__mqtt__serializer_8c.html</anchorfile>
-      <anchor>aebd3e6eeaadbd6cbee7eb9d62e5b4ef6</anchor>
-      <arglist>(MQTTPropBuilder_t *propBuffer, uint8_t *pIndex, size_t remainingLength)</arglist>
+      <anchor>a13071409aa1f32231816d8ff04183ffb</anchor>
+      <arglist>(MQTTPropBuilder_t *pPropBuffer, uint8_t *pIndex, size_t remainingLength)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static MQTTStatus_t</type>
       <name>deserializeSimpleAck</name>
       <anchorfile>core__mqtt__serializer_8c.html</anchorfile>
-      <anchor>a23f4586c06f75116d8ae8d4c99470f54</anchor>
-      <arglist>(const MQTTPacketInfo_t *pAck, uint16_t *pPacketIdentifier, MQTTReasonCodeInfo_t *pReasonCode, bool requestProblem, MQTTPropBuilder_t *propBuffer)</arglist>
+      <anchor>a0f6a5cd4ac51b3aef3233ea47bdfa64f</anchor>
+      <arglist>(const MQTTPacketInfo_t *pAck, uint16_t *pPacketIdentifier, MQTTReasonCodeInfo_t *pReasonCode, bool requestProblem, MQTTPropBuilder_t *pPropBuffer)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static MQTTStatus_t</type>
@@ -958,15 +931,22 @@
       <type>static MQTTStatus_t</type>
       <name>deserializeSubackProperties</name>
       <anchorfile>core__mqtt__serializer_8c.html</anchorfile>
-      <anchor>af60292eda72bff0db37f90b7f32c40df</anchor>
-      <arglist>(MQTTPropBuilder_t *propBuffer, uint8_t *pIndex, size_t *pSubackPropertyLength)</arglist>
+      <anchor>a670796265e891df57426fc96fd250acc</anchor>
+      <arglist>(MQTTPropBuilder_t *pPropBuffer, uint8_t *pIndex, size_t *pSubackPropertyLength, size_t remainingLength)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static MQTTStatus_t</type>
+      <name>deserializeDisconnectProperties</name>
+      <anchorfile>core__mqtt__serializer_8c.html</anchorfile>
+      <anchor>a32971f65ce60af4304fcb91c4607c46b</anchor>
+      <arglist>(uint8_t *pIndex, size_t disconnectPropertyLength)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static MQTTStatus_t</type>
       <name>deserializePublishProperties</name>
       <anchorfile>core__mqtt__serializer_8c.html</anchorfile>
-      <anchor>ad3e9a21bebb7713a02709191b5e38d3c</anchor>
-      <arglist>(MQTTPublishInfo_t *pPublishInfo, MQTTPropBuilder_t *propBuffer, uint8_t *pIndex, uint16_t topicAliasMax)</arglist>
+      <anchor>add63e7ca57d2d7f536c65b64f40dc7b3</anchor>
+      <arglist>(MQTTPublishInfo_t *pPublishInfo, MQTTPropBuilder_t *pPropBuffer, uint8_t *pIndex, uint16_t topicAliasMax, size_t remainingLength)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static MQTTStatus_t</type>
@@ -993,8 +973,8 @@
       <type>static MQTTStatus_t</type>
       <name>readSubackStatus</name>
       <anchorfile>core__mqtt__serializer_8c.html</anchorfile>
-      <anchor>ac38705c4e45b4c39207bb620154088cd</anchor>
-      <arglist>(size_t statusCount, const uint8_t *pStatusStart, MQTTReasonCodeInfo_t *ackInfo)</arglist>
+      <anchor>a65b40a24b30c8cc5685d6a145052c788</anchor>
+      <arglist>(size_t statusCount, const uint8_t *pStatusStart, MQTTReasonCodeInfo_t *pReasonCodes)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static MQTTStatus_t</type>
@@ -1014,15 +994,15 @@
       <type>MQTTStatus_t</type>
       <name>deserializeConnack</name>
       <anchorfile>core__mqtt__serializer_8c.html</anchorfile>
-      <anchor>ab5fefc0a69e444c200cbce5a871b38df</anchor>
-      <arglist>(MQTTConnectProperties_t *pConnackProperties, const MQTTPacketInfo_t *pIncomingPacket, bool *pSessionPresent, MQTTPropBuilder_t *propBuffer)</arglist>
+      <anchor>a70e8f1220f7d5530a4739ab0179d1093</anchor>
+      <arglist>(MQTTConnectionProperties_t *pConnackProperties, const MQTTPacketInfo_t *pIncomingPacket, bool *pSessionPresent, MQTTPropBuilder_t *pPropBuffer)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static MQTTStatus_t</type>
       <name>deserializeSuback</name>
       <anchorfile>core__mqtt__serializer_8c.html</anchorfile>
-      <anchor>a1dc7a9af35801bbf6216910fd59762fa</anchor>
-      <arglist>(const MQTTPacketInfo_t *incomingPacket, uint16_t *pPacketId, MQTTReasonCodeInfo_t *subackReasonCodes, MQTTPropBuilder_t *propBuffer)</arglist>
+      <anchor>a1e45183881490a9f2aa12d6a550d99c0</anchor>
+      <arglist>(const MQTTPacketInfo_t *incomingPacket, uint16_t *pPacketId, MQTTReasonCodeInfo_t *pReasonCodes, MQTTPropBuilder_t *pPropBuffer)</arglist>
     </member>
     <member kind="function">
       <type>MQTTStatus_t</type>
@@ -1175,8 +1155,8 @@
       <type>MQTTStatus_t</type>
       <name>updateContextWithConnectProps</name>
       <anchorfile>core__mqtt__serializer_8c.html</anchorfile>
-      <anchor>a5c5802e11c75b3c0e3e979865cd0421b</anchor>
-      <arglist>(const MQTTPropBuilder_t *pPropBuilder, MQTTConnectProperties_t *pConnectProperties)</arglist>
+      <anchor>ad0d40d4e24e129696094e9a3f51c4e31</anchor>
+      <arglist>(const MQTTPropBuilder_t *pPropBuilder, MQTTConnectionProperties_t *pConnectProperties)</arglist>
     </member>
     <member kind="function">
       <type>MQTTStatus_t</type>
@@ -1203,8 +1183,8 @@
       <type>MQTTStatus_t</type>
       <name>MQTT_DeserializeAck</name>
       <anchorfile>core__mqtt__serializer_8c.html</anchorfile>
-      <anchor>a4190e4afadc1fb60d3a300b6c59c84d2</anchor>
-      <arglist>(const MQTTPacketInfo_t *pIncomingPacket, uint16_t *pPacketId, bool *pSessionPresent, MQTTReasonCodeInfo_t *pReasonCode, bool requestProblem, uint32_t maxPacketSize, MQTTPropBuilder_t *propBuffer, MQTTConnectProperties_t *pConnectProperties)</arglist>
+      <anchor>a5d2b0c0122d7d18416d0020db710c65c</anchor>
+      <arglist>(const MQTTPacketInfo_t *pIncomingPacket, uint16_t *pPacketId, bool *pSessionPresent, MQTTReasonCodeInfo_t *pReasonCode, MQTTPropBuilder_t *pPropBuffer, MQTTConnectionProperties_t *pConnectProperties)</arglist>
     </member>
     <member kind="function">
       <type>uint8_t *</type>
@@ -1231,8 +1211,8 @@
       <type>MQTTStatus_t</type>
       <name>MQTT_DeserializeDisconnect</name>
       <anchorfile>core__mqtt__serializer_8c.html</anchorfile>
-      <anchor>a1f42b448bfca04d5604f03d556d64a5a</anchor>
-      <arglist>(const MQTTPacketInfo_t *pPacket, uint32_t maxPacketSize, MQTTReasonCodeInfo_t *pDisconnectInfo, MQTTPropBuilder_t *propBuffer)</arglist>
+      <anchor>a73f6ec7ed9e222865a35cdd6d03ea9ae</anchor>
+      <arglist>(const MQTTPacketInfo_t *pPacket, uint32_t maxPacketSize, MQTTReasonCodeInfo_t *pDisconnectInfo, MQTTPropBuilder_t *pPropBuffer)</arglist>
     </member>
     <member kind="function">
       <type>MQTTStatus_t</type>
@@ -1570,6 +1550,27 @@
       <anchor>aec02145ce3dc1b8745b5ad96de5820cf</anchor>
       <arglist>(const MQTTPropBuilder_t *pPropertyBuilder)</arglist>
     </member>
+    <member kind="function">
+      <type>MQTTStatus_t</type>
+      <name>MQTTPropertyBuilder_Init</name>
+      <anchorfile>core__mqtt__serializer_8c.html</anchorfile>
+      <anchor>a1f298e44147e62b8a4cbf735fa4fde57</anchor>
+      <arglist>(MQTTPropBuilder_t *pPropertyBuilder, uint8_t *buffer, size_t length)</arglist>
+    </member>
+    <member kind="function">
+      <type>MQTTStatus_t</type>
+      <name>decodeSubackPropertyLength</name>
+      <anchorfile>core__mqtt__serializer_8c.html</anchorfile>
+      <anchor>a383b1386f8d0aa066b70da0e03459b32</anchor>
+      <arglist>(const uint8_t *pIndex, size_t remainingLength, size_t *subackPropertyLength)</arglist>
+    </member>
+    <member kind="function">
+      <type>MQTTStatus_t</type>
+      <name>MQTT_InitConnect</name>
+      <anchorfile>core__mqtt__serializer_8c.html</anchorfile>
+      <anchor>ad2cb962fb1564e92cb7d931ef1759d5e</anchor>
+      <arglist>(MQTTConnectionProperties_t *pConnectProperties)</arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>core_mqtt_state.c</name>
@@ -1784,11 +1785,11 @@
       <arglist>)(void)</arglist>
     </member>
     <member kind="typedef">
-      <type>void(*</type>
+      <type>bool(*</type>
       <name>MQTTEventCallback_t</name>
       <anchorfile>group__mqtt__callback__types.html</anchorfile>
-      <anchor>gaa92f7854cdd6da0b50c3d7e9ded79a8c</anchor>
-      <arglist>)(struct MQTTContext *pContext, struct MQTTPacketInfo *pPacketInfo, struct MQTTDeserializedInfo *pDeserializedInfo, enum MQTTSuccessFailReasonCode *pReasonCode, struct MQTTPropBuilder *sendPropsBuffer, struct MQTTPropBuilder *getPropsBuffer)</arglist>
+      <anchor>ga5ff18bbacb958f5973e7bc4ab035f98b</anchor>
+      <arglist>)(struct MQTTContext *pContext, struct MQTTPacketInfo *pPacketInfo, struct MQTTDeserializedInfo *pDeserializedInfo, enum MQTTSuccessFailReasonCode *pReasonCode, struct MQTTPropBuilder *pSendPropsBuffer, struct MQTTPropBuilder *pGetPropsBuffer)</arglist>
     </member>
     <member kind="typedef">
       <type>bool(*</type>
@@ -1982,8 +1983,8 @@
       <type>MQTTStatus_t</type>
       <name>MQTT_InitStatefulQoS</name>
       <anchorfile>core__mqtt_8h.html</anchorfile>
-      <anchor>ab60a5273df6903bba29e1eb0ea3b83aa</anchor>
-      <arglist>(MQTTContext_t *pContext, MQTTPubAckInfo_t *pOutgoingPublishRecords, size_t outgoingPublishCount, MQTTPubAckInfo_t *pIncomingPublishRecords, size_t incomingPublishCount, uint8_t *pBuffer, size_t bufferLength)</arglist>
+      <anchor>a5cccbe5ebf767a6da5fc83db6ca8cbdf</anchor>
+      <arglist>(MQTTContext_t *pContext, MQTTPubAckInfo_t *pOutgoingPublishRecords, size_t outgoingPublishCount, MQTTPubAckInfo_t *pIncomingPublishRecords, size_t incomingPublishCount, uint8_t *pAckPropsBuf, size_t ackPropsBufLength)</arglist>
     </member>
     <member kind="function">
       <type>MQTTStatus_t</type>
@@ -2104,13 +2105,6 @@
       <anchor>ab65e1ed5db559aa7d9158e9311048b7e</anchor>
       <arglist>(uint8_t *pAllocatedMem, const MQTTVec_t *pVec)</arglist>
     </member>
-    <member kind="function">
-      <type>MQTTStatus_t</type>
-      <name>MQTT_PropertyBuilder_Init</name>
-      <anchorfile>core__mqtt_8h.html</anchorfile>
-      <anchor>a91ff4ad8264c8fbb8a29f8a26f31773d</anchor>
-      <arglist>(MQTTPropBuilder_t *pPropertyBuilder, uint8_t *buffer, size_t length)</arglist>
-    </member>
   </compound>
   <compound kind="file">
     <name>core_mqtt_config_defaults.h</name>
@@ -2206,12 +2200,11 @@
     <path>source/include/</path>
     <filename>core__mqtt__serializer_8h.html</filename>
     <includes id="transport__interface_8h" name="transport_interface.h" local="yes" imported="no">transport_interface.h</includes>
-    <includes id="core__mqtt__config__defaults_8h" name="core_mqtt_config_defaults.h" local="yes" imported="no">core_mqtt_config_defaults.h</includes>
     <class kind="struct">MQTTFixedBuffer_t</class>
     <class kind="struct">MQTTConnectInfo_t</class>
     <class kind="struct">MQTTSubscribeInfo_t</class>
     <class kind="struct">MQTTUserProperty_t</class>
-    <class kind="struct">MQTTConnectProperties_t</class>
+    <class kind="struct">MQTTConnectionProperties_t</class>
     <class kind="struct">MQTTReasonCodeInfo_t</class>
     <class kind="struct">MQTTPropBuilder_t</class>
     <class kind="struct">MQTTPublishInfo_t</class>
@@ -2632,6 +2625,12 @@
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
+      <name>MQTTEndOfProperties</name>
+      <anchorfile>group__mqtt__enum__types.html</anchorfile>
+      <anchor>ggaba7ec045874a1c3432f99173367f735caeb817a941b956ae02f011976fa1ce645</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
       <name>MQTTStatusConnected</name>
       <anchorfile>group__mqtt__enum__types.html</anchorfile>
       <anchor>ggaba7ec045874a1c3432f99173367f735caa13a678a441c9ef6b88d6d8be8a64090</anchor>
@@ -2659,6 +2658,12 @@
       <name>MQTTPublishRetrieveFailed</name>
       <anchorfile>group__mqtt__enum__types.html</anchorfile>
       <anchor>ggaba7ec045874a1c3432f99173367f735ca274b61e8a2aea2cf551353c6d09a6eb2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>MQTTEventCallbackFailed</name>
+      <anchorfile>group__mqtt__enum__types.html</anchorfile>
+      <anchor>ggaba7ec045874a1c3432f99173367f735ca9a19fd9b3228ebcdf2a461c97e53d580</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumeration">
@@ -3251,6 +3256,12 @@
       <anchor>gga377edfeeb661cf054a3c7c598637450ea944e2976e661db8f7831cec36cdd731c</anchor>
       <arglist></arglist>
     </member>
+    <member kind="enumvalue">
+      <name>MQTT_INVALID_REASON_CODE</name>
+      <anchorfile>group__mqtt__enum__types.html</anchorfile>
+      <anchor>gga377edfeeb661cf054a3c7c598637450eaa174c5b038a43f24722fc1bf35bb3b05</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="enumeration">
       <type></type>
       <name>MQTTRetainHandling_t</name>
@@ -3425,8 +3436,8 @@
       <type>MQTTStatus_t</type>
       <name>MQTT_DeserializeAck</name>
       <anchorfile>core__mqtt__serializer_8h.html</anchorfile>
-      <anchor>a4190e4afadc1fb60d3a300b6c59c84d2</anchor>
-      <arglist>(const MQTTPacketInfo_t *pIncomingPacket, uint16_t *pPacketId, bool *pSessionPresent, MQTTReasonCodeInfo_t *pReasonCode, bool requestProblem, uint32_t maxPacketSize, MQTTPropBuilder_t *propBuffer, MQTTConnectProperties_t *pConnectProperties)</arglist>
+      <anchor>a5d2b0c0122d7d18416d0020db710c65c</anchor>
+      <arglist>(const MQTTPacketInfo_t *pIncomingPacket, uint16_t *pPacketId, bool *pSessionPresent, MQTTReasonCodeInfo_t *pReasonCode, MQTTPropBuilder_t *pPropBuffer, MQTTConnectionProperties_t *pConnectProperties)</arglist>
     </member>
     <member kind="function">
       <type>MQTTStatus_t</type>
@@ -3453,15 +3464,15 @@
       <type>MQTTStatus_t</type>
       <name>MQTT_DeserializeDisconnect</name>
       <anchorfile>core__mqtt__serializer_8h.html</anchorfile>
-      <anchor>a1f42b448bfca04d5604f03d556d64a5a</anchor>
-      <arglist>(const MQTTPacketInfo_t *pPacket, uint32_t maxPacketSize, MQTTReasonCodeInfo_t *pDisconnectInfo, MQTTPropBuilder_t *propBuffer)</arglist>
+      <anchor>a73f6ec7ed9e222865a35cdd6d03ea9ae</anchor>
+      <arglist>(const MQTTPacketInfo_t *pPacket, uint32_t maxPacketSize, MQTTReasonCodeInfo_t *pDisconnectInfo, MQTTPropBuilder_t *pPropBuffer)</arglist>
     </member>
     <member kind="function">
       <type>MQTTStatus_t</type>
       <name>updateContextWithConnectProps</name>
       <anchorfile>core__mqtt__serializer_8h.html</anchorfile>
-      <anchor>a5c5802e11c75b3c0e3e979865cd0421b</anchor>
-      <arglist>(const MQTTPropBuilder_t *pPropBuilder, MQTTConnectProperties_t *pConnectProperties)</arglist>
+      <anchor>ad0d40d4e24e129696094e9a3f51c4e31</anchor>
+      <arglist>(const MQTTPropBuilder_t *pPropBuilder, MQTTConnectionProperties_t *pConnectProperties)</arglist>
     </member>
     <member kind="function">
       <type>MQTTStatus_t</type>
@@ -3806,6 +3817,27 @@
       <anchor>af348ec2a8a3a331fd6c04a4b7cf52c81</anchor>
       <arglist>(MQTTPropBuilder_t *propBuffer, uint8_t *propertyId)</arglist>
     </member>
+    <member kind="function">
+      <type>MQTTStatus_t</type>
+      <name>MQTTPropertyBuilder_Init</name>
+      <anchorfile>core__mqtt__serializer_8h.html</anchorfile>
+      <anchor>a1f298e44147e62b8a4cbf735fa4fde57</anchor>
+      <arglist>(MQTTPropBuilder_t *pPropertyBuilder, uint8_t *buffer, size_t length)</arglist>
+    </member>
+    <member kind="function">
+      <type>MQTTStatus_t</type>
+      <name>decodeSubackPropertyLength</name>
+      <anchorfile>core__mqtt__serializer_8h.html</anchorfile>
+      <anchor>a383b1386f8d0aa066b70da0e03459b32</anchor>
+      <arglist>(const uint8_t *pIndex, size_t remainingLength, size_t *subackPropertyLength)</arglist>
+    </member>
+    <member kind="function">
+      <type>MQTTStatus_t</type>
+      <name>MQTT_InitConnect</name>
+      <anchorfile>core__mqtt__serializer_8h.html</anchorfile>
+      <anchor>ad2cb962fb1564e92cb7d931ef1759d5e</anchor>
+      <arglist>(MQTTConnectionProperties_t *pConnectProperties)</arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>core_mqtt_state.h</name>
@@ -4012,125 +4044,111 @@
     </member>
   </compound>
   <compound kind="struct">
-    <name>MQTTConnectProperties_t</name>
-    <filename>struct_m_q_t_t_connect_properties__t.html</filename>
+    <name>MQTTConnectionProperties_t</name>
+    <filename>struct_m_q_t_t_connection_properties__t.html</filename>
     <member kind="variable">
       <type>uint32_t</type>
       <name>sessionExpiry</name>
-      <anchorfile>struct_m_q_t_t_connect_properties__t.html</anchorfile>
-      <anchor>a0af8ab802ad0f79cef1bcb128916727f</anchor>
+      <anchorfile>struct_m_q_t_t_connection_properties__t.html</anchorfile>
+      <anchor>ac7c25d5c5a9538184437879bb05281a2</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>uint16_t</type>
       <name>receiveMax</name>
-      <anchorfile>struct_m_q_t_t_connect_properties__t.html</anchorfile>
-      <anchor>a41ef86dd266204c0ecdd8a04039fc522</anchor>
+      <anchorfile>struct_m_q_t_t_connection_properties__t.html</anchorfile>
+      <anchor>a88d862e8132699a3520cfcda2e77c1c6</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>uint32_t</type>
       <name>maxPacketSize</name>
-      <anchorfile>struct_m_q_t_t_connect_properties__t.html</anchorfile>
-      <anchor>a9d005aa91297636ae3ba2ab1a873f378</anchor>
+      <anchorfile>struct_m_q_t_t_connection_properties__t.html</anchorfile>
+      <anchor>ad647e802a7aecda1394634f0c8e45e7e</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>uint16_t</type>
       <name>topicAliasMax</name>
-      <anchorfile>struct_m_q_t_t_connect_properties__t.html</anchorfile>
-      <anchor>a7588b9a45dc75c8d61a6bb87547d92d1</anchor>
+      <anchorfile>struct_m_q_t_t_connection_properties__t.html</anchorfile>
+      <anchor>ac199a8efa5d695c3b8913d448f4998d0</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>bool</type>
       <name>requestResponseInfo</name>
-      <anchorfile>struct_m_q_t_t_connect_properties__t.html</anchorfile>
-      <anchor>a14e792dfc9cd2ada1c2eeb05b28b0e34</anchor>
+      <anchorfile>struct_m_q_t_t_connection_properties__t.html</anchorfile>
+      <anchor>a0f66bbb49942cbaf8bf0ee52384467d8</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>bool</type>
       <name>requestProblemInfo</name>
-      <anchorfile>struct_m_q_t_t_connect_properties__t.html</anchorfile>
-      <anchor>a65189b2dadd6c301eee0c337192f4b2d</anchor>
+      <anchorfile>struct_m_q_t_t_connection_properties__t.html</anchorfile>
+      <anchor>a2c8472adb537d9b6857da6c7803b0ef1</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>uint16_t</type>
       <name>serverReceiveMax</name>
-      <anchorfile>struct_m_q_t_t_connect_properties__t.html</anchorfile>
-      <anchor>a4b6bf89da0a46b739630921629652664</anchor>
+      <anchorfile>struct_m_q_t_t_connection_properties__t.html</anchorfile>
+      <anchor>add994c9e0f9c3993960bd35496486e04</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>uint8_t</type>
       <name>serverMaxQos</name>
-      <anchorfile>struct_m_q_t_t_connect_properties__t.html</anchorfile>
-      <anchor>af2d8508b9097c92430cc856cc1b99d9a</anchor>
+      <anchorfile>struct_m_q_t_t_connection_properties__t.html</anchorfile>
+      <anchor>a3123b62b6ebae1b8183f592c041a0b4a</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>uint8_t</type>
       <name>retainAvailable</name>
-      <anchorfile>struct_m_q_t_t_connect_properties__t.html</anchorfile>
-      <anchor>a3f43762670e814c6ba159caeb8d9a120</anchor>
+      <anchorfile>struct_m_q_t_t_connection_properties__t.html</anchorfile>
+      <anchor>a94a9fdef74b690f76f889966fcfed8c2</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>uint32_t</type>
       <name>serverMaxPacketSize</name>
-      <anchorfile>struct_m_q_t_t_connect_properties__t.html</anchorfile>
-      <anchor>a75b14385c9ae1f4e289b8b7ed60b35b5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>const char *</type>
-      <name>pClientIdentifier</name>
-      <anchorfile>struct_m_q_t_t_connect_properties__t.html</anchorfile>
-      <anchor>a2f002590061be7cd476399b9405cce0a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>uint16_t</type>
-      <name>clientIdLength</name>
-      <anchorfile>struct_m_q_t_t_connect_properties__t.html</anchorfile>
-      <anchor>aa0390e2678fa9bbc4d013372b112b2e0</anchor>
+      <anchorfile>struct_m_q_t_t_connection_properties__t.html</anchorfile>
+      <anchor>aae7d346ecae1a5dd809784d2d34aebbc</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>uint16_t</type>
       <name>serverTopicAliasMax</name>
-      <anchorfile>struct_m_q_t_t_connect_properties__t.html</anchorfile>
-      <anchor>a6803a2beb89dfde0a240c65c3aa50692</anchor>
+      <anchorfile>struct_m_q_t_t_connection_properties__t.html</anchorfile>
+      <anchor>a28b3da2cb05b3b9116204ded988831e2</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>uint8_t</type>
-      <name>isWildcardAvaiable</name>
-      <anchorfile>struct_m_q_t_t_connect_properties__t.html</anchorfile>
-      <anchor>a257424774266028d8b01a123aaa5ba89</anchor>
+      <name>isWildcardAvailable</name>
+      <anchorfile>struct_m_q_t_t_connection_properties__t.html</anchorfile>
+      <anchor>ad726fc175701ac8b1d6f2c9c67f648b5</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>uint8_t</type>
       <name>isSubscriptionIdAvailable</name>
-      <anchorfile>struct_m_q_t_t_connect_properties__t.html</anchorfile>
-      <anchor>ae7c31c1972078226a1feb8342e5c546d</anchor>
+      <anchorfile>struct_m_q_t_t_connection_properties__t.html</anchorfile>
+      <anchor>a2c8483c67a129e1d662a845191e5d624</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>uint8_t</type>
       <name>isSharedAvailable</name>
-      <anchorfile>struct_m_q_t_t_connect_properties__t.html</anchorfile>
-      <anchor>a3e0fcc2cb17930c719ee772fc2a345f9</anchor>
+      <anchorfile>struct_m_q_t_t_connection_properties__t.html</anchorfile>
+      <anchor>a2b5401c1665c3973de6afeb2c22dcb1c</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>uint16_t</type>
       <name>serverKeepAlive</name>
-      <anchorfile>struct_m_q_t_t_connect_properties__t.html</anchorfile>
-      <anchor>a86be39e97e280f66dbd96eac2d3d5b3c</anchor>
+      <anchorfile>struct_m_q_t_t_connection_properties__t.html</anchorfile>
+      <anchor>aa9567f22d2dc102b99893d619d7bebcc</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -4264,17 +4282,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>MQTTConnectProperties_t</type>
-      <name>connectProperties</name>
+      <type>MQTTConnectionProperties_t</type>
+      <name>connectionProperties</name>
       <anchorfile>struct_m_q_t_t_context__t.html</anchorfile>
-      <anchor>a047ae100fbd9c7db279ddfb247d634da</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>MQTTReasonCodeInfo_t *</type>
-      <name>pDisconnectInfo</name>
-      <anchorfile>struct_m_q_t_t_context__t.html</anchorfile>
-      <anchor>ab41358f43de159a3df911b7e19903833</anchor>
+      <anchor>a9914b8259063a3ee3b77b90de0ad6507</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -4495,90 +4506,6 @@
       <name>propertyLength</name>
       <anchorfile>struct_m_q_t_t_publish_info__t.html</anchorfile>
       <anchor>aaf01d089ad9db1b041015715071942f9</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>uint32_t</type>
-      <name>willDelay</name>
-      <anchorfile>struct_m_q_t_t_publish_info__t.html</anchorfile>
-      <anchor>ab616f292ff5f0680760376667cc9d0b0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>uint8_t</type>
-      <name>payloadFormat</name>
-      <anchorfile>struct_m_q_t_t_publish_info__t.html</anchorfile>
-      <anchor>a36aa4c2dd74c5e806eb93b4b1e444670</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>uint16_t</type>
-      <name>topicAlias</name>
-      <anchorfile>struct_m_q_t_t_publish_info__t.html</anchorfile>
-      <anchor>a22ada2831f5c7c0b1e88038c55e7e94d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>uint32_t</type>
-      <name>msgExpiryInterval</name>
-      <anchorfile>struct_m_q_t_t_publish_info__t.html</anchorfile>
-      <anchor>aa40126dd9485324e4f39fae4759fe2ed</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>bool</type>
-      <name>msgExpiryPresent</name>
-      <anchorfile>struct_m_q_t_t_publish_info__t.html</anchorfile>
-      <anchor>a73b90d507e64c0c9153b8456b4261d45</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>uint16_t</type>
-      <name>contentTypeLength</name>
-      <anchorfile>struct_m_q_t_t_publish_info__t.html</anchorfile>
-      <anchor>a80c4ca96519b60918c07a7fc0e72b9d6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>const char *</type>
-      <name>pContentType</name>
-      <anchorfile>struct_m_q_t_t_publish_info__t.html</anchorfile>
-      <anchor>aef934608b3281ffdad77ec858f8208ba</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>uint16_t</type>
-      <name>responseTopicLength</name>
-      <anchorfile>struct_m_q_t_t_publish_info__t.html</anchorfile>
-      <anchor>ad0968e1b42ad90b6a61d51c5d2b2200d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>const char *</type>
-      <name>pResponseTopic</name>
-      <anchorfile>struct_m_q_t_t_publish_info__t.html</anchorfile>
-      <anchor>a5dfc33e889890eb3b45a685d63938b8c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>uint16_t</type>
-      <name>correlationLength</name>
-      <anchorfile>struct_m_q_t_t_publish_info__t.html</anchorfile>
-      <anchor>a8a2892bc0db01734dbc46a53954b64f7</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>const void *</type>
-      <name>pCorrelationData</name>
-      <anchorfile>struct_m_q_t_t_publish_info__t.html</anchorfile>
-      <anchor>ae8348512878ce2523b6a5c7beb0a5117</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>size_t</type>
-      <name>subscriptionId</name>
-      <anchorfile>struct_m_q_t_t_publish_info__t.html</anchorfile>
-      <anchor>afac0cceb753c6e0d76cc6bca37cbb421</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -4990,6 +4917,12 @@
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
+      <name>MQTTEndOfProperties</name>
+      <anchorfile>group__mqtt__enum__types.html</anchorfile>
+      <anchor>ggaba7ec045874a1c3432f99173367f735caeb817a941b956ae02f011976fa1ce645</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
       <name>MQTTStatusConnected</name>
       <anchorfile>group__mqtt__enum__types.html</anchorfile>
       <anchor>ggaba7ec045874a1c3432f99173367f735caa13a678a441c9ef6b88d6d8be8a64090</anchor>
@@ -5017,6 +4950,12 @@
       <name>MQTTPublishRetrieveFailed</name>
       <anchorfile>group__mqtt__enum__types.html</anchorfile>
       <anchor>ggaba7ec045874a1c3432f99173367f735ca274b61e8a2aea2cf551353c6d09a6eb2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>MQTTEventCallbackFailed</name>
+      <anchorfile>group__mqtt__enum__types.html</anchorfile>
+      <anchor>ggaba7ec045874a1c3432f99173367f735ca9a19fd9b3228ebcdf2a461c97e53d580</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumeration">
@@ -5609,6 +5548,12 @@
       <anchor>gga377edfeeb661cf054a3c7c598637450ea944e2976e661db8f7831cec36cdd731c</anchor>
       <arglist></arglist>
     </member>
+    <member kind="enumvalue">
+      <name>MQTT_INVALID_REASON_CODE</name>
+      <anchorfile>group__mqtt__enum__types.html</anchorfile>
+      <anchor>gga377edfeeb661cf054a3c7c598637450eaa174c5b038a43f24722fc1bf35bb3b05</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="enumeration">
       <type></type>
       <name>MQTTRetainHandling_t</name>
@@ -5666,11 +5611,11 @@
       <arglist>)(void)</arglist>
     </member>
     <member kind="typedef">
-      <type>void(*</type>
+      <type>bool(*</type>
       <name>MQTTEventCallback_t</name>
       <anchorfile>group__mqtt__callback__types.html</anchorfile>
-      <anchor>gaa92f7854cdd6da0b50c3d7e9ded79a8c</anchor>
-      <arglist>)(struct MQTTContext *pContext, struct MQTTPacketInfo *pPacketInfo, struct MQTTDeserializedInfo *pDeserializedInfo, enum MQTTSuccessFailReasonCode *pReasonCode, struct MQTTPropBuilder *sendPropsBuffer, struct MQTTPropBuilder *getPropsBuffer)</arglist>
+      <anchor>ga5ff18bbacb958f5973e7bc4ab035f98b</anchor>
+      <arglist>)(struct MQTTContext *pContext, struct MQTTPacketInfo *pPacketInfo, struct MQTTDeserializedInfo *pDeserializedInfo, enum MQTTSuccessFailReasonCode *pReasonCode, struct MQTTPropBuilder *pSendPropsBuffer, struct MQTTPropBuilder *pGetPropsBuffer)</arglist>
     </member>
     <member kind="typedef">
       <type>int32_t(*</type>
@@ -5705,7 +5650,7 @@
     <class kind="struct">MQTTConnectInfo_t</class>
     <class kind="struct">MQTTSubscribeInfo_t</class>
     <class kind="struct">MQTTUserProperty_t</class>
-    <class kind="struct">MQTTConnectProperties_t</class>
+    <class kind="struct">MQTTConnectionProperties_t</class>
     <class kind="struct">MQTTReasonCodeInfo_t</class>
     <class kind="struct">MQTTPropBuilder_t</class>
     <class kind="struct">MQTTPublishInfo_t</class>
@@ -5905,11 +5850,6 @@
     <filename>mqtt_init_function.html</filename>
   </compound>
   <compound kind="page">
-    <name>mqtt_propertybuilder_init_function</name>
-    <title>MQTT_PropertyBuilder_Init</title>
-    <filename>mqtt_propertybuilder_init_function.html</filename>
-  </compound>
-  <compound kind="page">
     <name>mqtt_connect_function</name>
     <title>MQTT_Connect</title>
     <filename>mqtt_connect_function.html</filename>
@@ -5968,6 +5908,11 @@
     <name>mqtt_publishtoresend_function</name>
     <title>MQTT_PublishToResend</title>
     <filename>mqtt_publishtoresend_function.html</filename>
+  </compound>
+  <compound kind="page">
+    <name>mqttpropertybuilder_init_function</name>
+    <title>MQTTPropertyBuilder_Init</title>
+    <filename>mqttpropertybuilder_init_function.html</filename>
   </compound>
   <compound kind="page">
     <name>mqtt_getconnectpacketsize_function</name>
@@ -6293,6 +6238,11 @@
     <name>mqtt_incominggetnextprop_function</name>
     <title>MQTT_IncomingGetNextProp</title>
     <filename>mqtt_incominggetnextprop_function.html</filename>
+  </compound>
+  <compound kind="page">
+    <name>mqtt_initconnect_function</name>
+    <title>MQTT_InitConnect</title>
+    <filename>mqtt_initconnect_function.html</filename>
   </compound>
   <compound kind="page">
     <name>mqtt_porting</name>

@@ -72,7 +72,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "core_mqtt_config.html",
-"mqtt_unsubscribe_function.html"
+"mqtt_transport_interface.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

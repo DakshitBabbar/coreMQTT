@@ -31,7 +31,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">coreMQTT<span id="projectnumber">&#160;v3.0.0</span>
+   <div id="projectname">coreMQTT<span id="projectnumber">&#160;v2.3.1+</span>
    </div>
    <div id="projectbrief">MQTT 5.0 Client Library</div>
   </td>
@@ -115,14 +115,14 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>UINT8_SET_BIT</b>(x,  position)&#160;&#160;&#160;( ( x ) = ( uint8_t ) ( ( x ) | ( 0x01U &lt;&lt; ( position ) ) ) )</td></tr>
 <tr class="memdesc:af259c91b3075c24df53fa3ffe516b208"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a bit in an 8-bit unsigned integer. <br /></td></tr>
 <tr class="separator:af259c91b3075c24df53fa3ffe516b208"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07cc5f3f934e1ebf8011a6c15a667206"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__mqtt__utils_8h.html#a07cc5f3f934e1ebf8011a6c15a667206">UINT8_CHECK_BIT</a>(x,  position)&#160;&#160;&#160;( ( ( x ) &amp; ( 0x01U &lt;&lt; ( position ) ) ) == ( 0x01U &lt;&lt; ( position ) ) )</td></tr>
+<tr class="memitem:a07cc5f3f934e1ebf8011a6c15a667206"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__mqtt__utils_8h.html#a07cc5f3f934e1ebf8011a6c15a667206">UINT8_CHECK_BIT</a>(x,  position)&#160;&#160;&#160;( ( ( x ) &amp;( 0x01U &lt;&lt; ( position ) ) ) == ( 0x01U &lt;&lt; ( position ) ) )</td></tr>
 <tr class="memdesc:a07cc5f3f934e1ebf8011a6c15a667206"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro for checking if a bit is set in a 1-byte unsigned int.  <br /></td></tr>
 <tr class="separator:a07cc5f3f934e1ebf8011a6c15a667206"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa7efbea5e18e04f3ccedeb0f31342b22"><td class="memItemLeft" align="right" valign="top"><a id="aa7efbea5e18e04f3ccedeb0f31342b22" name="aa7efbea5e18e04f3ccedeb0f31342b22"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>UINT32_SET_BIT</b>(x,  position)&#160;&#160;&#160;        ( ( x ) = ( uint32_t ) ( ( x ) | ( ( uint32_t ) 0x01U &lt;&lt; ( position ) ) ) )</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>UINT32_SET_BIT</b>(x,  position)&#160;&#160;&#160;    ( ( x ) = ( uint32_t ) ( ( x ) | ( ( uint32_t ) 0x01U &lt;&lt; ( position ) ) ) )</td></tr>
 <tr class="memdesc:aa7efbea5e18e04f3ccedeb0f31342b22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a bit in an 32-bit unsigned integer. <br /></td></tr>
 <tr class="separator:aa7efbea5e18e04f3ccedeb0f31342b22"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1efde8b09ebf3852dea527ac4a2f538"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__mqtt__utils_8h.html#ad1efde8b09ebf3852dea527ac4a2f538">UINT32_CHECK_BIT</a>(x,  position)&#160;&#160;&#160;        ( ( ( uint32_t ) ( x ) &amp; ( ( uint32_t ) 0x01U &lt;&lt; ( position ) ) ) == ( ( uint32_t ) 0x01U &lt;&lt; ( position ) ) )</td></tr>
+<tr class="memitem:ad1efde8b09ebf3852dea527ac4a2f538"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__mqtt__utils_8h.html#ad1efde8b09ebf3852dea527ac4a2f538">UINT32_CHECK_BIT</a>(x,  position)&#160;&#160;&#160;    ( ( ( uint32_t ) ( x ) &amp;( ( uint32_t ) 0x01U &lt;&lt; ( position ) ) ) == ( ( uint32_t ) 0x01U &lt;&lt; ( position ) ) )</td></tr>
 <tr class="memdesc:ad1efde8b09ebf3852dea527ac4a2f538"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro for checking if a bit is set in a 4-byte unsigned int.  <br /></td></tr>
 <tr class="separator:ad1efde8b09ebf3852dea527ac4a2f538"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24aab781ef139dd38be534ee137ea2f9"><td class="memItemLeft" align="right" valign="top"><a id="a24aab781ef139dd38be534ee137ea2f9" name="a24aab781ef139dd38be534ee137ea2f9"></a>
@@ -139,18 +139,18 @@ Macros</h2></td></tr>
 <tr class="memitem:a17ed1ce0de61ab9f36bbcbe66486245c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__mqtt__utils_8h.html#a17ed1ce0de61ab9f36bbcbe66486245c">UINT32_DECODE</a>(ptr)</td></tr>
 <tr class="memdesc:a17ed1ce0de61ab9f36bbcbe66486245c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro for decoding a 4-byte unsigned int from a sequence of bytes.  <br /></td></tr>
 <tr class="separator:a17ed1ce0de61ab9f36bbcbe66486245c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab1ce24ce5c7e5815c7a3809572ed77c7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__mqtt__utils_8h.html#ab1ce24ce5c7e5815c7a3809572ed77c7">UINT32_GET_BYTE</a>(x,  byteNumber)&#160;&#160;&#160;        ( ( uint8_t ) ( ( ( uint32_t ) ( x ) &gt;&gt; ( ( uint8_t ) ( byteNumber ) * 8U ) ) &amp; 0xFFU ) )</td></tr>
+<tr class="memitem:ab1ce24ce5c7e5815c7a3809572ed77c7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__mqtt__utils_8h.html#ab1ce24ce5c7e5815c7a3809572ed77c7">UINT32_GET_BYTE</a>(x,  byteNumber)&#160;&#160;&#160;    ( ( uint8_t ) ( ( ( uint32_t ) ( x ) &gt;&gt; ( ( uint8_t ) ( byteNumber ) * 8U ) ) &amp; 0xFFU ) )</td></tr>
 <tr class="memdesc:ab1ce24ce5c7e5815c7a3809572ed77c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro to extract a specific byte from a 32-bit unsigned integer.  <br /></td></tr>
 <tr class="separator:ab1ce24ce5c7e5815c7a3809572ed77c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a549d24726d8ff1b4b32a6cb48654ad90"><td class="memItemLeft" align="right" valign="top"><a id="a549d24726d8ff1b4b32a6cb48654ad90" name="a549d24726d8ff1b4b32a6cb48654ad90"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>UINT8_CLEAR_BIT</b>(x,  position)&#160;&#160;&#160;( ( x ) = ( uint8_t ) ( ( x ) &amp; ( ~( 0x01U &lt;&lt; ( position ) ) ) ) )</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>UINT8_CLEAR_BIT</b>(x,  position)&#160;&#160;&#160;( ( x ) = ( uint8_t ) ( ( x ) &amp;( ~( 0x01U &lt;&lt; ( position ) ) ) ) )</td></tr>
 <tr class="memdesc:a549d24726d8ff1b4b32a6cb48654ad90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear a bit in an 8-bit unsigned integer. <br /></td></tr>
 <tr class="separator:a549d24726d8ff1b4b32a6cb48654ad90"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ad8f2f64d11941dbc439906c174bcc844"><td class="memItemLeft" align="right" valign="top">uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__mqtt__utils_8h.html#ad8f2f64d11941dbc439906c174bcc844">encodeVariableLength</a> (uint8_t *pDestination, size_t length)</td></tr>
-<tr class="memdesc:ad8f2f64d11941dbc439906c174bcc844"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encodes the remaining length of the packet using the variable length encoding scheme provided in the MQTT v3.1.1 specification.  <br /></td></tr>
+<tr class="memdesc:ad8f2f64d11941dbc439906c174bcc844"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encodes the remaining length of the packet using the variable length encoding scheme provided in the MQTT 5.0 specification.  <br /></td></tr>
 <tr class="separator:ad8f2f64d11941dbc439906c174bcc844"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -177,7 +177,7 @@ Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;( ( ( x ) &amp; ( 0x01U &lt;&lt; ( position ) ) ) == ( 0x01U &lt;&lt; ( position ) ) )</td>
+          <td></td><td>&#160;&#160;&#160;( ( ( x ) &amp;( 0x01U &lt;&lt; ( position ) ) ) == ( 0x01U &lt;&lt; ( position ) ) )</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -214,7 +214,7 @@ Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;        ( ( ( uint32_t ) ( x ) &amp; ( ( uint32_t ) 0x01U &lt;&lt; ( position ) ) ) == ( ( uint32_t ) 0x01U &lt;&lt; ( position ) ) )</td>
+          <td></td><td>&#160;&#160;&#160;    ( ( ( uint32_t ) ( x ) &amp;( ( uint32_t ) 0x01U &lt;&lt; ( position ) ) ) == ( ( uint32_t ) 0x01U &lt;&lt; ( position ) ) )</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -245,8 +245,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">        ( uint16_t ) ( ( ( ( uint16_t ) ptr[ 0 ] ) &lt;&lt; 8 ) | \</div>
-<div class="line">                       ( ( uint16_t ) ptr[ 1 ] ) )</div>
+<b>Value:</b><div class="fragment"><div class="line">    ( uint16_t ) ( ( ( ( uint16_t ) ptr[ 0 ] ) &lt;&lt; 8 ) | \</div>
+<div class="line">                   ( ( uint16_t ) ptr[ 1 ] ) )</div>
 </div><!-- fragment -->
 <p>Macro for decoding a 2-byte unsigned int from a sequence of bytes. </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -273,10 +273,10 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">        ( uint32_t ) ( ( ( ( uint32_t ) ptr[ 0 ] ) &lt;&lt; 24 ) | \</div>
-<div class="line">                       ( ( ( uint32_t ) ptr[ 1 ] ) &lt;&lt; 16 ) | \</div>
-<div class="line">                       ( ( ( uint32_t ) ptr[ 2 ] ) &lt;&lt; 8 ) |  \</div>
-<div class="line">                       ( ( uint32_t ) ptr[ 3 ] ) )</div>
+<b>Value:</b><div class="fragment"><div class="line">    ( uint32_t ) ( ( ( ( uint32_t ) ptr[ 0 ] ) &lt;&lt; 24 ) | \</div>
+<div class="line">                   ( ( ( uint32_t ) ptr[ 1 ] ) &lt;&lt; 16 ) | \</div>
+<div class="line">                   ( ( ( uint32_t ) ptr[ 2 ] ) &lt;&lt; 8 ) |  \</div>
+<div class="line">                   ( ( uint32_t ) ptr[ 3 ] ) )</div>
 </div><!-- fragment -->
 <p>Macro for decoding a 4-byte unsigned int from a sequence of bytes. </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -309,7 +309,7 @@ Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;        ( ( uint8_t ) ( ( ( uint32_t ) ( x ) &gt;&gt; ( ( uint8_t ) ( byteNumber ) * 8U ) ) &amp; 0xFFU ) )</td>
+          <td></td><td>&#160;&#160;&#160;    ( ( uint8_t ) ( ( ( uint32_t ) ( x ) &gt;&gt; ( ( uint8_t ) ( byteNumber ) * 8U ) ) &amp; 0xFFU ) )</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -352,7 +352,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Encodes the remaining length of the packet using the variable length encoding scheme provided in the MQTT v3.1.1 specification. </p>
+<p>Encodes the remaining length of the packet using the variable length encoding scheme provided in the MQTT 5.0 specification. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[out]</td><td class="paramname">pDestination</td><td>The destination buffer to store the encoded remaining length. </td></tr>

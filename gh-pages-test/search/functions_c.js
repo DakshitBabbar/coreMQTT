@@ -4,7 +4,7 @@ var searchData=
   ['sendconnectwithoutcopy_1',['sendConnectWithoutCopy',['../core__mqtt_8c.html#ad49e018ba2258327961e2feecfb4c96f',1,'core_mqtt.c']]],
   ['senddisconnectwithoutcopy_2',['sendDisconnectWithoutCopy',['../core__mqtt_8c.html#acd7b5ffcc0dfa8b090ccb5ad664ce52f',1,'core_mqtt.c']]],
   ['sendmessagevector_3',['sendMessageVector',['../core__mqtt_8c.html#a39f478d2bb0366a5f14bfa90316d8d26',1,'core_mqtt.c']]],
-  ['sendpublishacks_4',['sendPublishAcks',['../core__mqtt_8c.html#ab4b719d2f726b049c279dcb37fcba840',1,'core_mqtt.c']]],
+  ['sendpublishackswithoutproperty_4',['sendPublishAcksWithoutProperty',['../core__mqtt_8c.html#acceb15d0cd3fe0ce049caadb547879a3',1,'core_mqtt.c']]],
   ['sendpublishackswithproperty_5',['sendPublishAcksWithProperty',['../core__mqtt_8c.html#a2f1219a4667444a4777afc54d5304033',1,'core_mqtt.c']]],
   ['sendpublishwithoutcopy_6',['sendPublishWithoutCopy',['../core__mqtt_8c.html#a750d27d7f4902668e09d50300cfc65ba',1,'core_mqtt.c']]],
   ['sendsubscribewithoutcopy_7',['sendSubscribeWithoutCopy',['../core__mqtt_8c.html#a640f9bf643bfb01c6d5bd53815b01089',1,'core_mqtt.c']]],

@@ -1,7 +1,7 @@
 var mqtt_functions =
 [
     [ "MQTT_Init", "mqtt_init_function.html", null ],
-    [ "MQTT_PropertyBuilder_Init", "mqtt_propertybuilder_init_function.html", null ],
+    [ "MQTTPropertyBuilder_Init", "mqttpropertybuilder_init_function.html", null ],
     [ "MQTT_Connect", "mqtt_connect_function.html", null ],
     [ "MQTT_Subscribe", "mqtt_subscribe_function.html", null ],
     [ "MQTT_Publish", "mqtt_publish_function.html", null ],
@@ -36,6 +36,7 @@ var mqtt_functions =
     [ "MQTT_DeserializeAck", "mqtt_deserializeack_function.html", null ],
     [ "MQTT_DeserializeDisconnect", "mqtt_deserializedisconnect_function.html", null ],
     [ "MQTT_GetIncomingPacketTypeAndLength", "mqtt_getincomingpackettypeandlength_function.html", null ],
+    [ "MQTT_InitConnect", "mqtt_initconnect_function.html", null ],
     [ "MQTTPropAdd_SubscribeId", "mqttpropadd_subscribeid_function.html", null ],
     [ "MQTTPropAdd_UserProp", "mqttpropadd_userprop_function.html", null ],
     [ "MQTTPropAdd_SessionExpiry", "mqttpropadd_sessionexpiry_function.html", null ],

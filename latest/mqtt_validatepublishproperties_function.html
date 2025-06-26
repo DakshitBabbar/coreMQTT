@@ -31,7 +31,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">coreMQTT<span id="projectnumber">&#160;v3.0.0</span>
+   <div id="projectname">coreMQTT<span id="projectnumber">&#160;v2.3.1+</span>
    </div>
    <div id="projectbrief">MQTT 5.0 Client Library</div>
   </td>
@@ -101,9 +101,9 @@ $(document).ready(function(){initNavTree('mqtt_validatepublishproperties_functio
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><div class="fragment"><div class="line"><a class="code hl_enumeration" href="group__mqtt__enum__types.html#gaba7ec045874a1c3432f99173367f735c">MQTTStatus_t</a> <a class="code hl_function" href="core__mqtt__serializer_8h.html#a162d32c54e27ce976c2a5bec5deed3dc">MQTT_ValidatePublishProperties</a>(uint16_t serverTopicAliasMax, <span class="keyword">const</span> <a class="code hl_struct" href="struct_m_q_t_t_prop_builder__t.html">MQTTPropBuilder_t</a>* propBuilder, uint16_t *topicAlias);</div>
-<div class="ttc" id="acore__mqtt__serializer_8h_html_a162d32c54e27ce976c2a5bec5deed3dc"><div class="ttname"><a href="core__mqtt__serializer_8h.html#a162d32c54e27ce976c2a5bec5deed3dc">MQTT_ValidatePublishProperties</a></div><div class="ttdeci">MQTTStatus_t MQTT_ValidatePublishProperties(uint16_t serverTopicAliasMax, const MQTTPropBuilder_t *propBuilder, uint16_t *topicAlias)</div><div class="ttdoc">Validates the properties of a PUBLISH packet.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:4364</div></div>
-<div class="ttc" id="agroup__mqtt__enum__types_html_gaba7ec045874a1c3432f99173367f735c"><div class="ttname"><a href="group__mqtt__enum__types.html#gaba7ec045874a1c3432f99173367f735c">MQTTStatus_t</a></div><div class="ttdeci">MQTTStatus_t</div><div class="ttdoc">Return codes from MQTT functions.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:91</div></div>
-<div class="ttc" id="astruct_m_q_t_t_prop_builder__t_html"><div class="ttname"><a href="struct_m_q_t_t_prop_builder__t.html">MQTTPropBuilder_t</a></div><div class="ttdoc">Property builder for MQTT packets.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:662</div></div>
+<div class="ttc" id="acore__mqtt__serializer_8h_html_a162d32c54e27ce976c2a5bec5deed3dc"><div class="ttname"><a href="core__mqtt__serializer_8h.html#a162d32c54e27ce976c2a5bec5deed3dc">MQTT_ValidatePublishProperties</a></div><div class="ttdeci">MQTTStatus_t MQTT_ValidatePublishProperties(uint16_t serverTopicAliasMax, const MQTTPropBuilder_t *propBuilder, uint16_t *topicAlias)</div><div class="ttdoc">Validates the properties of a PUBLISH packet.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:4520</div></div>
+<div class="ttc" id="agroup__mqtt__enum__types_html_gaba7ec045874a1c3432f99173367f735c"><div class="ttname"><a href="group__mqtt__enum__types.html#gaba7ec045874a1c3432f99173367f735c">MQTTStatus_t</a></div><div class="ttdeci">MQTTStatus_t</div><div class="ttdoc">Return codes from MQTT functions.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:239</div></div>
+<div class="ttc" id="astruct_m_q_t_t_prop_builder__t_html"><div class="ttname"><a href="struct_m_q_t_t_prop_builder__t.html">MQTTPropBuilder_t</a></div><div class="ttdoc">Property builder for MQTT packets.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:650</div></div>
 </div><!-- fragment --><p>Validates the properties of a PUBLISH packet.  </p>
 <p>This function validates the properties in the property builder for a PUBLISH packet.</p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -116,6 +116,7 @@ $(document).ready(function(){initNavTree('mqtt_validatepublishproperties_functio
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns one of the following:<ul>
 <li><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a> if the properties are valid</li>
+<li><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa39030c93b0263b2699502a074f003b5">MQTTBadParameter</a> if invalid parameters are passed</li>
 <li><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa5d7507e7664a14d63a8bc44b280093e">MQTTBadResponse</a> if an invalid packet is read   </li>
 </ul>
 </dd></dl>

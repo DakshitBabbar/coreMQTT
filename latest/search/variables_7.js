@@ -5,7 +5,7 @@ var searchData=
   ['index_2',['index',['../struct_m_q_t_t_context__t.html#a41b7735cd0746563483b72e17cf103aa',1,'MQTTContext_t']]],
   ['iov_5fbase_3',['iov_base',['../struct_transport_out_vector__t.html#a0ffa5c06bf00006cbafa8e244951038d',1,'TransportOutVector_t']]],
   ['iov_5flen_4',['iov_len',['../struct_transport_out_vector__t.html#ada73dafb2d34311f33fefad38603b35c',1,'TransportOutVector_t']]],
-  ['issharedavailable_5',['isSharedAvailable',['../struct_m_q_t_t_connect_properties__t.html#a3e0fcc2cb17930c719ee772fc2a345f9',1,'MQTTConnectProperties_t']]],
-  ['issubscriptionidavailable_6',['isSubscriptionIdAvailable',['../struct_m_q_t_t_connect_properties__t.html#ae7c31c1972078226a1feb8342e5c546d',1,'MQTTConnectProperties_t']]],
-  ['iswildcardavaiable_7',['isWildcardAvaiable',['../struct_m_q_t_t_connect_properties__t.html#a257424774266028d8b01a123aaa5ba89',1,'MQTTConnectProperties_t']]]
+  ['issharedavailable_5',['isSharedAvailable',['../struct_m_q_t_t_connection_properties__t.html#a2b5401c1665c3973de6afeb2c22dcb1c',1,'MQTTConnectionProperties_t']]],
+  ['issubscriptionidavailable_6',['isSubscriptionIdAvailable',['../struct_m_q_t_t_connection_properties__t.html#a2c8483c67a129e1d662a845191e5d624',1,'MQTTConnectionProperties_t']]],
+  ['iswildcardavailable_7',['isWildcardAvailable',['../struct_m_q_t_t_connection_properties__t.html#ad726fc175701ac8b1d6f2c9c67f648b5',1,'MQTTConnectionProperties_t']]]
 ];

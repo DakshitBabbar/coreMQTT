@@ -31,7 +31,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">coreMQTT<span id="projectnumber">&#160;v3.0.0</span>
+   <div id="projectname">coreMQTT<span id="projectnumber">&#160;v2.3.1+</span>
    </div>
    <div id="projectbrief">MQTT 5.0 Client Library</div>
   </td>
@@ -135,32 +135,32 @@ $(document).ready(function(){initNavTree('core__mqtt__utils_8h_source.html','');
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="core__mqtt__utils_8h.html#af259c91b3075c24df53fa3ffe516b208">   41</a></span><span class="preprocessor">#define UINT8_SET_BIT( x, position )      ( ( x ) = ( uint8_t ) ( ( x ) | ( 0x01U &lt;&lt; ( position ) ) ) )</span></div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="core__mqtt__utils_8h.html#a07cc5f3f934e1ebf8011a6c15a667206">   49</a></span><span class="preprocessor">#define UINT8_CHECK_BIT( x, position )    ( ( ( x ) &amp; ( 0x01U &lt;&lt; ( position ) ) ) == ( 0x01U &lt;&lt; ( position ) ) )</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="core__mqtt__utils_8h.html#a07cc5f3f934e1ebf8011a6c15a667206">   49</a></span><span class="preprocessor">#define UINT8_CHECK_BIT( x, position )    ( ( ( x ) &amp;( 0x01U &lt;&lt; ( position ) ) ) == ( 0x01U &lt;&lt; ( position ) ) )</span></div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="core__mqtt__utils_8h.html#aa7efbea5e18e04f3ccedeb0f31342b22">   54</a></span><span class="preprocessor">#define UINT32_SET_BIT( x, position ) \</span></div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">        ( ( x ) = ( uint32_t ) ( ( x ) | ( ( uint32_t ) 0x01U &lt;&lt; ( position ) ) ) )</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">    ( ( x ) = ( uint32_t ) ( ( x ) | ( ( uint32_t ) 0x01U &lt;&lt; ( position ) ) ) )</span></div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="core__mqtt__utils_8h.html#ad1efde8b09ebf3852dea527ac4a2f538">   63</a></span><span class="preprocessor">#define UINT32_CHECK_BIT( x, position ) \</span></div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="preprocessor">        ( ( ( uint32_t ) ( x ) &amp; ( ( uint32_t ) 0x01U &lt;&lt; ( position ) ) ) == ( ( uint32_t ) 0x01U &lt;&lt; ( position ) ) )</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="preprocessor">    ( ( ( uint32_t ) ( x ) &amp;( ( uint32_t ) 0x01U &lt;&lt; ( position ) ) ) == ( ( uint32_t ) 0x01U &lt;&lt; ( position ) ) )</span></div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="core__mqtt__utils_8h.html#a24aab781ef139dd38be534ee137ea2f9">   69</a></span><span class="preprocessor">#define UINT16_HIGH_BYTE( x )    ( ( uint8_t ) ( ( x ) &gt;&gt; 8 ) )</span></div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="core__mqtt__utils_8h.html#af2ae35b27e0140a77238cd175508cb4e">   74</a></span><span class="preprocessor">#define UINT16_LOW_BYTE( x )     ( ( uint8_t ) ( ( x ) &amp; 0x00ffU ) )</span></div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="core__mqtt__utils_8h.html#acc849aa739edff3ec532219a3860a3a0">   81</a></span><span class="preprocessor">#define UINT16_DECODE( ptr )                            \</span></div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="preprocessor">        ( uint16_t ) ( ( ( ( uint16_t ) ptr[ 0 ] ) &lt;&lt; 8 ) | \</span></div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="preprocessor">                       ( ( uint16_t ) ptr[ 1 ] ) )</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="preprocessor">    ( uint16_t ) ( ( ( ( uint16_t ) ptr[ 0 ] ) &lt;&lt; 8 ) | \</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="preprocessor">                   ( ( uint16_t ) ptr[ 1 ] ) )</span></div>
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="core__mqtt__utils_8h.html#a17ed1ce0de61ab9f36bbcbe66486245c">   90</a></span><span class="preprocessor">#define UINT32_DECODE( ptr )                             \</span></div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="preprocessor">        ( uint32_t ) ( ( ( ( uint32_t ) ptr[ 0 ] ) &lt;&lt; 24 ) | \</span></div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="preprocessor">                       ( ( ( uint32_t ) ptr[ 1 ] ) &lt;&lt; 16 ) | \</span></div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="preprocessor">                       ( ( ( uint32_t ) ptr[ 2 ] ) &lt;&lt; 8 ) |  \</span></div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="preprocessor">                       ( ( uint32_t ) ptr[ 3 ] ) )</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="preprocessor">    ( uint32_t ) ( ( ( ( uint32_t ) ptr[ 0 ] ) &lt;&lt; 24 ) | \</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="preprocessor">                   ( ( ( uint32_t ) ptr[ 1 ] ) &lt;&lt; 16 ) | \</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="preprocessor">                   ( ( ( uint32_t ) ptr[ 2 ] ) &lt;&lt; 8 ) |  \</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="preprocessor">                   ( ( uint32_t ) ptr[ 3 ] ) )</span></div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="core__mqtt__utils_8h.html#ab1ce24ce5c7e5815c7a3809572ed77c7">  102</a></span><span class="preprocessor">#define UINT32_GET_BYTE( x, byteNumber ) \</span></div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="preprocessor">        ( ( uint8_t ) ( ( ( uint32_t ) ( x ) &gt;&gt; ( ( uint8_t ) ( byteNumber ) * 8U ) ) &amp; 0xFFU ) )</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="preprocessor">    ( ( uint8_t ) ( ( ( uint32_t ) ( x ) &gt;&gt; ( ( uint8_t ) ( byteNumber ) * 8U ) ) &amp; 0xFFU ) )</span></div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="core__mqtt__utils_8h.html#a549d24726d8ff1b4b32a6cb48654ad90">  108</a></span><span class="preprocessor">#define UINT8_CLEAR_BIT( x, position )    ( ( x ) = ( uint8_t ) ( ( x ) &amp; ( ~( 0x01U &lt;&lt; ( position ) ) ) ) )</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="core__mqtt__utils_8h.html#a549d24726d8ff1b4b32a6cb48654ad90">  108</a></span><span class="preprocessor">#define UINT8_CLEAR_BIT( x, position )    ( ( x ) = ( uint8_t ) ( ( x ) &amp;( ~( 0x01U &lt;&lt; ( position ) ) ) ) )</span></div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>uint8_t * <a class="code hl_function" href="core__mqtt__utils_8h.html#ad8f2f64d11941dbc439906c174bcc844">encodeVariableLength</a>( uint8_t * pDestination,</div>
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>                                <span class="keywordtype">size_t</span> length );</div>

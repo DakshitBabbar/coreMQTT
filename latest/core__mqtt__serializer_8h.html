@@ -31,7 +31,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">coreMQTT<span id="projectnumber">&#160;v3.0.0</span>
+   <div id="projectname">coreMQTT<span id="projectnumber">&#160;v2.3.1+</span>
    </div>
    <div id="projectbrief">MQTT 5.0 Client Library</div>
   </td>
@@ -106,13 +106,12 @@ $(document).ready(function(){initNavTree('core__mqtt__serializer_8h.html',''); i
 </div><!--header-->
 <div class="contents">
 
-<p>User-facing functions for serializing and deserializing MQTT 3.1.1 packets. This header should be included for building a lighter weight MQTT client than the managed CSDK MQTT library API in <a class="el" href="core__mqtt_8h.html" title="User-facing functions of the MQTT 3.1.1 library.">core_mqtt.h</a>, by using the serializer and de-serializer functions exposed in this file's API.  
+<p>User-facing functions for serializing and deserializing MQTT 5.0 packets. This header should be included for building a lighter weight MQTT client than the managed CSDK MQTT library API in <a class="el" href="core__mqtt_8h.html" title="User-facing functions of the MQTT 5.0 library.">core_mqtt.h</a>, by using the serializer and de-serializer functions exposed in this file's API.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stddef.h&gt;</code><br />
 <code>#include &lt;stdint.h&gt;</code><br />
 <code>#include &lt;stdbool.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="transport__interface_8h_source.html">transport_interface.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="core__mqtt__config__defaults_8h_source.html">core_mqtt_config_defaults.h</a>&quot;</code><br />
 </div>
 <p><a href="core__mqtt__serializer_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -130,8 +129,8 @@ Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_m_q_t_t_user_property__t.html">MQTTUserProperty_t</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struct to hold user property.  <a href="struct_m_q_t_t_user_property__t.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_m_q_t_t_connect_properties__t.html">MQTTConnectProperties_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struct to hold connect and connack properties.  <a href="struct_m_q_t_t_connect_properties__t.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_m_q_t_t_connection_properties__t.html">MQTTConnectionProperties_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struct to hold connect and connack properties.  <a href="struct_m_q_t_t_connection_properties__t.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_m_q_t_t_reason_code_info__t.html">MQTTReasonCodeInfo_t</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struct to hold reason codes.  <a href="struct_m_q_t_t_reason_code_info__t.html#details">More...</a><br /></td></tr>
@@ -359,13 +358,14 @@ Enumerations</h2></td></tr>
 , <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca076ca8965e836a06e707a94adb26144f">MQTTKeepAliveTimeout</a>
 , <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa97df53014d919df5ecd54398f89f9b9">MQTTNeedMoreBytes</a>
 , <br />
-&#160;&#160;<b>MQTTEndOfProperties</b>
+&#160;&#160;<a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caeb817a941b956ae02f011976fa1ce645">MQTTEndOfProperties</a>
 , <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa13a678a441c9ef6b88d6d8be8a64090">MQTTStatusConnected</a>
 , <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca074273b04f70b93c1f20702096cac273">MQTTStatusNotConnected</a>
 , <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca230baa3eaabf50e6b319f792a82bb863">MQTTStatusDisconnectPending</a>
 , <br />
 &#160;&#160;<a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca61a3e19715d8ee1ee330c9bbd4b2708a">MQTTPublishStoreFailed</a>
 , <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca274b61e8a2aea2cf551353c6d09a6eb2">MQTTPublishRetrieveFailed</a>
+, <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca9a19fd9b3228ebcdf2a461c97e53d580">MQTTEventCallbackFailed</a>
 <br />
  }</td></tr>
 <tr class="memdesc:gaba7ec045874a1c3432f99173367f735c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return codes from MQTT functions.  <a href="group__mqtt__enum__types.html#gaba7ec045874a1c3432f99173367f735c">More...</a><br /></td></tr>
@@ -493,6 +493,7 @@ Enumerations</h2></td></tr>
 , <a class="el" href="group__mqtt__enum__types.html#gga377edfeeb661cf054a3c7c598637450ea173f54ae8b2e495b94ae0431e96590ae">MQTT_REASON_DISCONNECT_SUBSCRIPTION_IDENTIFIERS_NOT_SUPPORTED</a> = 0xA1
 , <br />
 &#160;&#160;<a class="el" href="group__mqtt__enum__types.html#gga377edfeeb661cf054a3c7c598637450ea944e2976e661db8f7831cec36cdd731c">MQTT_REASON_DISCONNECT_WILDCARD_SUBSCRIPTIONS_NOT_SUPPORTED</a> = 0xA2
+, <a class="el" href="group__mqtt__enum__types.html#gga377edfeeb661cf054a3c7c598637450eaa174c5b038a43f24722fc1bf35bb3b05">MQTT_INVALID_REASON_CODE</a> = 0xFF
 <br />
  }</td></tr>
 <tr class="memdesc:ga377edfeeb661cf054a3c7c598637450e"><td class="mdescLeft">&#160;</td><td class="mdescRight">MQTT reason codes.  <a href="group__mqtt__enum__types.html#ga377edfeeb661cf054a3c7c598637450e">More...</a><br /></td></tr>
@@ -533,7 +534,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:a5d7548f456673d99c7e763389f2e654d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialize an MQTT PUBLISH packet header in the given buffer.  <br /></td></tr>
 <tr class="separator:a5d7548f456673d99c7e763389f2e654d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a11ea4ac5ea27e93121288e463ca34ee6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__mqtt__enum__types.html#gaba7ec045874a1c3432f99173367f735c">MQTTStatus_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__mqtt__serializer_8h.html#a11ea4ac5ea27e93121288e463ca34ee6">MQTT_SerializeAck</a> (const <a class="el" href="struct_m_q_t_t_fixed_buffer__t.html">MQTTFixedBuffer_t</a> *pFixedBuffer, uint8_t packetType, uint16_t packetId)</td></tr>
-<tr class="memdesc:a11ea4ac5ea27e93121288e463ca34ee6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialize an MQTT PUBACK, PUBREC, PUBREL, or PUBCOMP into the given buffer.  <br /></td></tr>
+<tr class="memdesc:a11ea4ac5ea27e93121288e463ca34ee6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialize an MQTT PUBACK, PUBREC, PUBREL, or PUBCOMP into the given buffer. These PUBLISH ACKS are serialized without reason codes or properties.  <br /></td></tr>
 <tr class="separator:a11ea4ac5ea27e93121288e463ca34ee6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a015562f30e220d2534f773bfa45a5cfe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__mqtt__enum__types.html#gaba7ec045874a1c3432f99173367f735c">MQTTStatus_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__mqtt__serializer_8h.html#a015562f30e220d2534f773bfa45a5cfe">MQTT_GetPingreqPacketSize</a> (size_t *pPacketSize)</td></tr>
 <tr class="memdesc:a015562f30e220d2534f773bfa45a5cfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the size of an MQTT PINGREQ packet.  <br /></td></tr>
@@ -565,11 +566,11 @@ Functions</h2></td></tr>
 <tr class="memitem:a6a169c57c8e56af08fe9862101cf551b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__mqtt__enum__types.html#gaba7ec045874a1c3432f99173367f735c">MQTTStatus_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__mqtt__serializer_8h.html#a6a169c57c8e56af08fe9862101cf551b">MQTT_GetPublishPacketSize</a> (const <a class="el" href="struct_m_q_t_t_publish_info__t.html">MQTTPublishInfo_t</a> *pPublishInfo, const <a class="el" href="struct_m_q_t_t_prop_builder__t.html">MQTTPropBuilder_t</a> *pPublishProperties, size_t *pRemainingLength, size_t *pPacketSize, uint32_t maxPacketSize)</td></tr>
 <tr class="memdesc:a6a169c57c8e56af08fe9862101cf551b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the packet size and remaining length of an MQTT PUBLISH packet.  <br /></td></tr>
 <tr class="separator:a6a169c57c8e56af08fe9862101cf551b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4190e4afadc1fb60d3a300b6c59c84d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__mqtt__enum__types.html#gaba7ec045874a1c3432f99173367f735c">MQTTStatus_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__mqtt__serializer_8h.html#a4190e4afadc1fb60d3a300b6c59c84d2">MQTT_DeserializeAck</a> (const <a class="el" href="struct_m_q_t_t_packet_info__t.html">MQTTPacketInfo_t</a> *pIncomingPacket, uint16_t *pPacketId, bool *pSessionPresent, <a class="el" href="struct_m_q_t_t_reason_code_info__t.html">MQTTReasonCodeInfo_t</a> *pReasonCode, bool requestProblem, uint32_t maxPacketSize, <a class="el" href="struct_m_q_t_t_prop_builder__t.html">MQTTPropBuilder_t</a> *propBuffer, <a class="el" href="struct_m_q_t_t_connect_properties__t.html">MQTTConnectProperties_t</a> *pConnectProperties)</td></tr>
-<tr class="memdesc:a4190e4afadc1fb60d3a300b6c59c84d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deserialize an MQTT PUBACK, PUBREC, PUBREL, PUBCOMP, SUBACK, UNSUBACK, PINGRESP or CONNACK.  <br /></td></tr>
-<tr class="separator:a4190e4afadc1fb60d3a300b6c59c84d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d2b0c0122d7d18416d0020db710c65c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__mqtt__enum__types.html#gaba7ec045874a1c3432f99173367f735c">MQTTStatus_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__mqtt__serializer_8h.html#a5d2b0c0122d7d18416d0020db710c65c">MQTT_DeserializeAck</a> (const <a class="el" href="struct_m_q_t_t_packet_info__t.html">MQTTPacketInfo_t</a> *pIncomingPacket, uint16_t *pPacketId, bool *pSessionPresent, <a class="el" href="struct_m_q_t_t_reason_code_info__t.html">MQTTReasonCodeInfo_t</a> *pReasonCode, <a class="el" href="struct_m_q_t_t_prop_builder__t.html">MQTTPropBuilder_t</a> *pPropBuffer, <a class="el" href="struct_m_q_t_t_connection_properties__t.html">MQTTConnectionProperties_t</a> *pConnectProperties)</td></tr>
+<tr class="memdesc:a5d2b0c0122d7d18416d0020db710c65c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deserialize an MQTT PUBACK, PUBREC, PUBREL, PUBCOMP, SUBACK, UNSUBACK, PINGRESP or CONNACK.  <br /></td></tr>
+<tr class="separator:a5d2b0c0122d7d18416d0020db710c65c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a2afce41b84962ce709dc23ab889b31"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__mqtt__enum__types.html#gaba7ec045874a1c3432f99173367f735c">MQTTStatus_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__mqtt__serializer_8h.html#a4a2afce41b84962ce709dc23ab889b31">MQTT_GetAckPacketSize</a> (size_t *pRemainingLength, size_t *pPacketSize, uint32_t maxPacketSize, size_t ackPropertyLength)</td></tr>
-<tr class="memdesc:a4a2afce41b84962ce709dc23ab889b31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialize an MQTT PUBLISH ACK packet into the given buffer.  <br /></td></tr>
+<tr class="memdesc:a4a2afce41b84962ce709dc23ab889b31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the size of an outgoing PUBLISH ACK packet.  <br /></td></tr>
 <tr class="separator:a4a2afce41b84962ce709dc23ab889b31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85c60cc9ad2a5c95a25c582fd67a4ba6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__mqtt__enum__types.html#gaba7ec045874a1c3432f99173367f735c">MQTTStatus_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__mqtt__serializer_8h.html#a85c60cc9ad2a5c95a25c582fd67a4ba6">MQTT_GetDisconnectPacketSize</a> (const <a class="el" href="struct_m_q_t_t_prop_builder__t.html">MQTTPropBuilder_t</a> *pDisconnectProperties, size_t *pRemainingLength, size_t *pPacketSize, uint32_t maxPacketSize, <a class="el" href="group__mqtt__enum__types.html#ga377edfeeb661cf054a3c7c598637450e">MQTTSuccessFailReasonCode_t</a> reasonCode)</td></tr>
 <tr class="memdesc:a85c60cc9ad2a5c95a25c582fd67a4ba6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the size of an MQTT DISCONNECT packet.  <br /></td></tr>
@@ -577,12 +578,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a466b8d5dadd468bddcee3c5d706e0da3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__mqtt__enum__types.html#gaba7ec045874a1c3432f99173367f735c">MQTTStatus_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__mqtt__serializer_8h.html#a466b8d5dadd468bddcee3c5d706e0da3">MQTT_SerializeDisconnect</a> (const <a class="el" href="struct_m_q_t_t_prop_builder__t.html">MQTTPropBuilder_t</a> *pDisconnectProperties, <a class="el" href="group__mqtt__enum__types.html#ga377edfeeb661cf054a3c7c598637450e">MQTTSuccessFailReasonCode_t</a> reasonCode, size_t remainingLength, const <a class="el" href="struct_m_q_t_t_fixed_buffer__t.html">MQTTFixedBuffer_t</a> *pFixedBuffer)</td></tr>
 <tr class="memdesc:a466b8d5dadd468bddcee3c5d706e0da3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialize an MQTT DISCONNECT packet into the given buffer.  <br /></td></tr>
 <tr class="separator:a466b8d5dadd468bddcee3c5d706e0da3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f42b448bfca04d5604f03d556d64a5a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__mqtt__enum__types.html#gaba7ec045874a1c3432f99173367f735c">MQTTStatus_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__mqtt__serializer_8h.html#a1f42b448bfca04d5604f03d556d64a5a">MQTT_DeserializeDisconnect</a> (const <a class="el" href="struct_m_q_t_t_packet_info__t.html">MQTTPacketInfo_t</a> *pPacket, uint32_t maxPacketSize, <a class="el" href="struct_m_q_t_t_reason_code_info__t.html">MQTTReasonCodeInfo_t</a> *pDisconnectInfo, <a class="el" href="struct_m_q_t_t_prop_builder__t.html">MQTTPropBuilder_t</a> *propBuffer)</td></tr>
-<tr class="memdesc:a1f42b448bfca04d5604f03d556d64a5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deserialize an MQTT Disconnect packet.  <br /></td></tr>
-<tr class="separator:a1f42b448bfca04d5604f03d556d64a5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c5802e11c75b3c0e3e979865cd0421b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__mqtt__enum__types.html#gaba7ec045874a1c3432f99173367f735c">MQTTStatus_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__mqtt__serializer_8h.html#a5c5802e11c75b3c0e3e979865cd0421b">updateContextWithConnectProps</a> (const <a class="el" href="struct_m_q_t_t_prop_builder__t.html">MQTTPropBuilder_t</a> *pPropBuilder, <a class="el" href="struct_m_q_t_t_connect_properties__t.html">MQTTConnectProperties_t</a> *pConnectProperties)</td></tr>
-<tr class="memdesc:a5c5802e11c75b3c0e3e979865cd0421b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the MQTT context with connect properties from the property builder.  <br /></td></tr>
-<tr class="separator:a5c5802e11c75b3c0e3e979865cd0421b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73f6ec7ed9e222865a35cdd6d03ea9ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__mqtt__enum__types.html#gaba7ec045874a1c3432f99173367f735c">MQTTStatus_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__mqtt__serializer_8h.html#a73f6ec7ed9e222865a35cdd6d03ea9ae">MQTT_DeserializeDisconnect</a> (const <a class="el" href="struct_m_q_t_t_packet_info__t.html">MQTTPacketInfo_t</a> *pPacket, uint32_t maxPacketSize, <a class="el" href="struct_m_q_t_t_reason_code_info__t.html">MQTTReasonCodeInfo_t</a> *pDisconnectInfo, <a class="el" href="struct_m_q_t_t_prop_builder__t.html">MQTTPropBuilder_t</a> *pPropBuffer)</td></tr>
+<tr class="memdesc:a73f6ec7ed9e222865a35cdd6d03ea9ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deserialize an MQTT Disconnect packet.  <br /></td></tr>
+<tr class="separator:a73f6ec7ed9e222865a35cdd6d03ea9ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0d40d4e24e129696094e9a3f51c4e31"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__mqtt__enum__types.html#gaba7ec045874a1c3432f99173367f735c">MQTTStatus_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__mqtt__serializer_8h.html#ad0d40d4e24e129696094e9a3f51c4e31">updateContextWithConnectProps</a> (const <a class="el" href="struct_m_q_t_t_prop_builder__t.html">MQTTPropBuilder_t</a> *pPropBuilder, <a class="el" href="struct_m_q_t_t_connection_properties__t.html">MQTTConnectionProperties_t</a> *pConnectProperties)</td></tr>
+<tr class="memdesc:ad0d40d4e24e129696094e9a3f51c4e31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the MQTT context with connect properties from the property builder.  <br /></td></tr>
+<tr class="separator:ad0d40d4e24e129696094e9a3f51c4e31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb58017c48bafc412e9c36a360530c38"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__mqtt__enum__types.html#gaba7ec045874a1c3432f99173367f735c">MQTTStatus_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__mqtt__serializer_8h.html#aeb58017c48bafc412e9c36a360530c38">MQTTPropAdd_SubscribeId</a> (<a class="el" href="struct_m_q_t_t_prop_builder__t.html">MQTTPropBuilder_t</a> *pPropertyBuilder, size_t subscriptionId)</td></tr>
 <tr class="memdesc:aeb58017c48bafc412e9c36a360530c38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a Subscription Identifier property to the MQTT property builder.  <br /></td></tr>
 <tr class="separator:aeb58017c48bafc412e9c36a360530c38"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -647,7 +648,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:a5bfe18401ff9848c18729640f7cef6e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validates the properties specified for an MQTT DISCONNECT packet.  <br /></td></tr>
 <tr class="separator:a5bfe18401ff9848c18729640f7cef6e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e1952aacd4318c304c79d896835bd06"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__mqtt__enum__types.html#gaba7ec045874a1c3432f99173367f735c">MQTTStatus_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__mqtt__serializer_8h.html#a7e1952aacd4318c304c79d896835bd06">MQTT_ValidateWillProperties</a> (const <a class="el" href="struct_m_q_t_t_prop_builder__t.html">MQTTPropBuilder_t</a> *pPropertyBuilder)</td></tr>
-<tr class="memdesc:a7e1952aacd4318c304c79d896835bd06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validates the properties specified for an WILL Properties in the MQTT CONNECT packet.  <br /></td></tr>
+<tr class="memdesc:a7e1952aacd4318c304c79d896835bd06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validates the properties specified for WILL Properties in the MQTT CONNECT packet.  <br /></td></tr>
 <tr class="separator:a7e1952aacd4318c304c79d896835bd06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aefeb3ff88a39059bd8a598bb63483992"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__mqtt__enum__types.html#gaba7ec045874a1c3432f99173367f735c">MQTTStatus_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__mqtt__serializer_8h.html#aefeb3ff88a39059bd8a598bb63483992">MQTT_ValidateUnsubscribeProperties</a> (const <a class="el" href="struct_m_q_t_t_prop_builder__t.html">MQTTPropBuilder_t</a> *pPropertyBuilder)</td></tr>
 <tr class="memdesc:aefeb3ff88a39059bd8a598bb63483992"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validates the properties specified for an MQTT UNSUBSCRIBE packet.  <br /></td></tr>
@@ -730,9 +731,18 @@ Functions</h2></td></tr>
 <tr class="memitem:af348ec2a8a3a331fd6c04a4b7cf52c81"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__mqtt__enum__types.html#gaba7ec045874a1c3432f99173367f735c">MQTTStatus_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__mqtt__serializer_8h.html#af348ec2a8a3a331fd6c04a4b7cf52c81">MQTT_IncomingGetNextProp</a> (<a class="el" href="struct_m_q_t_t_prop_builder__t.html">MQTTPropBuilder_t</a> *propBuffer, uint8_t *propertyId)</td></tr>
 <tr class="memdesc:af348ec2a8a3a331fd6c04a4b7cf52c81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the next property identifier from the incoming MQTT packet properties.  <br /></td></tr>
 <tr class="separator:af348ec2a8a3a331fd6c04a4b7cf52c81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f298e44147e62b8a4cbf735fa4fde57"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__mqtt__enum__types.html#gaba7ec045874a1c3432f99173367f735c">MQTTStatus_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__mqtt__serializer_8h.html#a1f298e44147e62b8a4cbf735fa4fde57">MQTTPropertyBuilder_Init</a> (<a class="el" href="struct_m_q_t_t_prop_builder__t.html">MQTTPropBuilder_t</a> *pPropertyBuilder, uint8_t *buffer, size_t length)</td></tr>
+<tr class="memdesc:a1f298e44147e62b8a4cbf735fa4fde57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the property builder.  <br /></td></tr>
+<tr class="separator:a1f298e44147e62b8a4cbf735fa4fde57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a383b1386f8d0aa066b70da0e03459b32"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__mqtt__enum__types.html#gaba7ec045874a1c3432f99173367f735c">MQTTStatus_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__mqtt__serializer_8h.html#a383b1386f8d0aa066b70da0e03459b32">decodeSubackPropertyLength</a> (const uint8_t *pIndex, size_t remainingLength, size_t *subackPropertyLength)</td></tr>
+<tr class="memdesc:a383b1386f8d0aa066b70da0e03459b32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decodes the property length field in a SUBACK packet.  <br /></td></tr>
+<tr class="separator:a383b1386f8d0aa066b70da0e03459b32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2cb962fb1564e92cb7d931ef1759d5e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__mqtt__enum__types.html#gaba7ec045874a1c3432f99173367f735c">MQTTStatus_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__mqtt__serializer_8h.html#ad2cb962fb1564e92cb7d931ef1759d5e">MQTT_InitConnect</a> (<a class="el" href="struct_m_q_t_t_connection_properties__t.html">MQTTConnectionProperties_t</a> *pConnectProperties)</td></tr>
+<tr class="memdesc:ad2cb962fb1564e92cb7d931ef1759d5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize an <a class="el" href="struct_m_q_t_t_connection_properties__t.html" title="Struct to hold connect and connack properties.">MQTTConnectionProperties_t</a>.  <br /></td></tr>
+<tr class="separator:ad2cb962fb1564e92cb7d931ef1759d5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>User-facing functions for serializing and deserializing MQTT 3.1.1 packets. This header should be included for building a lighter weight MQTT client than the managed CSDK MQTT library API in <a class="el" href="core__mqtt_8h.html" title="User-facing functions of the MQTT 3.1.1 library.">core_mqtt.h</a>, by using the serializer and de-serializer functions exposed in this file's API. </p>
+<div class="textblock"><p>User-facing functions for serializing and deserializing MQTT 5.0 packets. This header should be included for building a lighter weight MQTT client than the managed CSDK MQTT library API in <a class="el" href="core__mqtt_8h.html" title="User-facing functions of the MQTT 5.0 library.">core_mqtt.h</a>, by using the serializer and de-serializer functions exposed in this file's API. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a id="ad8e7a3a434fcea85cf85fa88575fd0f5" name="ad8e7a3a434fcea85cf85fa88575fd0f5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad8e7a3a434fcea85cf85fa88575fd0f5">&#9670;&#160;</a></span>MQTT_GetSubscribePacketSize()</h2>
@@ -785,7 +795,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get packet size and Remaining Length of an MQTT SUBSCRIBE packet. </p>
-<p>This function must be called before <a class="el" href="core__mqtt_8c.html#a640f9bf643bfb01c6d5bd53815b01089" title="Send Subscribe without copying the users data into any buffer.">sendSubscribeWithoutCopy</a> in order to get the size of the MQTT SUBSCRIBE packet that is generated from the list of <a class="el" href="struct_m_q_t_t_subscribe_info__t.html" title="MQTT SUBSCRIBE packet parameters.">MQTTSubscribeInfo_t</a> and optional subscribe properties. The remaining length returned in <code>pRemainingLength</code> and the packet size returned in <code>pPacketSize</code> are valid only if this function returns <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a>.</p>
+<p>This function must be called before <a class="el" href="core__mqtt__serializer_8h.html#a74805b873842db385d7d30a50f17c0e3" title="Serialize an MQTT SUBSCRIBE packet in the given buffer.">MQTT_SerializeSubscribe</a> in order to get the size of the MQTT SUBSCRIBE packet that is generated from the list of <a class="el" href="struct_m_q_t_t_subscribe_info__t.html" title="MQTT SUBSCRIBE packet parameters.">MQTTSubscribeInfo_t</a> and <a class="el" href="struct_m_q_t_t_prop_builder__t.html" title="Property builder for MQTT packets.">MQTTPropBuilder_t</a> (optional subscribe properties). The size of the <a class="el" href="struct_m_q_t_t_fixed_buffer__t.html" title="Buffer passed to MQTT library.">MQTTFixedBuffer_t</a> supplied to <a class="el" href="core__mqtt__serializer_8h.html#a74805b873842db385d7d30a50f17c0e3" title="Serialize an MQTT SUBSCRIBE packet in the given buffer.">MQTT_SerializeSubscribe</a> must be at least <code>pPacketSize</code>. The provided <code>pSubscriptionList</code> is valid for serialization with <a class="el" href="core__mqtt__serializer_8h.html#a74805b873842db385d7d30a50f17c0e3" title="Serialize an MQTT SUBSCRIBE packet in the given buffer.">MQTT_SerializeSubscribe</a> only if this function returns <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a>. The remaining length returned in <code>pRemainingLength</code> and the packet size returned in <code>pPacketSize</code> are valid only if this function returns <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">pSubscriptionList</td><td>List of MQTT subscription info. </td></tr>
@@ -823,31 +833,32 @@ Functions</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Get the size requirement for the subscribe packet.</span></div>
 <div class="line">status = <a class="code hl_function" href="core__mqtt__serializer_8h.html#ad8e7a3a434fcea85cf85fa88575fd0f5">MQTT_GetSubscribePacketSize</a>(</div>
-<div class="line">     &amp;subscriptionList[ 0 ], </div>
-<div class="line">     NUMBER_OF_SUBSCRIPTIONS, </div>
+<div class="line">     &amp;subscriptionList[ 0 ],</div>
+<div class="line">     NUMBER_OF_SUBSCRIPTIONS,</div>
 <div class="line">     &amp;subscribeProperties,</div>
-<div class="line">     &amp;remainingLength, </div>
+<div class="line">     &amp;remainingLength,</div>
 <div class="line">     &amp;packetSize,</div>
 <div class="line">     maxPacketSize</div>
 <div class="line">);</div>
 <div class="line"> </div>
 <div class="line"><span class="keywordflow">if</span>( status == <a class="code hl_enumvalue" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a> )</div>
 <div class="line">{</div>
-<div class="line">     <span class="comment">// The subscribe packet can now be sent to the broker.</span></div>
+<div class="line">     <span class="comment">// The application should allocate or use a static #MQTTFixedBuffer_t</span></div>
+<div class="line">     <span class="comment">// of size &gt;= packetSize to serialize the subscribe request.</span></div>
 <div class="line">}</div>
-<div class="ttc" id="acore__mqtt__serializer_8h_html_ad8e7a3a434fcea85cf85fa88575fd0f5"><div class="ttname"><a href="core__mqtt__serializer_8h.html#ad8e7a3a434fcea85cf85fa88575fd0f5">MQTT_GetSubscribePacketSize</a></div><div class="ttdeci">MQTTStatus_t MQTT_GetSubscribePacketSize(const MQTTSubscribeInfo_t *pSubscriptionList, size_t subscriptionCount, const MQTTPropBuilder_t *pSubscribeProperties, size_t *pRemainingLength, size_t *pPacketSize, uint32_t maxPacketSize)</div><div class="ttdoc">Get packet size and Remaining Length of an MQTT SUBSCRIBE packet.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:2287</div></div>
-<div class="ttc" id="agroup__mqtt__enum__types_html_gaba7ec045874a1c3432f99173367f735c"><div class="ttname"><a href="group__mqtt__enum__types.html#gaba7ec045874a1c3432f99173367f735c">MQTTStatus_t</a></div><div class="ttdeci">MQTTStatus_t</div><div class="ttdoc">Return codes from MQTT functions.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:91</div></div>
-<div class="ttc" id="agroup__mqtt__enum__types_html_gga276a86010075cf64d522fe56cabee1e3ad87d133aa73a39124fa12597b9d7c449"><div class="ttname"><a href="group__mqtt__enum__types.html#gga276a86010075cf64d522fe56cabee1e3ad87d133aa73a39124fa12597b9d7c449">retainSendOnSub</a></div><div class="ttdeci">@ retainSendOnSub</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:463</div></div>
-<div class="ttc" id="agroup__mqtt__enum__types_html_ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056"><div class="ttname"><a href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a></div><div class="ttdeci">@ MQTTSuccess</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:92</div></div>
-<div class="ttc" id="agroup__mqtt__enum__types_html_ggae308a5928d7f537379c29a894228093aaad51b23a1ae1417f96d8f343c788d1d2"><div class="ttname"><a href="group__mqtt__enum__types.html#ggae308a5928d7f537379c29a894228093aaad51b23a1ae1417f96d8f343c788d1d2">MQTTQoS0</a></div><div class="ttdeci">@ MQTTQoS0</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:123</div></div>
-<div class="ttc" id="astruct_m_q_t_t_prop_builder__t_html"><div class="ttname"><a href="struct_m_q_t_t_prop_builder__t.html">MQTTPropBuilder_t</a></div><div class="ttdoc">Property builder for MQTT packets.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:662</div></div>
-<div class="ttc" id="astruct_m_q_t_t_subscribe_info__t_html"><div class="ttname"><a href="struct_m_q_t_t_subscribe_info__t.html">MQTTSubscribeInfo_t</a></div><div class="ttdoc">MQTT SUBSCRIBE packet parameters.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:484</div></div>
-<div class="ttc" id="astruct_m_q_t_t_subscribe_info__t_html_a4ea94e01ac69e4744710bb50fdebe503"><div class="ttname"><a href="struct_m_q_t_t_subscribe_info__t.html#a4ea94e01ac69e4744710bb50fdebe503">MQTTSubscribeInfo_t::retainAsPublishedOption</a></div><div class="ttdeci">bool retainAsPublishedOption</div><div class="ttdoc">If true, Application Messages forwarded using this subscription keep the RETAIN flag they were publis...</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:513</div></div>
-<div class="ttc" id="astruct_m_q_t_t_subscribe_info__t_html_a64cf2e423f60cfec122eeaef80c0fd86"><div class="ttname"><a href="struct_m_q_t_t_subscribe_info__t.html#a64cf2e423f60cfec122eeaef80c0fd86">MQTTSubscribeInfo_t::qos</a></div><div class="ttdeci">MQTTQoS_t qos</div><div class="ttdoc">Quality of Service for subscription. Include protocol error of qos &gt; 2.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:488</div></div>
-<div class="ttc" id="astruct_m_q_t_t_subscribe_info__t_html_a65c895ef9d14fb6202d07d4e8e5d1073"><div class="ttname"><a href="struct_m_q_t_t_subscribe_info__t.html#a65c895ef9d14fb6202d07d4e8e5d1073">MQTTSubscribeInfo_t::retainHandlingOption</a></div><div class="ttdeci">MQTTRetainHandling_t retainHandlingOption</div><div class="ttdoc">Specifies whether retained messages are sent when the subscription is established.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:519</div></div>
-<div class="ttc" id="astruct_m_q_t_t_subscribe_info__t_html_a6972f8e036f8bde9b1f23a2aacb61382"><div class="ttname"><a href="struct_m_q_t_t_subscribe_info__t.html#a6972f8e036f8bde9b1f23a2aacb61382">MQTTSubscribeInfo_t::topicFilterLength</a></div><div class="ttdeci">uint16_t topicFilterLength</div><div class="ttdoc">Length of subscription topic filter - unsigned long.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:498</div></div>
-<div class="ttc" id="astruct_m_q_t_t_subscribe_info__t_html_a9a417e8150a741cfe92e7176209d326c"><div class="ttname"><a href="struct_m_q_t_t_subscribe_info__t.html#a9a417e8150a741cfe92e7176209d326c">MQTTSubscribeInfo_t::noLocalOption</a></div><div class="ttdeci">bool noLocalOption</div><div class="ttdoc">no local option for subscription. Include protocol error if noLocalOption = 1 in a shared subscriptio...</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:507</div></div>
-<div class="ttc" id="astruct_m_q_t_t_subscribe_info__t_html_adb0b28240fdcd82a85f11cf2f8b5bbf0"><div class="ttname"><a href="struct_m_q_t_t_subscribe_info__t.html#adb0b28240fdcd82a85f11cf2f8b5bbf0">MQTTSubscribeInfo_t::pTopicFilter</a></div><div class="ttdeci">const char * pTopicFilter</div><div class="ttdoc">Topic filter to subscribe to.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:493</div></div>
+<div class="ttc" id="acore__mqtt__serializer_8h_html_ad8e7a3a434fcea85cf85fa88575fd0f5"><div class="ttname"><a href="core__mqtt__serializer_8h.html#ad8e7a3a434fcea85cf85fa88575fd0f5">MQTT_GetSubscribePacketSize</a></div><div class="ttdeci">MQTTStatus_t MQTT_GetSubscribePacketSize(const MQTTSubscribeInfo_t *pSubscriptionList, size_t subscriptionCount, const MQTTPropBuilder_t *pSubscribeProperties, size_t *pRemainingLength, size_t *pPacketSize, uint32_t maxPacketSize)</div><div class="ttdoc">Get packet size and Remaining Length of an MQTT SUBSCRIBE packet.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:2338</div></div>
+<div class="ttc" id="agroup__mqtt__enum__types_html_gaba7ec045874a1c3432f99173367f735c"><div class="ttname"><a href="group__mqtt__enum__types.html#gaba7ec045874a1c3432f99173367f735c">MQTTStatus_t</a></div><div class="ttdeci">MQTTStatus_t</div><div class="ttdoc">Return codes from MQTT functions.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:239</div></div>
+<div class="ttc" id="agroup__mqtt__enum__types_html_gga276a86010075cf64d522fe56cabee1e3ad87d133aa73a39124fa12597b9d7c449"><div class="ttname"><a href="group__mqtt__enum__types.html#gga276a86010075cf64d522fe56cabee1e3ad87d133aa73a39124fa12597b9d7c449">retainSendOnSub</a></div><div class="ttdeci">@ retainSendOnSub</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:402</div></div>
+<div class="ttc" id="agroup__mqtt__enum__types_html_ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056"><div class="ttname"><a href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a></div><div class="ttdeci">@ MQTTSuccess</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:240</div></div>
+<div class="ttc" id="agroup__mqtt__enum__types_html_ggae308a5928d7f537379c29a894228093aaad51b23a1ae1417f96d8f343c788d1d2"><div class="ttname"><a href="group__mqtt__enum__types.html#ggae308a5928d7f537379c29a894228093aaad51b23a1ae1417f96d8f343c788d1d2">MQTTQoS0</a></div><div class="ttdeci">@ MQTTQoS0</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:271</div></div>
+<div class="ttc" id="astruct_m_q_t_t_prop_builder__t_html"><div class="ttname"><a href="struct_m_q_t_t_prop_builder__t.html">MQTTPropBuilder_t</a></div><div class="ttdoc">Property builder for MQTT packets.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:650</div></div>
+<div class="ttc" id="astruct_m_q_t_t_subscribe_info__t_html"><div class="ttname"><a href="struct_m_q_t_t_subscribe_info__t.html">MQTTSubscribeInfo_t</a></div><div class="ttdoc">MQTT SUBSCRIBE packet parameters.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:482</div></div>
+<div class="ttc" id="astruct_m_q_t_t_subscribe_info__t_html_a4ea94e01ac69e4744710bb50fdebe503"><div class="ttname"><a href="struct_m_q_t_t_subscribe_info__t.html#a4ea94e01ac69e4744710bb50fdebe503">MQTTSubscribeInfo_t::retainAsPublishedOption</a></div><div class="ttdeci">bool retainAsPublishedOption</div><div class="ttdoc">If true, Application Messages forwarded using this subscription keep the RETAIN flag they were publis...</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:511</div></div>
+<div class="ttc" id="astruct_m_q_t_t_subscribe_info__t_html_a64cf2e423f60cfec122eeaef80c0fd86"><div class="ttname"><a href="struct_m_q_t_t_subscribe_info__t.html#a64cf2e423f60cfec122eeaef80c0fd86">MQTTSubscribeInfo_t::qos</a></div><div class="ttdeci">MQTTQoS_t qos</div><div class="ttdoc">Quality of Service for subscription. Include protocol error of qos &gt; 2.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:486</div></div>
+<div class="ttc" id="astruct_m_q_t_t_subscribe_info__t_html_a65c895ef9d14fb6202d07d4e8e5d1073"><div class="ttname"><a href="struct_m_q_t_t_subscribe_info__t.html#a65c895ef9d14fb6202d07d4e8e5d1073">MQTTSubscribeInfo_t::retainHandlingOption</a></div><div class="ttdeci">MQTTRetainHandling_t retainHandlingOption</div><div class="ttdoc">Specifies whether retained messages are sent when the subscription is established.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:517</div></div>
+<div class="ttc" id="astruct_m_q_t_t_subscribe_info__t_html_a6972f8e036f8bde9b1f23a2aacb61382"><div class="ttname"><a href="struct_m_q_t_t_subscribe_info__t.html#a6972f8e036f8bde9b1f23a2aacb61382">MQTTSubscribeInfo_t::topicFilterLength</a></div><div class="ttdeci">uint16_t topicFilterLength</div><div class="ttdoc">Length of subscription topic filter - unsigned long.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:496</div></div>
+<div class="ttc" id="astruct_m_q_t_t_subscribe_info__t_html_a9a417e8150a741cfe92e7176209d326c"><div class="ttname"><a href="struct_m_q_t_t_subscribe_info__t.html#a9a417e8150a741cfe92e7176209d326c">MQTTSubscribeInfo_t::noLocalOption</a></div><div class="ttdeci">bool noLocalOption</div><div class="ttdoc">no local option for subscription. Include protocol error if noLocalOption = 1 in a shared subscriptio...</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:505</div></div>
+<div class="ttc" id="astruct_m_q_t_t_subscribe_info__t_html_adb0b28240fdcd82a85f11cf2f8b5bbf0"><div class="ttname"><a href="struct_m_q_t_t_subscribe_info__t.html#adb0b28240fdcd82a85f11cf2f8b5bbf0">MQTTSubscribeInfo_t::pTopicFilter</a></div><div class="ttdeci">const char * pTopicFilter</div><div class="ttdoc">Topic filter to subscribe to.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:491</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -908,7 +919,7 @@ Functions</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">pSubscriptionList</td><td>List of MQTT subscription info. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">subscriptionCount</td><td>The number of elements in pSubscriptionList. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">pSubscribeProperties</td><td>MQTT v5.0 properties for the SUBSCRIBE packet. Can be NULL if no properties are needed. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">packetId</td><td>packet ID generated by <a class="el" href="core__mqtt_8h.html#a00e1a3eba2c21899a6b4312c7d65d090" title="Get a packet ID that is valid according to the MQTT 3.1.1 spec.">MQTT_GetPacketId</a>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">packetId</td><td>packet ID generated by <a class="el" href="core__mqtt_8h.html#a00e1a3eba2c21899a6b4312c7d65d090" title="Get a packet ID that is valid according to the MQTT 5.0 spec.">MQTT_GetPacketId</a>. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">remainingLength</td><td>Remaining Length provided by <a class="el" href="core__mqtt__serializer_8h.html#ad8e7a3a434fcea85cf85fa88575fd0f5" title="Get packet size and Remaining Length of an MQTT SUBSCRIBE packet.">MQTT_GetSubscribePacketSize</a>. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">pFixedBuffer</td><td>Buffer for packet serialization.</td></tr>
   </table>
@@ -931,7 +942,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="comment">// scope for this example.</span></div>
 <div class="line">packetId = getNewPacketId();</div>
 <div class="line"> </div>
-<div class="line"><span class="comment">// Assume subscriptionList and subscribeProperties have been initialized. Get the subscribe packet size.</span></div>
+<div class="line"><span class="comment">// Assume subscriptionList and subscribeProperties have been initialized.</span></div>
+<div class="line">Get the subscribe packet size.</div>
 <div class="line">status = <a class="code hl_function" href="core__mqtt__serializer_8h.html#ad8e7a3a434fcea85cf85fa88575fd0f5">MQTT_GetSubscribePacketSize</a>(</div>
 <div class="line">     &amp;subscriptionList[ 0 ], NUMBER_OF_SUBSCRIPTIONS, &amp;subscribeProperties,</div>
 <div class="line">     &amp;remainingLength, &amp;packetSize</div>
@@ -953,10 +965,10 @@ Functions</h2></td></tr>
 <div class="line">{</div>
 <div class="line">     <span class="comment">// The subscribe packet can now be sent to the broker.</span></div>
 <div class="line">}</div>
-<div class="ttc" id="acore__mqtt__serializer_8h_html_a74805b873842db385d7d30a50f17c0e3"><div class="ttname"><a href="core__mqtt__serializer_8h.html#a74805b873842db385d7d30a50f17c0e3">MQTT_SerializeSubscribe</a></div><div class="ttdeci">MQTTStatus_t MQTT_SerializeSubscribe(const MQTTSubscribeInfo_t *pSubscriptionList, size_t subscriptionCount, const MQTTPropBuilder_t *pSubscribeProperties, uint16_t packetId, size_t remainingLength, const MQTTFixedBuffer_t *pFixedBuffer)</div><div class="ttdoc">Serialize an MQTT SUBSCRIBE packet in the given buffer.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:2373</div></div>
-<div class="ttc" id="astruct_m_q_t_t_fixed_buffer__t_html"><div class="ttname"><a href="struct_m_q_t_t_fixed_buffer__t.html">MQTTFixedBuffer_t</a></div><div class="ttdoc">Buffer passed to MQTT library.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:406</div></div>
-<div class="ttc" id="astruct_m_q_t_t_fixed_buffer__t_html_a0b0b6a93cc62751ebeb03095d5431636"><div class="ttname"><a href="struct_m_q_t_t_fixed_buffer__t.html#a0b0b6a93cc62751ebeb03095d5431636">MQTTFixedBuffer_t::size</a></div><div class="ttdeci">size_t size</div><div class="ttdoc">Size of buffer.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:408</div></div>
-<div class="ttc" id="astruct_m_q_t_t_fixed_buffer__t_html_acea147448e044870fb36b7fa2347dbd6"><div class="ttname"><a href="struct_m_q_t_t_fixed_buffer__t.html#acea147448e044870fb36b7fa2347dbd6">MQTTFixedBuffer_t::pBuffer</a></div><div class="ttdeci">uint8_t * pBuffer</div><div class="ttdoc">Pointer to buffer.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:407</div></div>
+<div class="ttc" id="acore__mqtt__serializer_8h_html_a74805b873842db385d7d30a50f17c0e3"><div class="ttname"><a href="core__mqtt__serializer_8h.html#a74805b873842db385d7d30a50f17c0e3">MQTT_SerializeSubscribe</a></div><div class="ttdeci">MQTTStatus_t MQTT_SerializeSubscribe(const MQTTSubscribeInfo_t *pSubscriptionList, size_t subscriptionCount, const MQTTPropBuilder_t *pSubscribeProperties, uint16_t packetId, size_t remainingLength, const MQTTFixedBuffer_t *pFixedBuffer)</div><div class="ttdoc">Serialize an MQTT SUBSCRIBE packet in the given buffer.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:2428</div></div>
+<div class="ttc" id="astruct_m_q_t_t_fixed_buffer__t_html"><div class="ttname"><a href="struct_m_q_t_t_fixed_buffer__t.html">MQTTFixedBuffer_t</a></div><div class="ttdoc">Buffer passed to MQTT library.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:425</div></div>
+<div class="ttc" id="astruct_m_q_t_t_fixed_buffer__t_html_a0b0b6a93cc62751ebeb03095d5431636"><div class="ttname"><a href="struct_m_q_t_t_fixed_buffer__t.html#a0b0b6a93cc62751ebeb03095d5431636">MQTTFixedBuffer_t::size</a></div><div class="ttdeci">size_t size</div><div class="ttdoc">Size of buffer.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:427</div></div>
+<div class="ttc" id="astruct_m_q_t_t_fixed_buffer__t_html_acea147448e044870fb36b7fa2347dbd6"><div class="ttname"><a href="struct_m_q_t_t_fixed_buffer__t.html#acea147448e044870fb36b7fa2347dbd6">MQTTFixedBuffer_t::pBuffer</a></div><div class="ttdeci">uint8_t * pBuffer</div><div class="ttdoc">Pointer to buffer.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:426</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -1011,7 +1023,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get packet size and Remaining Length of an MQTT UNSUBSCRIBE packet. </p>
-<p>This function must be called before <a class="el" href="core__mqtt_8c.html#a640f9bf643bfb01c6d5bd53815b01089" title="Send Subscribe without copying the users data into any buffer.">sendSubscribeWithoutCopy</a> in order to get the size of the MQTT UNSUBSCRIBE packet that is generated from the list of <a class="el" href="struct_m_q_t_t_subscribe_info__t.html" title="MQTT SUBSCRIBE packet parameters.">MQTTSubscribeInfo_t</a> and optional propertyLength. The remaining length returned in <code>pRemainingLength</code> and the packet size returned in <code>pPacketSize</code> are valid only if this function returns <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a>.</p>
+<p>This function must be called before <a class="el" href="core__mqtt__serializer_8h.html#a6dca7a2ccd47f0dcb908eb751be41065" title="Serialize an MQTT UNSUBSCRIBE packet with properties in the given buffer.">MQTT_SerializeUnsubscribe</a> in order to get the size of the MQTT UNSUBSCRIBE packet that is generated from the list of <a class="el" href="struct_m_q_t_t_subscribe_info__t.html" title="MQTT SUBSCRIBE packet parameters.">MQTTSubscribeInfo_t</a> and <a class="el" href="struct_m_q_t_t_prop_builder__t.html" title="Property builder for MQTT packets.">MQTTPropBuilder_t</a> (optional unsubscribe properties). The size of the <a class="el" href="struct_m_q_t_t_fixed_buffer__t.html" title="Buffer passed to MQTT library.">MQTTFixedBuffer_t</a> supplied to <a class="el" href="core__mqtt__serializer_8h.html#a6dca7a2ccd47f0dcb908eb751be41065" title="Serialize an MQTT UNSUBSCRIBE packet with properties in the given buffer.">MQTT_SerializeUnsubscribe</a> must be at least <code>pPacketSize</code>. The provided <code>pSubscriptionList</code> is valid for serialization with <a class="el" href="core__mqtt__serializer_8h.html#a6dca7a2ccd47f0dcb908eb751be41065" title="Serialize an MQTT UNSUBSCRIBE packet with properties in the given buffer.">MQTT_SerializeUnsubscribe</a> only if this function returns <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a>. The remaining length returned in <code>pRemainingLength</code> and the packet size returned in <code>pPacketSize</code> are valid only if this function returns <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">pSubscriptionList</td><td>List of MQTT subscription info. </td></tr>
@@ -1042,13 +1054,18 @@ Functions</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Get the size requirement for the unsubscribe packet.</span></div>
 <div class="line">status = <a class="code hl_function" href="core__mqtt__serializer_8h.html#a21efe87938f8c79aed8fdf62db147129">MQTT_GetUnsubscribePacketSize</a>(</div>
-<div class="line">     &amp;subscriptionList[ 0 ], NUMBER_OF_SUBSCRIPTIONS, &amp;unsubscribeProperties, &amp;remainingLength, &amp;packetSize, maxPacketSize);</div>
+<div class="line">     &amp;subscriptionList[ 0 ],</div>
+<div class="line">     NUMBER_OF_SUBSCRIPTIONS,</div>
+<div class="line">     &amp;unsubscribeProperties,</div>
+<div class="line">     &amp;remainingLength,</div>
+<div class="line">     &amp;packetSize,</div>
+<div class="line">     maxPacketSize);</div>
 <div class="line"> </div>
 <div class="line"><span class="keywordflow">if</span>( status == <a class="code hl_enumvalue" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a> )</div>
 <div class="line">{</div>
 <div class="line">     <span class="comment">// The unsubscribe packet can now be sent to the broker.</span></div>
 <div class="line">}</div>
-<div class="ttc" id="acore__mqtt__serializer_8h_html_a21efe87938f8c79aed8fdf62db147129"><div class="ttname"><a href="core__mqtt__serializer_8h.html#a21efe87938f8c79aed8fdf62db147129">MQTT_GetUnsubscribePacketSize</a></div><div class="ttdeci">MQTTStatus_t MQTT_GetUnsubscribePacketSize(const MQTTSubscribeInfo_t *pSubscriptionList, size_t subscriptionCount, const MQTTPropBuilder_t *pUnsubscribeProperties, size_t *pRemainingLength, size_t *pPacketSize, uint32_t maxPacketSize)</div><div class="ttdoc">Get packet size and Remaining Length of an MQTT UNSUBSCRIBE packet.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:2439</div></div>
+<div class="ttc" id="acore__mqtt__serializer_8h_html_a21efe87938f8c79aed8fdf62db147129"><div class="ttname"><a href="core__mqtt__serializer_8h.html#a21efe87938f8c79aed8fdf62db147129">MQTT_GetUnsubscribePacketSize</a></div><div class="ttdeci">MQTTStatus_t MQTT_GetUnsubscribePacketSize(const MQTTSubscribeInfo_t *pSubscriptionList, size_t subscriptionCount, const MQTTPropBuilder_t *pUnsubscribeProperties, size_t *pRemainingLength, size_t *pPacketSize, uint32_t maxPacketSize)</div><div class="ttdoc">Get packet size and Remaining Length of an MQTT UNSUBSCRIBE packet.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:2541</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -1164,7 +1181,7 @@ Functions</h2></td></tr>
 <div class="line">     <span class="comment">// The unsubscribe packet has been serialized successfully.</span></div>
 <div class="line">     <span class="comment">// The serialized packet is now ready to be sent to the broker.</span></div>
 <div class="line">}</div>
-<div class="ttc" id="acore__mqtt__serializer_8h_html_a6dca7a2ccd47f0dcb908eb751be41065"><div class="ttname"><a href="core__mqtt__serializer_8h.html#a6dca7a2ccd47f0dcb908eb751be41065">MQTT_SerializeUnsubscribe</a></div><div class="ttdeci">MQTTStatus_t MQTT_SerializeUnsubscribe(const MQTTSubscribeInfo_t *pSubscriptionList, size_t subscriptionCount, const MQTTPropBuilder_t *pUnsubscribeProperties, uint16_t packetId, size_t remainingLength, const MQTTFixedBuffer_t *pFixedBuffer)</div><div class="ttdoc">Serialize an MQTT UNSUBSCRIBE packet with properties in the given buffer.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:2487</div></div>
+<div class="ttc" id="acore__mqtt__serializer_8h_html_a6dca7a2ccd47f0dcb908eb751be41065"><div class="ttname"><a href="core__mqtt__serializer_8h.html#a6dca7a2ccd47f0dcb908eb751be41065">MQTT_SerializeUnsubscribe</a></div><div class="ttdeci">MQTTStatus_t MQTT_SerializeUnsubscribe(const MQTTSubscribeInfo_t *pSubscriptionList, size_t subscriptionCount, const MQTTPropBuilder_t *pUnsubscribeProperties, uint16_t packetId, size_t remainingLength, const MQTTFixedBuffer_t *pFixedBuffer)</div><div class="ttdoc">Serialize an MQTT UNSUBSCRIBE packet with properties in the given buffer.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:2589</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -1219,7 +1236,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">pPublishInfo</td><td>MQTT PUBLISH packet parameters. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">pPublishProperties</td><td>MQTT v5.0 properties for the PUBLISH packet. Can be NULL if no properties are needed. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">packetId</td><td>packet ID generated by <a class="el" href="core__mqtt_8h.html#a00e1a3eba2c21899a6b4312c7d65d090" title="Get a packet ID that is valid according to the MQTT 3.1.1 spec.">MQTT_GetPacketId</a>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">packetId</td><td>packet ID generated by <a class="el" href="core__mqtt_8h.html#a00e1a3eba2c21899a6b4312c7d65d090" title="Get a packet ID that is valid according to the MQTT 5.0 spec.">MQTT_GetPacketId</a>. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">remainingLength</td><td>Remaining Length provided by <a class="el" href="core__mqtt__serializer_8h.html#a6a169c57c8e56af08fe9862101cf551b" title="Get the packet size and remaining length of an MQTT PUBLISH packet.">MQTT_GetPublishPacketSize</a>. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">pFixedBuffer</td><td>Buffer for packet serialization.</td></tr>
   </table>
@@ -1262,9 +1279,9 @@ Functions</h2></td></tr>
 <div class="line">{</div>
 <div class="line">     <span class="comment">// The publish packet can now be sent to the broker.</span></div>
 <div class="line">}</div>
-<div class="ttc" id="acore__mqtt__serializer_8h_html_a6a169c57c8e56af08fe9862101cf551b"><div class="ttname"><a href="core__mqtt__serializer_8h.html#a6a169c57c8e56af08fe9862101cf551b">MQTT_GetPublishPacketSize</a></div><div class="ttdeci">MQTTStatus_t MQTT_GetPublishPacketSize(const MQTTPublishInfo_t *pPublishInfo, const MQTTPropBuilder_t *pPublishProperties, size_t *pRemainingLength, size_t *pPacketSize, uint32_t maxPacketSize)</div><div class="ttdoc">Get the packet size and remaining length of an MQTT PUBLISH packet.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:2545</div></div>
-<div class="ttc" id="acore__mqtt__serializer_8h_html_aa87cc187e0040187ffbf2ea471be42b0"><div class="ttname"><a href="core__mqtt__serializer_8h.html#aa87cc187e0040187ffbf2ea471be42b0">MQTT_SerializePublish</a></div><div class="ttdeci">MQTTStatus_t MQTT_SerializePublish(const MQTTPublishInfo_t *pPublishInfo, const MQTTPropBuilder_t *pPublishProperties, uint16_t packetId, size_t remainingLength, const MQTTFixedBuffer_t *pFixedBuffer)</div><div class="ttdoc">Serialize an MQTT PUBLISH packet in the given buffer.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:2578</div></div>
-<div class="ttc" id="astruct_m_q_t_t_publish_info__t_html"><div class="ttname"><a href="struct_m_q_t_t_publish_info__t.html">MQTTPublishInfo_t</a></div><div class="ttdoc">MQTT PUBLISH packet parameters.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:674</div></div>
+<div class="ttc" id="acore__mqtt__serializer_8h_html_a6a169c57c8e56af08fe9862101cf551b"><div class="ttname"><a href="core__mqtt__serializer_8h.html#a6a169c57c8e56af08fe9862101cf551b">MQTT_GetPublishPacketSize</a></div><div class="ttdeci">MQTTStatus_t MQTT_GetPublishPacketSize(const MQTTPublishInfo_t *pPublishInfo, const MQTTPropBuilder_t *pPublishProperties, size_t *pRemainingLength, size_t *pPacketSize, uint32_t maxPacketSize)</div><div class="ttdoc">Get the packet size and remaining length of an MQTT PUBLISH packet.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:2647</div></div>
+<div class="ttc" id="acore__mqtt__serializer_8h_html_aa87cc187e0040187ffbf2ea471be42b0"><div class="ttname"><a href="core__mqtt__serializer_8h.html#aa87cc187e0040187ffbf2ea471be42b0">MQTT_SerializePublish</a></div><div class="ttdeci">MQTTStatus_t MQTT_SerializePublish(const MQTTPublishInfo_t *pPublishInfo, const MQTTPropBuilder_t *pPublishProperties, uint16_t packetId, size_t remainingLength, const MQTTFixedBuffer_t *pFixedBuffer)</div><div class="ttdoc">Serialize an MQTT PUBLISH packet in the given buffer.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:2681</div></div>
+<div class="ttc" id="astruct_m_q_t_t_publish_info__t_html"><div class="ttname"><a href="struct_m_q_t_t_publish_info__t.html">MQTTPublishInfo_t</a></div><div class="ttdoc">MQTT PUBLISH packet parameters.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:662</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -1377,7 +1394,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">pPublishInfo</td><td>MQTT PUBLISH packet parameters. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">pPublishProperties</td><td>MQTT v5.0 properties for the PUBLISH packet. Can be NULL if no properties are needed. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">packetId</td><td>packet ID generated by <a class="el" href="core__mqtt_8h.html#a00e1a3eba2c21899a6b4312c7d65d090" title="Get a packet ID that is valid according to the MQTT 3.1.1 spec.">MQTT_GetPacketId</a>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">packetId</td><td>packet ID generated by <a class="el" href="core__mqtt_8h.html#a00e1a3eba2c21899a6b4312c7d65d090" title="Get a packet ID that is valid according to the MQTT 5.0 spec.">MQTT_GetPacketId</a>. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">remainingLength</td><td>Remaining Length provided by <a class="el" href="core__mqtt__serializer_8h.html#a6a169c57c8e56af08fe9862101cf551b" title="Get the packet size and remaining length of an MQTT PUBLISH packet.">MQTT_GetPublishPacketSize</a>. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">pFixedBuffer</td><td>Buffer for packet serialization. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">pHeaderSize</td><td>Size of the serialized MQTT PUBLISH header.</td></tr>
@@ -1385,54 +1402,55 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735cab1be4db832a0468f024243bca151a8df">MQTTNoMemory</a> if pFixedBuffer is too small to hold the MQTT packet; <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa39030c93b0263b2699502a074f003b5">MQTTBadParameter</a> if invalid parameters are passed; <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a> otherwise.</dd></dl>
-<p><b>Example</b> </p><div class="fragment"><div class="line"><span class="comment">// Variables used in this example.</span></div>
-<div class="line"><a class="code hl_enumeration" href="group__mqtt__enum__types.html#gaba7ec045874a1c3432f99173367f735c">MQTTStatus_t</a> status;</div>
-<div class="line"><a class="code hl_struct" href="struct_m_q_t_t_publish_info__t.html">MQTTPublishInfo_t</a> publishInfo = { 0 };</div>
-<div class="line"><a class="code hl_struct" href="struct_m_q_t_t_prop_builder__t.html">MQTTPropBuilder_t</a> publishProperties = { 0 };</div>
-<div class="line"><a class="code hl_struct" href="struct_m_q_t_t_fixed_buffer__t.html">MQTTFixedBuffer_t</a> fixedBuffer;</div>
-<div class="line">uint8_t buffer[ BUFFER_SIZE ];</div>
-<div class="line"><span class="keywordtype">size_t</span> remainingLength = 0, packetSize = 0, headerSize = 0;</div>
-<div class="line">uint16_t packetId;</div>
-<div class="line">int32_t bytesSent;</div>
-<div class="line"> </div>
-<div class="line">fixedBuffer.<a class="code hl_variable" href="struct_m_q_t_t_fixed_buffer__t.html#acea147448e044870fb36b7fa2347dbd6">pBuffer</a> = buffer;</div>
-<div class="line">fixedBuffer.<a class="code hl_variable" href="struct_m_q_t_t_fixed_buffer__t.html#a0b0b6a93cc62751ebeb03095d5431636">size</a> = BUFFER_SIZE;</div>
-<div class="line"> </div>
-<div class="line"><span class="comment">// A packet identifier is unused for QoS 0 publishes. Otherwise, a valid, unused packet</span></div>
-<div class="line"><span class="comment">// identifier must be used.</span></div>
-<div class="line">packetId = 0;</div>
-<div class="line"> </div>
-<div class="line"><span class="comment">// Assume publishInfo and publishProperties have been initialized. Get the publish packet size.</span></div>
-<div class="line">status = <a class="code hl_function" href="core__mqtt__serializer_8h.html#a6a169c57c8e56af08fe9862101cf551b">MQTT_GetPublishPacketSize</a>(</div>
-<div class="line">     &amp;publishInfo, &amp;publishProperties, &amp;remainingLength, &amp;packetSize</div>
+<p><b>Example</b> </p><div class="fragment"><div class="line">   <span class="comment">// Variables used in this example.</span></div>
+<div class="line">   <a class="code hl_enumeration" href="group__mqtt__enum__types.html#gaba7ec045874a1c3432f99173367f735c">MQTTStatus_t</a> status;</div>
+<div class="line">   <a class="code hl_struct" href="struct_m_q_t_t_publish_info__t.html">MQTTPublishInfo_t</a> publishInfo = { 0 };</div>
+<div class="line">   <a class="code hl_struct" href="struct_m_q_t_t_prop_builder__t.html">MQTTPropBuilder_t</a> publishProperties ;</div>
+<div class="line">   <a class="code hl_struct" href="struct_m_q_t_t_fixed_buffer__t.html">MQTTFixedBuffer_t</a> fixedBuffer;</div>
+<div class="line">   uint8_t buffer[ BUFFER_SIZE ];</div>
+<div class="line">   <span class="keywordtype">size_t</span> remainingLength = 0, packetSize = 0, headerSize = 0;</div>
+<div class="line">   uint16_t packetId;</div>
+<div class="line">   int32_t bytesSent;</div>
+<div class="line">   uint32_t maxPacketSize = pContext-&gt;connectionProperties.serverMaxPacketSize;</div>
+<div class="line">  </div>
+<div class="line">   fixedBuffer.<a class="code hl_variable" href="struct_m_q_t_t_fixed_buffer__t.html#acea147448e044870fb36b7fa2347dbd6">pBuffer</a> = buffer;</div>
+<div class="line">   fixedBuffer.<a class="code hl_variable" href="struct_m_q_t_t_fixed_buffer__t.html#a0b0b6a93cc62751ebeb03095d5431636">size</a> = BUFFER_SIZE;</div>
+<div class="line">  </div>
+<div class="line">   <span class="comment">// A packet identifier is unused for QoS 0 publishes. Otherwise, a valid, unused packet</span></div>
+<div class="line">   <span class="comment">// identifier must be used.</span></div>
+<div class="line">   packetId = 0;</div>
+<div class="line">  </div>
+<div class="line">   <span class="comment">// Assume publishInfo and publishProperties have been initialized. Get the publish packet size.</span></div>
+<div class="line">   status = <a class="code hl_function" href="core__mqtt__serializer_8h.html#a6a169c57c8e56af08fe9862101cf551b">MQTT_GetPublishPacketSize</a>(</div>
+<div class="line">        &amp;publishInfo, &amp;publishProperties, &amp;remainingLength, &amp;packetSize, maxPacketSize</div>
 <div class="line">);</div>
-<div class="line">assert( status == <a class="code hl_enumvalue" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a> );</div>
-<div class="line"><span class="comment">// The payload will not be serialized, so the the fixed buffer does not need to hold it.</span></div>
-<div class="line">assert( ( packetSize - publishInfo.<a class="code hl_variable" href="struct_m_q_t_t_publish_info__t.html#a7997964e11571f35f0c3b729db0f760f">payloadLength</a> ) &lt;= BUFFER_SIZE );</div>
-<div class="line"> </div>
-<div class="line"><span class="comment">// Serialize the publish packet header into the fixed buffer.</span></div>
-<div class="line">status = <a class="code hl_function" href="core__mqtt__serializer_8h.html#a5d7548f456673d99c7e763389f2e654d">MQTT_SerializePublishHeader</a>(</div>
-<div class="line">     &amp;publishInfo,</div>
-<div class="line">     &amp;publishProperties,</div>
-<div class="line">     packetId,</div>
-<div class="line">     remainingLength,</div>
-<div class="line">     &amp;fixedBuffer,</div>
-<div class="line">     &amp;headerSize</div>
-<div class="line">);</div>
-<div class="line"> </div>
-<div class="line"><span class="keywordflow">if</span>( status == <a class="code hl_enumvalue" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a> )</div>
-<div class="line">{</div>
-<div class="line">     <span class="comment">// The publish header and payload can now be sent to the broker.</span></div>
-<div class="line">     <span class="comment">// mqttSocket here is a socket descriptor created and connected to the MQTT</span></div>
-<div class="line">     <span class="comment">// broker outside of this function.</span></div>
-<div class="line">     bytesSent = send( mqttSocket, ( <span class="keywordtype">void</span> * ) fixedBuffer.<a class="code hl_variable" href="struct_m_q_t_t_fixed_buffer__t.html#acea147448e044870fb36b7fa2347dbd6">pBuffer</a>, headerSize, 0 );</div>
-<div class="line">     assert( bytesSent == headerSize );</div>
-<div class="line">     bytesSent = send( mqttSocket, publishInfo.<a class="code hl_variable" href="struct_m_q_t_t_publish_info__t.html#afc28299f4f625f5e674bb61b42f03380">pPayload</a>, publishInfo.<a class="code hl_variable" href="struct_m_q_t_t_publish_info__t.html#a7997964e11571f35f0c3b729db0f760f">payloadLength</a>, 0 );</div>
-<div class="line">     assert( bytesSent == publishInfo.<a class="code hl_variable" href="struct_m_q_t_t_publish_info__t.html#a7997964e11571f35f0c3b729db0f760f">payloadLength</a> );</div>
-<div class="line">}</div>
-<div class="ttc" id="acore__mqtt__serializer_8h_html_a5d7548f456673d99c7e763389f2e654d"><div class="ttname"><a href="core__mqtt__serializer_8h.html#a5d7548f456673d99c7e763389f2e654d">MQTT_SerializePublishHeader</a></div><div class="ttdeci">MQTTStatus_t MQTT_SerializePublishHeader(const MQTTPublishInfo_t *pPublishInfo, const MQTTPropBuilder_t *pPublishProperties, uint16_t packetId, size_t remainingLength, const MQTTFixedBuffer_t *pFixedBuffer, size_t *pHeaderSize)</div><div class="ttdoc">Serialize an MQTT PUBLISH packet header in the given buffer.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:2665</div></div>
-<div class="ttc" id="astruct_m_q_t_t_publish_info__t_html_a7997964e11571f35f0c3b729db0f760f"><div class="ttname"><a href="struct_m_q_t_t_publish_info__t.html#a7997964e11571f35f0c3b729db0f760f">MQTTPublishInfo_t::payloadLength</a></div><div class="ttdeci">size_t payloadLength</div><div class="ttdoc">Message payload length.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:708</div></div>
-<div class="ttc" id="astruct_m_q_t_t_publish_info__t_html_afc28299f4f625f5e674bb61b42f03380"><div class="ttname"><a href="struct_m_q_t_t_publish_info__t.html#afc28299f4f625f5e674bb61b42f03380">MQTTPublishInfo_t::pPayload</a></div><div class="ttdeci">const void * pPayload</div><div class="ttdoc">Message payload.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:703</div></div>
+<div class="line">   assert( status == <a class="code hl_enumvalue" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a> );</div>
+<div class="line">   <span class="comment">// The payload will not be serialized, so the the fixed buffer does not need to hold it.</span></div>
+<div class="line">   assert( ( packetSize - publishInfo.<a class="code hl_variable" href="struct_m_q_t_t_publish_info__t.html#a7997964e11571f35f0c3b729db0f760f">payloadLength</a> ) &lt;= BUFFER_SIZE );</div>
+<div class="line">  </div>
+<div class="line">   <span class="comment">// Serialize the publish packet header into the fixed buffer.</span></div>
+<div class="line">   status = <a class="code hl_function" href="core__mqtt__serializer_8h.html#a5d7548f456673d99c7e763389f2e654d">MQTT_SerializePublishHeader</a>(</div>
+<div class="line">        &amp;publishInfo,</div>
+<div class="line">        &amp;publishProperties,</div>
+<div class="line">        packetId,</div>
+<div class="line">        remainingLength,</div>
+<div class="line">        &amp;fixedBuffer,</div>
+<div class="line">        &amp;headerSize</div>
+<div class="line">   );</div>
+<div class="line">  </div>
+<div class="line">   <span class="keywordflow">if</span>( status == <a class="code hl_enumvalue" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a> )</div>
+<div class="line">   {</div>
+<div class="line">        <span class="comment">// The publish header and payload can now be sent to the broker.</span></div>
+<div class="line">        <span class="comment">// mqttSocket here is a socket descriptor created and connected to the MQTT</span></div>
+<div class="line">        <span class="comment">// broker outside of this function.</span></div>
+<div class="line">        bytesSent = send( mqttSocket, ( <span class="keywordtype">void</span> * ) fixedBuffer.<a class="code hl_variable" href="struct_m_q_t_t_fixed_buffer__t.html#acea147448e044870fb36b7fa2347dbd6">pBuffer</a>, headerSize, 0 );</div>
+<div class="line">        assert( bytesSent == headerSize );</div>
+<div class="line">        bytesSent = send( mqttSocket, publishInfo.<a class="code hl_variable" href="struct_m_q_t_t_publish_info__t.html#afc28299f4f625f5e674bb61b42f03380">pPayload</a>, publishInfo.<a class="code hl_variable" href="struct_m_q_t_t_publish_info__t.html#a7997964e11571f35f0c3b729db0f760f">payloadLength</a>, 0 );</div>
+<div class="line">        assert( bytesSent == publishInfo.<a class="code hl_variable" href="struct_m_q_t_t_publish_info__t.html#a7997964e11571f35f0c3b729db0f760f">payloadLength</a> );</div>
+<div class="line">   }</div>
+<div class="ttc" id="acore__mqtt__serializer_8h_html_a5d7548f456673d99c7e763389f2e654d"><div class="ttname"><a href="core__mqtt__serializer_8h.html#a5d7548f456673d99c7e763389f2e654d">MQTT_SerializePublishHeader</a></div><div class="ttdeci">MQTTStatus_t MQTT_SerializePublishHeader(const MQTTPublishInfo_t *pPublishInfo, const MQTTPropBuilder_t *pPublishProperties, uint16_t packetId, size_t remainingLength, const MQTTFixedBuffer_t *pFixedBuffer, size_t *pHeaderSize)</div><div class="ttdoc">Serialize an MQTT PUBLISH packet header in the given buffer.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:2768</div></div>
+<div class="ttc" id="astruct_m_q_t_t_publish_info__t_html_a7997964e11571f35f0c3b729db0f760f"><div class="ttname"><a href="struct_m_q_t_t_publish_info__t.html#a7997964e11571f35f0c3b729db0f760f">MQTTPublishInfo_t::payloadLength</a></div><div class="ttdeci">size_t payloadLength</div><div class="ttdoc">Message payload length.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:696</div></div>
+<div class="ttc" id="astruct_m_q_t_t_publish_info__t_html_afc28299f4f625f5e674bb61b42f03380"><div class="ttname"><a href="struct_m_q_t_t_publish_info__t.html#afc28299f4f625f5e674bb61b42f03380">MQTTPublishInfo_t::pPayload</a></div><div class="ttdeci">const void * pPayload</div><div class="ttdoc">Message payload.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:691</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -1468,7 +1486,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Serialize an MQTT PUBACK, PUBREC, PUBREL, or PUBCOMP into the given buffer. </p>
+<p>Serialize an MQTT PUBACK, PUBREC, PUBREL, or PUBCOMP into the given buffer. These PUBLISH ACKS are serialized without reason codes or properties. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[out]</td><td class="paramname">pFixedBuffer</td><td>Buffer for packet serialization. </td></tr>
@@ -1503,9 +1521,9 @@ Functions</h2></td></tr>
 <div class="line">{</div>
 <div class="line">     <span class="comment">// The publish acknowledgment can now be sent to the broker.</span></div>
 <div class="line">}</div>
-<div class="ttc" id="acore__mqtt__serializer_8h_html_a11ea4ac5ea27e93121288e463ca34ee6"><div class="ttname"><a href="core__mqtt__serializer_8h.html#a11ea4ac5ea27e93121288e463ca34ee6">MQTT_SerializeAck</a></div><div class="ttdeci">MQTTStatus_t MQTT_SerializeAck(const MQTTFixedBuffer_t *pFixedBuffer, uint8_t packetType, uint16_t packetId)</div><div class="ttdoc">Serialize an MQTT PUBACK, PUBREC, PUBREL, or PUBCOMP into the given buffer.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:2750</div></div>
-<div class="ttc" id="agroup__mqtt__constants_html_ga26994fcfacb1cff892caa45ec31ca7c6"><div class="ttname"><a href="group__mqtt__constants.html#ga26994fcfacb1cff892caa45ec31ca7c6">MQTT_PUBLISH_ACK_PACKET_SIZE</a></div><div class="ttdeci">#define MQTT_PUBLISH_ACK_PACKET_SIZE</div><div class="ttdoc">The size of MQTT PUBACK, PUBREC, PUBREL, and PUBCOMP packets, per MQTT spec.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:74</div></div>
-<div class="ttc" id="agroup__mqtt__constants_html_ga5f279d63de47a973b41b95f74f47a4f6"><div class="ttname"><a href="group__mqtt__constants.html#ga5f279d63de47a973b41b95f74f47a4f6">MQTT_PACKET_TYPE_PUBACK</a></div><div class="ttdeci">#define MQTT_PACKET_TYPE_PUBACK</div><div class="ttdoc">PUBACK (bidirectional).</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:57</div></div>
+<div class="ttc" id="acore__mqtt__serializer_8h_html_a11ea4ac5ea27e93121288e463ca34ee6"><div class="ttname"><a href="core__mqtt__serializer_8h.html#a11ea4ac5ea27e93121288e463ca34ee6">MQTT_SerializeAck</a></div><div class="ttdeci">MQTTStatus_t MQTT_SerializeAck(const MQTTFixedBuffer_t *pFixedBuffer, uint8_t packetType, uint16_t packetId)</div><div class="ttdoc">Serialize an MQTT PUBACK, PUBREC, PUBREL, or PUBCOMP into the given buffer. These PUBLISH ACKS are se...</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:2853</div></div>
+<div class="ttc" id="agroup__mqtt__constants_html_ga26994fcfacb1cff892caa45ec31ca7c6"><div class="ttname"><a href="group__mqtt__constants.html#ga26994fcfacb1cff892caa45ec31ca7c6">MQTT_PUBLISH_ACK_PACKET_SIZE</a></div><div class="ttdeci">#define MQTT_PUBLISH_ACK_PACKET_SIZE</div><div class="ttdoc">The size of MQTT PUBACK, PUBREC, PUBREL, and PUBCOMP packets, per MQTT spec.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:73</div></div>
+<div class="ttc" id="agroup__mqtt__constants_html_ga5f279d63de47a973b41b95f74f47a4f6"><div class="ttname"><a href="group__mqtt__constants.html#ga5f279d63de47a973b41b95f74f47a4f6">MQTT_PACKET_TYPE_PUBACK</a></div><div class="ttdeci">#define MQTT_PACKET_TYPE_PUBACK</div><div class="ttdoc">PUBACK (bidirectional).</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:56</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -1544,7 +1562,7 @@ Functions</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="comment">// The application should allocate or use a static #MQTTFixedBuffer_t of</span></div>
 <div class="line"><span class="comment">// size &gt;= 2 to serialize the ping request.</span></div>
-<div class="ttc" id="acore__mqtt__serializer_8h_html_a015562f30e220d2534f773bfa45a5cfe"><div class="ttname"><a href="core__mqtt__serializer_8h.html#a015562f30e220d2534f773bfa45a5cfe">MQTT_GetPingreqPacketSize</a></div><div class="ttdeci">MQTTStatus_t MQTT_GetPingreqPacketSize(size_t *pPacketSize)</div><div class="ttdoc">Get the size of an MQTT PINGREQ packet.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:2949</div></div>
+<div class="ttc" id="acore__mqtt__serializer_8h_html_a015562f30e220d2534f773bfa45a5cfe"><div class="ttname"><a href="core__mqtt__serializer_8h.html#a015562f30e220d2534f773bfa45a5cfe">MQTT_GetPingreqPacketSize</a></div><div class="ttdeci">MQTTStatus_t MQTT_GetPingreqPacketSize(size_t *pPacketSize)</div><div class="ttdoc">Get the size of an MQTT PINGREQ packet.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:3057</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -1593,7 +1611,7 @@ Functions</h2></td></tr>
 <div class="line">{</div>
 <div class="line">     <span class="comment">// The ping request can now be sent to the broker.</span></div>
 <div class="line">}</div>
-<div class="ttc" id="acore__mqtt__serializer_8h_html_af3b3e40858fd984c871511e02a61e15d"><div class="ttname"><a href="core__mqtt__serializer_8h.html#af3b3e40858fd984c871511e02a61e15d">MQTT_SerializePingreq</a></div><div class="ttdeci">MQTTStatus_t MQTT_SerializePingreq(const MQTTFixedBuffer_t *pFixedBuffer)</div><div class="ttdoc">Serialize an MQTT PINGREQ packet into the given buffer.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:2969</div></div>
+<div class="ttc" id="acore__mqtt__serializer_8h_html_af3b3e40858fd984c871511e02a61e15d"><div class="ttname"><a href="core__mqtt__serializer_8h.html#af3b3e40858fd984c871511e02a61e15d">MQTT_SerializePingreq</a></div><div class="ttdeci">MQTTStatus_t MQTT_SerializePingreq(const MQTTFixedBuffer_t *pFixedBuffer)</div><div class="ttdoc">Serialize an MQTT PINGREQ packet into the given buffer.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:3077</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -1659,7 +1677,12 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa39030c93b0263b2699502a074f003b5">MQTTBadParameter</a>, <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa5d7507e7664a14d63a8bc44b280093e">MQTTBadResponse</a>, or <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a>.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><ul>
+<li><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa39030c93b0263b2699502a074f003b5">MQTTBadParameter</a> if invalid parameters are passed</li>
+<li><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa5d7507e7664a14d63a8bc44b280093e">MQTTBadResponse</a> if invalid packet is read</li>
+<li><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a> otherwise.</li>
+</ul>
+</dd></dl>
 <p><b>Example</b> </p><div class="fragment"><div class="line"><span class="comment">// TransportRecv_t function for reading from the network.</span></div>
 <div class="line">int32_t socket_recv(</div>
 <div class="line">     <a class="code hl_typedef" href="group__mqtt__struct__types.html#ga7769e434e7811caed8cd6fd7f9ec26ec">NetworkContext_t</a> * pNetworkContext,</div>
@@ -1674,9 +1697,9 @@ Functions</h2></td></tr>
 <div class="line"><a class="code hl_struct" href="struct_m_q_t_t_packet_info__t.html">MQTTPacketInfo_t</a> incomingPacket;</div>
 <div class="line"><a class="code hl_struct" href="struct_m_q_t_t_publish_info__t.html">MQTTPublishInfo_t</a> publishInfo = { 0 };</div>
 <div class="line"><a class="code hl_struct" href="struct_m_q_t_t_prop_builder__t.html">MQTTPropBuilder_t</a> propBuffer ;</div>
-<div class="line">uint32_t maxPacketSize;</div>
 <div class="line">uint16_t packetId;</div>
-<div class="line">uint16_t topicAliasMax ; </div>
+<div class="line">uint32_t maxPacketSize = pContext-&gt;connectionProperties.maxPacketSize;</div>
+<div class="line">uint16_t topicAliasMax = pContext-&gt;connectionProperties.topicAliasMax;</div>
 <div class="line"> </div>
 <div class="line">int32_t bytesRecvd;</div>
 <div class="line"><span class="comment">// A buffer to hold remaining data of the incoming packet.</span></div>
@@ -1700,20 +1723,21 @@ Functions</h2></td></tr>
 <div class="line"><span class="comment">// Deserialize the publish information if the incoming packet is a publish.</span></div>
 <div class="line"><span class="keywordflow">if</span>( ( incomingPacket.<a class="code hl_variable" href="struct_m_q_t_t_packet_info__t.html#a7fef40548c1aa0f0e7f812a6a7243758">type</a> &amp; 0xF0 ) == <a class="code hl_define" href="group__mqtt__constants.html#ga5b2d79c61f2591c8e5772f974826d4ad">MQTT_PACKET_TYPE_PUBLISH</a> )</div>
 <div class="line">{</div>
-<div class="line">     status = <a class="code hl_function" href="core__mqtt__serializer_8h.html#a491ba3d7ace4451bd808779779c540b5">MQTT_DeserializePublish</a>( &amp;incomingPacket, &amp;packetId, &amp;publishInfo, &amp;propBuffer, maxPacketSize, topicAliasMax );</div>
+<div class="line">     status = <a class="code hl_function" href="core__mqtt__serializer_8h.html#a491ba3d7ace4451bd808779779c540b5">MQTT_DeserializePublish</a>( &amp;incomingPacket, &amp;packetId, &amp;publishInfo,</div>
+<div class="line">                                       &amp;propBuffer, maxPacketSize, topicAliasMax );</div>
 <div class="line">     <span class="keywordflow">if</span>( status == <a class="code hl_enumvalue" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a> )</div>
 <div class="line">     {</div>
 <div class="line">         <span class="comment">// The deserialized publish information can now be used from `publishInfo`.</span></div>
 <div class="line">     }</div>
 <div class="line">}</div>
-<div class="ttc" id="acore__mqtt__serializer_8h_html_a491ba3d7ace4451bd808779779c540b5"><div class="ttname"><a href="core__mqtt__serializer_8h.html#a491ba3d7ace4451bd808779779c540b5">MQTT_DeserializePublish</a></div><div class="ttdeci">MQTTStatus_t MQTT_DeserializePublish(const MQTTPacketInfo_t *pIncomingPacket, uint16_t *pPacketId, MQTTPublishInfo_t *pPublishInfo, MQTTPropBuilder_t *propBuffer, uint32_t maxPacketSize, uint16_t topicAliasMax)</div><div class="ttdoc">Deserialize an MQTT PUBLISH packet.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:1806</div></div>
-<div class="ttc" id="acore__mqtt__serializer_8h_html_a98cdda86f86a0a1888745a584199e930"><div class="ttname"><a href="core__mqtt__serializer_8h.html#a98cdda86f86a0a1888745a584199e930">MQTT_GetIncomingPacketTypeAndLength</a></div><div class="ttdeci">MQTTStatus_t MQTT_GetIncomingPacketTypeAndLength(TransportRecv_t readFunc, NetworkContext_t *pNetworkContext, MQTTPacketInfo_t *pIncomingPacket)</div><div class="ttdoc">Extract the MQTT packet type and length from incoming packet.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:3012</div></div>
-<div class="ttc" id="agroup__mqtt__constants_html_ga5b2d79c61f2591c8e5772f974826d4ad"><div class="ttname"><a href="group__mqtt__constants.html#ga5b2d79c61f2591c8e5772f974826d4ad">MQTT_PACKET_TYPE_PUBLISH</a></div><div class="ttdeci">#define MQTT_PACKET_TYPE_PUBLISH</div><div class="ttdoc">PUBLISH (bidirectional).</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:56</div></div>
+<div class="ttc" id="acore__mqtt__serializer_8h_html_a491ba3d7ace4451bd808779779c540b5"><div class="ttname"><a href="core__mqtt__serializer_8h.html#a491ba3d7ace4451bd808779779c540b5">MQTT_DeserializePublish</a></div><div class="ttdeci">MQTTStatus_t MQTT_DeserializePublish(const MQTTPacketInfo_t *pIncomingPacket, uint16_t *pPacketId, MQTTPublishInfo_t *pPublishInfo, MQTTPropBuilder_t *propBuffer, uint32_t maxPacketSize, uint16_t topicAliasMax)</div><div class="ttdoc">Deserialize an MQTT PUBLISH packet.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:1859</div></div>
+<div class="ttc" id="acore__mqtt__serializer_8h_html_a98cdda86f86a0a1888745a584199e930"><div class="ttname"><a href="core__mqtt__serializer_8h.html#a98cdda86f86a0a1888745a584199e930">MQTT_GetIncomingPacketTypeAndLength</a></div><div class="ttdeci">MQTTStatus_t MQTT_GetIncomingPacketTypeAndLength(TransportRecv_t readFunc, NetworkContext_t *pNetworkContext, MQTTPacketInfo_t *pIncomingPacket)</div><div class="ttdoc">Extract the MQTT packet type and length from incoming packet.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:3120</div></div>
+<div class="ttc" id="agroup__mqtt__constants_html_ga5b2d79c61f2591c8e5772f974826d4ad"><div class="ttname"><a href="group__mqtt__constants.html#ga5b2d79c61f2591c8e5772f974826d4ad">MQTT_PACKET_TYPE_PUBLISH</a></div><div class="ttdeci">#define MQTT_PACKET_TYPE_PUBLISH</div><div class="ttdoc">PUBLISH (bidirectional).</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:55</div></div>
 <div class="ttc" id="agroup__mqtt__struct__types_html_ga7769e434e7811caed8cd6fd7f9ec26ec"><div class="ttname"><a href="group__mqtt__struct__types.html#ga7769e434e7811caed8cd6fd7f9ec26ec">NetworkContext_t</a></div><div class="ttdeci">struct NetworkContext NetworkContext_t</div><div class="ttdoc">The NetworkContext is an incomplete type. An implementation of this interface must define struct Netw...</div><div class="ttdef"><b>Definition:</b> transport_interface.h:192</div></div>
-<div class="ttc" id="astruct_m_q_t_t_packet_info__t_html"><div class="ttname"><a href="struct_m_q_t_t_packet_info__t.html">MQTTPacketInfo_t</a></div><div class="ttdoc">MQTT incoming packet parameters.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:770</div></div>
-<div class="ttc" id="astruct_m_q_t_t_packet_info__t_html_a7c85becf08de0ec9776dd4be1fcc4bf8"><div class="ttname"><a href="struct_m_q_t_t_packet_info__t.html#a7c85becf08de0ec9776dd4be1fcc4bf8">MQTTPacketInfo_t::remainingLength</a></div><div class="ttdeci">size_t remainingLength</div><div class="ttdoc">Length of remaining serialized data.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:784</div></div>
-<div class="ttc" id="astruct_m_q_t_t_packet_info__t_html_a7fef40548c1aa0f0e7f812a6a7243758"><div class="ttname"><a href="struct_m_q_t_t_packet_info__t.html#a7fef40548c1aa0f0e7f812a6a7243758">MQTTPacketInfo_t::type</a></div><div class="ttdeci">uint8_t type</div><div class="ttdoc">Type of incoming MQTT packet.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:774</div></div>
-<div class="ttc" id="astruct_m_q_t_t_packet_info__t_html_ac66cedff052bc844ec9b296387df60bc"><div class="ttname"><a href="struct_m_q_t_t_packet_info__t.html#ac66cedff052bc844ec9b296387df60bc">MQTTPacketInfo_t::pRemainingData</a></div><div class="ttdeci">uint8_t * pRemainingData</div><div class="ttdoc">Remaining serialized data in the MQTT packet.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:779</div></div>
+<div class="ttc" id="astruct_m_q_t_t_packet_info__t_html"><div class="ttname"><a href="struct_m_q_t_t_packet_info__t.html">MQTTPacketInfo_t</a></div><div class="ttdoc">MQTT incoming packet parameters.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:710</div></div>
+<div class="ttc" id="astruct_m_q_t_t_packet_info__t_html_a7c85becf08de0ec9776dd4be1fcc4bf8"><div class="ttname"><a href="struct_m_q_t_t_packet_info__t.html#a7c85becf08de0ec9776dd4be1fcc4bf8">MQTTPacketInfo_t::remainingLength</a></div><div class="ttdeci">size_t remainingLength</div><div class="ttdoc">Length of remaining serialized data.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:724</div></div>
+<div class="ttc" id="astruct_m_q_t_t_packet_info__t_html_a7fef40548c1aa0f0e7f812a6a7243758"><div class="ttname"><a href="struct_m_q_t_t_packet_info__t.html#a7fef40548c1aa0f0e7f812a6a7243758">MQTTPacketInfo_t::type</a></div><div class="ttdeci">uint8_t type</div><div class="ttdoc">Type of incoming MQTT packet.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:714</div></div>
+<div class="ttc" id="astruct_m_q_t_t_packet_info__t_html_ac66cedff052bc844ec9b296387df60bc"><div class="ttname"><a href="struct_m_q_t_t_packet_info__t.html#ac66cedff052bc844ec9b296387df60bc">MQTTPacketInfo_t::pRemainingData</a></div><div class="ttdeci">uint8_t * pRemainingData</div><div class="ttdoc">Remaining serialized data in the MQTT packet.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:719</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -1797,7 +1821,7 @@ Functions</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Set the remaining data field.</span></div>
 <div class="line">incomingPacket.<a class="code hl_variable" href="struct_m_q_t_t_packet_info__t.html#ac66cedff052bc844ec9b296387df60bc">pRemainingData</a> = buffer;</div>
-<div class="ttc" id="agroup__mqtt__enum__types_html_ggaba7ec045874a1c3432f99173367f735ca676f21c0ddf297ae3ec874bc829aa957"><div class="ttname"><a href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca676f21c0ddf297ae3ec874bc829aa957">MQTTNoDataAvailable</a></div><div class="ttdeci">@ MQTTNoDataAvailable</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:99</div></div>
+<div class="ttc" id="agroup__mqtt__enum__types_html_ggaba7ec045874a1c3432f99173367f735ca676f21c0ddf297ae3ec874bc829aa957"><div class="ttname"><a href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca676f21c0ddf297ae3ec874bc829aa957">MQTTNoDataAvailable</a></div><div class="ttdeci">@ MQTTNoDataAvailable</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:247</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -1936,7 +1960,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get the size and Remaining Length of an MQTT Version 5 CONNECT packet. </p>
-<p>This function must be called before <a class="el" href="core__mqtt_8c.html#ad49e018ba2258327961e2feecfb4c96f" title="Sends MQTT connect without copying the users data into any buffer.">sendConnectWithoutCopy</a> in order to get the size of the MQTT CONNECT packet that is generated from <a class="el" href="struct_m_q_t_t_connect_info__t.html" title="MQTT CONNECT packet parameters.">MQTTConnectInfo_t</a>, optional <a class="el" href="struct_m_q_t_t_publish_info__t.html" title="MQTT PUBLISH packet parameters.">MQTTPublishInfo_t</a> and optional connect and will properties.</p>
+<p>This function must be called before <a class="el" href="core__mqtt__serializer_8h.html#acc6faa0c49ba94e476957f0dd5b57019" title="Serialize an MQTT CONNECT packet in the given fixed buffer pFixedBuffer.">MQTT_SerializeConnect</a> in order to get the size of the MQTT CONNECT packet that is generated from <a class="el" href="struct_m_q_t_t_connect_info__t.html" title="MQTT CONNECT packet parameters.">MQTTConnectInfo_t</a>, <a class="el" href="struct_m_q_t_t_publish_info__t.html" title="MQTT PUBLISH packet parameters.">MQTTPublishInfo_t</a> and optional <a class="el" href="struct_m_q_t_t_prop_builder__t.html" title="Property builder for MQTT packets.">MQTTPropBuilder_t</a>. The size of the <a class="el" href="struct_m_q_t_t_fixed_buffer__t.html" title="Buffer passed to MQTT library.">MQTTFixedBuffer_t</a> supplied to <a class="el" href="core__mqtt__serializer_8h.html#acc6faa0c49ba94e476957f0dd5b57019" title="Serialize an MQTT CONNECT packet in the given fixed buffer pFixedBuffer.">MQTT_SerializeConnect</a> must be at least <code>pPacketSize</code>. The provided <code>pConnectInfo</code> and <code>pWillInfo</code> are valid for serialization with <a class="el" href="core__mqtt__serializer_8h.html#acc6faa0c49ba94e476957f0dd5b57019" title="Serialize an MQTT CONNECT packet in the given fixed buffer pFixedBuffer.">MQTT_SerializeConnect</a> only if this function returns <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a>. The remaining length returned in <code>pRemainingLength</code> and the packet size returned in <code>pPacketSize</code> are valid only if this function returns <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">pConnectInfo</td><td>MQTT CONNECT packet parameters. </td></tr>
@@ -1953,7 +1977,7 @@ Functions</h2></td></tr>
 <div class="line"><a class="code hl_enumeration" href="group__mqtt__enum__types.html#gaba7ec045874a1c3432f99173367f735c">MQTTStatus_t</a> status;</div>
 <div class="line"><a class="code hl_struct" href="struct_m_q_t_t_connect_info__t.html">MQTTConnectInfo_t</a> connectInfo = { 0 };</div>
 <div class="line"><a class="code hl_struct" href="struct_m_q_t_t_publish_info__t.html">MQTTPublishInfo_t</a> willInfo = { 0 };</div>
-<div class="line"><a class="code hl_struct" href="struct_m_q_t_t_prop_builder__t.html">MQTTPropBuilder_t</a> connectProperties = { 0 };</div>
+<div class="line"><a class="code hl_struct" href="struct_m_q_t_t_prop_builder__t.html">MQTTPropBuilder_t</a> connectionProperties = { 0 };</div>
 <div class="line"><a class="code hl_struct" href="struct_m_q_t_t_prop_builder__t.html">MQTTPropBuilder_t</a> willProperties = { 0 };</div>
 <div class="line"><span class="keywordtype">size_t</span> remainingLength = 0, packetSize = 0;</div>
 <div class="line"> </div>
@@ -1964,16 +1988,16 @@ Functions</h2></td></tr>
 <div class="line">initializeWillInfo( &amp;willInfo );</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Initialize connect properties and will properties, the details are out of scope for this example.</span></div>
-<div class="line">initializeConnectProperties( &amp;connectProperties );</div>
+<div class="line">initializeConnectProperties( &amp;connectionProperties );</div>
 <div class="line">initializeWillProperties( &amp;willProperties );</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Get the size requirement for the connect packet.</span></div>
 <div class="line">status = <a class="code hl_function" href="core__mqtt__serializer_8h.html#aa01f6786a41772dfd0dc4fb7592164be">MQTT_GetConnectPacketSize</a>(</div>
-<div class="line">     &amp;connectInfo, </div>
-<div class="line">     &amp;willInfo, </div>
-<div class="line">     &amp;connectProperties, </div>
-<div class="line">     &amp;willProperties, </div>
-<div class="line">     &amp;remainingLength, </div>
+<div class="line">     &amp;connectInfo,</div>
+<div class="line">     &amp;willInfo,</div>
+<div class="line">     &amp;connectionProperties,</div>
+<div class="line">     &amp;willProperties,</div>
+<div class="line">     &amp;remainingLength,</div>
 <div class="line">     &amp;packetSize</div>
 <div class="line">);</div>
 <div class="line"> </div>
@@ -1982,8 +2006,8 @@ Functions</h2></td></tr>
 <div class="line">     <span class="comment">// The application should allocate or use a static #MQTTFixedBuffer_t</span></div>
 <div class="line">     <span class="comment">// of size &gt;= packetSize to serialize the connect request.</span></div>
 <div class="line">}</div>
-<div class="ttc" id="acore__mqtt__serializer_8h_html_aa01f6786a41772dfd0dc4fb7592164be"><div class="ttname"><a href="core__mqtt__serializer_8h.html#aa01f6786a41772dfd0dc4fb7592164be">MQTT_GetConnectPacketSize</a></div><div class="ttdeci">MQTTStatus_t MQTT_GetConnectPacketSize(const MQTTConnectInfo_t *pConnectInfo, const MQTTPublishInfo_t *pWillInfo, const MQTTPropBuilder_t *pConnectProperties, const MQTTPropBuilder_t *pWillProperties, size_t *pRemainingLength, size_t *pPacketSize)</div><div class="ttdoc">Get the size and Remaining Length of an MQTT Version 5 CONNECT packet.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:2102</div></div>
-<div class="ttc" id="astruct_m_q_t_t_connect_info__t_html"><div class="ttname"><a href="struct_m_q_t_t_connect_info__t.html">MQTTConnectInfo_t</a></div><div class="ttdoc">MQTT CONNECT packet parameters.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:416</div></div>
+<div class="ttc" id="acore__mqtt__serializer_8h_html_aa01f6786a41772dfd0dc4fb7592164be"><div class="ttname"><a href="core__mqtt__serializer_8h.html#aa01f6786a41772dfd0dc4fb7592164be">MQTT_GetConnectPacketSize</a></div><div class="ttdeci">MQTTStatus_t MQTT_GetConnectPacketSize(const MQTTConnectInfo_t *pConnectInfo, const MQTTPublishInfo_t *pWillInfo, const MQTTPropBuilder_t *pConnectProperties, const MQTTPropBuilder_t *pWillProperties, size_t *pRemainingLength, size_t *pPacketSize)</div><div class="ttdoc">Get the size and Remaining Length of an MQTT Version 5 CONNECT packet.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:2154</div></div>
+<div class="ttc" id="astruct_m_q_t_t_connect_info__t_html"><div class="ttname"><a href="struct_m_q_t_t_connect_info__t.html">MQTTConnectInfo_t</a></div><div class="ttdoc">MQTT CONNECT packet parameters.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:435</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -2055,7 +2079,7 @@ Functions</h2></td></tr>
 <div class="line"><a class="code hl_enumeration" href="group__mqtt__enum__types.html#gaba7ec045874a1c3432f99173367f735c">MQTTStatus_t</a> status;</div>
 <div class="line"><a class="code hl_struct" href="struct_m_q_t_t_connect_info__t.html">MQTTConnectInfo_t</a> connectInfo = { 0 };</div>
 <div class="line"><a class="code hl_struct" href="struct_m_q_t_t_publish_info__t.html">MQTTPublishInfo_t</a> willInfo = { 0 };</div>
-<div class="line"><a class="code hl_struct" href="struct_m_q_t_t_prop_builder__t.html">MQTTPropBuilder_t</a> connectProperties = { 0 };</div>
+<div class="line"><a class="code hl_struct" href="struct_m_q_t_t_prop_builder__t.html">MQTTPropBuilder_t</a> connectionProperties = { 0 };</div>
 <div class="line"><a class="code hl_struct" href="struct_m_q_t_t_prop_builder__t.html">MQTTPropBuilder_t</a> willProperties = { 0 };</div>
 <div class="line"><a class="code hl_struct" href="struct_m_q_t_t_fixed_buffer__t.html">MQTTFixedBuffer_t</a> fixedBuffer;</div>
 <div class="line">uint8_t buffer[ BUFFER_SIZE ];</div>
@@ -2064,30 +2088,30 @@ Functions</h2></td></tr>
 <div class="line">fixedBuffer.<a class="code hl_variable" href="struct_m_q_t_t_fixed_buffer__t.html#acea147448e044870fb36b7fa2347dbd6">pBuffer</a> = buffer;</div>
 <div class="line">fixedBuffer.<a class="code hl_variable" href="struct_m_q_t_t_fixed_buffer__t.html#a0b0b6a93cc62751ebeb03095d5431636">size</a> = BUFFER_SIZE;</div>
 <div class="line"> </div>
-<div class="line"><span class="comment">// Assume connectInfo, willInfo, and properties are initialized. </span></div>
+<div class="line"><span class="comment">// Assume connectInfo, willInfo, and properties are initialized.</span></div>
 <div class="line"><span class="comment">// Get the size requirement for the connect packet.</span></div>
 <div class="line">status = <a class="code hl_function" href="core__mqtt__serializer_8h.html#aa01f6786a41772dfd0dc4fb7592164be">MQTT_GetConnectPacketSize</a>(</div>
-<div class="line">     &amp;connectInfo, &amp;willInfo, &amp;connectProperties, &amp;willProperties,</div>
+<div class="line">     &amp;connectInfo, &amp;willInfo, &amp;connectionProperties, &amp;willProperties,</div>
 <div class="line">     &amp;remainingLength, &amp;packetSize</div>
 <div class="line">);</div>
 <div class="line">assert( status == <a class="code hl_enumvalue" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a> );</div>
 <div class="line">assert( packetSize &lt;= BUFFER_SIZE );</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Serialize the connect packet into the fixed buffer.</span></div>
-<div class="line">status = <a class="code hl_function" href="core__mqtt__serializer_8h.html#acc6faa0c49ba94e476957f0dd5b57019">MQTT_SerializeConnect</a>( </div>
-<div class="line">     &amp;connectInfo, </div>
+<div class="line">status = <a class="code hl_function" href="core__mqtt__serializer_8h.html#acc6faa0c49ba94e476957f0dd5b57019">MQTT_SerializeConnect</a>(</div>
+<div class="line">     &amp;connectInfo,</div>
 <div class="line">     &amp;willInfo,</div>
-<div class="line">     &amp;connectProperties,</div>
+<div class="line">     &amp;connectionProperties,</div>
 <div class="line">     &amp;willProperties,</div>
-<div class="line">     remainingLength, </div>
-<div class="line">     &amp;fixedBuffer </div>
+<div class="line">     remainingLength,</div>
+<div class="line">     &amp;fixedBuffer</div>
 <div class="line">);</div>
 <div class="line"> </div>
 <div class="line"><span class="keywordflow">if</span>( status == <a class="code hl_enumvalue" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a> )</div>
 <div class="line">{</div>
 <div class="line">     <span class="comment">// The connect packet can now be sent to the broker.</span></div>
 <div class="line">}</div>
-<div class="ttc" id="acore__mqtt__serializer_8h_html_acc6faa0c49ba94e476957f0dd5b57019"><div class="ttname"><a href="core__mqtt__serializer_8h.html#acc6faa0c49ba94e476957f0dd5b57019">MQTT_SerializeConnect</a></div><div class="ttdeci">MQTTStatus_t MQTT_SerializeConnect(const MQTTConnectInfo_t *pConnectInfo, const MQTTPublishInfo_t *pWillInfo, const MQTTPropBuilder_t *pConnectProperties, const MQTTPropBuilder_t *pWillProperties, size_t remainingLength, const MQTTFixedBuffer_t *pFixedBuffer)</div><div class="ttdoc">Serialize an MQTT CONNECT packet in the given fixed buffer pFixedBuffer.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:2225</div></div>
+<div class="ttc" id="acore__mqtt__serializer_8h_html_acc6faa0c49ba94e476957f0dd5b57019"><div class="ttname"><a href="core__mqtt__serializer_8h.html#acc6faa0c49ba94e476957f0dd5b57019">MQTT_SerializeConnect</a></div><div class="ttdeci">MQTTStatus_t MQTT_SerializeConnect(const MQTTConnectInfo_t *pConnectInfo, const MQTTPublishInfo_t *pWillInfo, const MQTTPropBuilder_t *pConnectProperties, const MQTTPropBuilder_t *pWillProperties, size_t remainingLength, const MQTTFixedBuffer_t *pFixedBuffer)</div><div class="ttdoc">Serialize an MQTT CONNECT packet in the given fixed buffer pFixedBuffer.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:2276</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -2166,7 +2190,7 @@ Functions</h2></td></tr>
 <div class="line">{</div>
 <div class="line">     <span class="comment">// Get the packet size and serialize the publish packet.</span></div>
 <div class="line">}</div>
-<div class="ttc" id="acore__mqtt__serializer_8h_html_ae349b08ac962a464a0f1491748765bd0"><div class="ttname"><a href="core__mqtt__serializer_8h.html#ae349b08ac962a464a0f1491748765bd0">MQTT_ValidatePublishParams</a></div><div class="ttdeci">MQTTStatus_t MQTT_ValidatePublishParams(const MQTTPublishInfo_t *pPublishInfo, uint8_t retainAvailable, uint8_t maxQos, uint16_t topicAlias, uint32_t maxPacketSize)</div><div class="ttdoc">Validate the publish parameters present in the given publish structure pPublishInfo.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:4308</div></div>
+<div class="ttc" id="acore__mqtt__serializer_8h_html_ae349b08ac962a464a0f1491748765bd0"><div class="ttname"><a href="core__mqtt__serializer_8h.html#ae349b08ac962a464a0f1491748765bd0">MQTT_ValidatePublishParams</a></div><div class="ttdeci">MQTTStatus_t MQTT_ValidatePublishParams(const MQTTPublishInfo_t *pPublishInfo, uint8_t retainAvailable, uint8_t maxQos, uint16_t topicAlias, uint32_t maxPacketSize)</div><div class="ttdoc">Validate the publish parameters present in the given publish structure pPublishInfo.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:4464</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -2262,14 +2286,14 @@ Functions</h2></td></tr>
 <div class="line">{</div>
 <div class="line">     <span class="comment">// The publish packet can now be sent to the broker.</span></div>
 <div class="line">}</div>
-<div class="ttc" id="astruct_m_q_t_t_publish_info__t_html_a178224d02b4acdec7e08e88de0e4b399"><div class="ttname"><a href="struct_m_q_t_t_publish_info__t.html#a178224d02b4acdec7e08e88de0e4b399">MQTTPublishInfo_t::qos</a></div><div class="ttdeci">MQTTQoS_t qos</div><div class="ttdoc">Quality of Service for message.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:678</div></div>
-<div class="ttc" id="astruct_m_q_t_t_publish_info__t_html_a6161c792d20cc7cf8284c1b71ea1145f"><div class="ttname"><a href="struct_m_q_t_t_publish_info__t.html#a6161c792d20cc7cf8284c1b71ea1145f">MQTTPublishInfo_t::topicNameLength</a></div><div class="ttdeci">uint16_t topicNameLength</div><div class="ttdoc">Length of topic name.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:698</div></div>
-<div class="ttc" id="astruct_m_q_t_t_publish_info__t_html_aa80e8ca282d01630f878ad0afe81d7a4"><div class="ttname"><a href="struct_m_q_t_t_publish_info__t.html#aa80e8ca282d01630f878ad0afe81d7a4">MQTTPublishInfo_t::pTopicName</a></div><div class="ttdeci">const char * pTopicName</div><div class="ttdoc">Topic name on which the message is published.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:693</div></div>
+<div class="ttc" id="astruct_m_q_t_t_publish_info__t_html_a178224d02b4acdec7e08e88de0e4b399"><div class="ttname"><a href="struct_m_q_t_t_publish_info__t.html#a178224d02b4acdec7e08e88de0e4b399">MQTTPublishInfo_t::qos</a></div><div class="ttdeci">MQTTQoS_t qos</div><div class="ttdoc">Quality of Service for message.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:666</div></div>
+<div class="ttc" id="astruct_m_q_t_t_publish_info__t_html_a6161c792d20cc7cf8284c1b71ea1145f"><div class="ttname"><a href="struct_m_q_t_t_publish_info__t.html#a6161c792d20cc7cf8284c1b71ea1145f">MQTTPublishInfo_t::topicNameLength</a></div><div class="ttdeci">uint16_t topicNameLength</div><div class="ttdoc">Length of topic name.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:686</div></div>
+<div class="ttc" id="astruct_m_q_t_t_publish_info__t_html_aa80e8ca282d01630f878ad0afe81d7a4"><div class="ttname"><a href="struct_m_q_t_t_publish_info__t.html#aa80e8ca282d01630f878ad0afe81d7a4">MQTTPublishInfo_t::pTopicName</a></div><div class="ttdeci">const char * pTopicName</div><div class="ttdoc">Topic name on which the message is published.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:681</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
-<a id="a4190e4afadc1fb60d3a300b6c59c84d2" name="a4190e4afadc1fb60d3a300b6c59c84d2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4190e4afadc1fb60d3a300b6c59c84d2">&#9670;&#160;</a></span>MQTT_DeserializeAck()</h2>
+<a id="a5d2b0c0122d7d18416d0020db710c65c" name="a5d2b0c0122d7d18416d0020db710c65c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d2b0c0122d7d18416d0020db710c65c">&#9670;&#160;</a></span>MQTT_DeserializeAck()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2301,25 +2325,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>requestProblem</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>maxPacketSize</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype"><a class="el" href="struct_m_q_t_t_prop_builder__t.html">MQTTPropBuilder_t</a> *&#160;</td>
-          <td class="paramname"><em>propBuffer</em>, </td>
+          <td class="paramname"><em>pPropBuffer</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="struct_m_q_t_t_connect_properties__t.html">MQTTConnectProperties_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="struct_m_q_t_t_connection_properties__t.html">MQTTConnectionProperties_t</a> *&#160;</td>
           <td class="paramname"><em>pConnectProperties</em>&#160;</td>
         </tr>
         <tr>
@@ -2337,18 +2349,15 @@ Functions</h2></td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">pPacketId</td><td>The packet ID obtained from the buffer. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">pSessionPresent</td><td>Boolean flag indicating if a session is present (only valid for CONNACK packets). For CONNACK: true if session is present, false otherwise. For other packet types: this parameter is ignored. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">pReasonCode</td><td>Struct to store reason code(s) from the acknowledgment packet. Contains the success/failure status of the corresponding request. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">requestProblem</td><td>Request problem value set in the connect packet. Indicates if there was an issue with the original request. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">maxPacketSize</td><td>Maximum packet size allowed by the client. Used for validation of incoming packet size. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">propBuffer</td><td>Struct to store the deserialized acknowledgment properties. Will contain any MQTT v5.0 properties included in the ack packet. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">pConnectProperties</td><td>Struct to store the deserialized connect/connack properties. Used only for CONNACK packets to store connection-specific properties. For other packet types, this parameter can be NULL.</td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pPropBuffer</td><td>Struct to store the deserialized acknowledgment properties. Will contain any MQTT v5.0 properties included in the ack packet. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">pConnectProperties</td><td>Struct to store the deserialized connect/connack properties. This parameter cannot be NULL.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns one of the following:<ul>
 <li><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a> if the packet was successfully deserialized</li>
 <li><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa39030c93b0263b2699502a074f003b5">MQTTBadParameter</a> if invalid parameters are passed</li>
-<li><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa5d7507e7664a14d63a8bc44b280093e">MQTTBadResponse</a> if the packet is malformed</li>
-<li><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca25a3d1747e308e99daa805fe576f84b9">MQTTServerRefused</a> if the server explicitly rejected the request</li>
+<li><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca25a3d1747e308e99daa805fe576f84b9">MQTTServerRefused</a> if the server explicitly rejected the request, either in the CONNACK or a SUBACK.</li>
 <li><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa5d7507e7664a14d63a8bc44b280093e">MQTTBadResponse</a> if the packet type is invalid or packet parsing fails</li>
 </ul>
 </dd></dl>
@@ -2357,32 +2366,28 @@ Functions</h2></td></tr>
 <div class="line"><a class="code hl_struct" href="struct_m_q_t_t_packet_info__t.html">MQTTPacketInfo_t</a> incomingPacket;</div>
 <div class="line">uint16_t packetId;</div>
 <div class="line"><span class="keywordtype">bool</span> sessionPresent;</div>
-<div class="line"><a class="code hl_struct" href="struct_m_q_t_t_reason_code_info__t.html">MQTTReasonCodeInfo_t</a> reasonCode;</div>
-<div class="line"><span class="keywordtype">bool</span> requestProblem;</div>
-<div class="line">uint32_t maxPacketSize;</div>
-<div class="line"><a class="code hl_struct" href="struct_m_q_t_t_prop_builder__t.html">MQTTPropBuilder_t</a> propBuffer;</div>
-<div class="line"><a class="code hl_struct" href="struct_m_q_t_t_connect_properties__t.html">MQTTConnectProperties_t</a> connectProperties;</div>
+<div class="line"><a class="code hl_struct" href="struct_m_q_t_t_reason_code_info__t.html">MQTTReasonCodeInfo_t</a> reasonCode ; <span class="comment">// Can be set to NULL if the incoming packet is CONNACK or PINGRESP</span></div>
+<div class="line"><a class="code hl_struct" href="struct_m_q_t_t_prop_builder__t.html">MQTTPropBuilder_t</a> propBuffer; <span class="comment">// Can be set to NULL if the user does not want any incoming properties.</span></div>
+<div class="line"><a class="code hl_struct" href="struct_m_q_t_t_connection_properties__t.html">MQTTConnectionProperties_t</a> connectionProperties = pContext-&gt;connectionProperties;  <span class="comment">// Cannot be set to NULL.</span></div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Receive an incoming packet and populate all fields. The details are out of scope</span></div>
 <div class="line"><span class="comment">// for this example.</span></div>
 <div class="line">receiveIncomingPacket(&amp;incomingPacket);</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Deserialize ack information if the incoming packet is a publish ack.</span></div>
-<div class="line">status = <a class="code hl_function" href="core__mqtt__serializer_8h.html#a4190e4afadc1fb60d3a300b6c59c84d2">MQTT_DeserializeAck</a>(&amp;incomingPacket,</div>
+<div class="line">status = <a class="code hl_function" href="core__mqtt__serializer_8h.html#a5d2b0c0122d7d18416d0020db710c65c">MQTT_DeserializeAck</a>(&amp;incomingPacket,</div>
 <div class="line">                            &amp;packetId,</div>
 <div class="line">                            &amp;sessionPresent,</div>
 <div class="line">                            &amp;reasonCode,</div>
-<div class="line">                            requestProblem,</div>
-<div class="line">                            maxPacketSize,</div>
 <div class="line">                            &amp;propBuffer,</div>
-<div class="line">                            &amp;connectProperties);</div>
+<div class="line">                            &amp;connectionProperties);</div>
 <div class="line"><span class="keywordflow">if</span>(status == <a class="code hl_enumvalue" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a>)</div>
-<div class="line">{</div>
+<div class="line">{s</div>
 <div class="line">    <span class="comment">// Ack information is now available.</span></div>
 <div class="line">}</div>
-<div class="ttc" id="acore__mqtt__serializer_8h_html_a4190e4afadc1fb60d3a300b6c59c84d2"><div class="ttname"><a href="core__mqtt__serializer_8h.html#a4190e4afadc1fb60d3a300b6c59c84d2">MQTT_DeserializeAck</a></div><div class="ttdeci">MQTTStatus_t MQTT_DeserializeAck(const MQTTPacketInfo_t *pIncomingPacket, uint16_t *pPacketId, bool *pSessionPresent, MQTTReasonCodeInfo_t *pReasonCode, bool requestProblem, uint32_t maxPacketSize, MQTTPropBuilder_t *propBuffer, MQTTConnectProperties_t *pConnectProperties)</div><div class="ttdoc">Deserialize an MQTT PUBACK, PUBREC, PUBREL, PUBCOMP, SUBACK, UNSUBACK, PINGRESP or CONNACK.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:4550</div></div>
-<div class="ttc" id="astruct_m_q_t_t_connect_properties__t_html"><div class="ttname"><a href="struct_m_q_t_t_connect_properties__t.html">MQTTConnectProperties_t</a></div><div class="ttdoc">Struct to hold connect and connack properties.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:553</div></div>
-<div class="ttc" id="astruct_m_q_t_t_reason_code_info__t_html"><div class="ttname"><a href="struct_m_q_t_t_reason_code_info__t.html">MQTTReasonCodeInfo_t</a></div><div class="ttdoc">Struct to hold reason codes.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:648</div></div>
+<div class="ttc" id="acore__mqtt__serializer_8h_html_a5d2b0c0122d7d18416d0020db710c65c"><div class="ttname"><a href="core__mqtt__serializer_8h.html#a5d2b0c0122d7d18416d0020db710c65c">MQTT_DeserializeAck</a></div><div class="ttdeci">MQTTStatus_t MQTT_DeserializeAck(const MQTTPacketInfo_t *pIncomingPacket, uint16_t *pPacketId, bool *pSessionPresent, MQTTReasonCodeInfo_t *pReasonCode, MQTTPropBuilder_t *pPropBuffer, MQTTConnectionProperties_t *pConnectProperties)</div><div class="ttdoc">Deserialize an MQTT PUBACK, PUBREC, PUBREL, PUBCOMP, SUBACK, UNSUBACK, PINGRESP or CONNACK.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:4706</div></div>
+<div class="ttc" id="astruct_m_q_t_t_connection_properties__t_html"><div class="ttname"><a href="struct_m_q_t_t_connection_properties__t.html">MQTTConnectionProperties_t</a></div><div class="ttdoc">Struct to hold connect and connack properties.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:551</div></div>
+<div class="ttc" id="astruct_m_q_t_t_reason_code_info__t_html"><div class="ttname"><a href="struct_m_q_t_t_reason_code_info__t.html">MQTTReasonCodeInfo_t</a></div><div class="ttdoc">Struct to hold reason codes.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:636</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -2424,9 +2429,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Serialize an MQTT PUBLISH ACK packet into the given buffer. </p>
-<p>The input <a class="el" href="struct_m_q_t_t_fixed_buffer__t.html#a0b0b6a93cc62751ebeb03095d5431636" title="Size of buffer.">MQTTFixedBuffer_t.size</a> must be at least as large as the size returned by <a class="el" href="core__mqtt__serializer_8h.html#a4a2afce41b84962ce709dc23ab889b31" title="Serialize an MQTT PUBLISH ACK packet into the given buffer.">MQTT_GetAckPacketSize</a>.</p>
-<dl class="section note"><dt>Note</dt><dd>If reason code is success and property length is zero then <a class="el" href="core__mqtt__serializer_8h.html#a11ea4ac5ea27e93121288e463ca34ee6" title="Serialize an MQTT PUBACK, PUBREC, PUBREL, or PUBCOMP into the given buffer.">MQTT_SerializeAck</a> can also be used.</dd></dl>
+<p>Get the size of an outgoing PUBLISH ACK packet. </p>
+<dl class="section note"><dt>Note</dt><dd>If no reason code is sent and property length is zero then <a class="el" href="core__mqtt__serializer_8h.html#a11ea4ac5ea27e93121288e463ca34ee6" title="Serialize an MQTT PUBACK, PUBREC, PUBREL, or PUBCOMP into the given buffer. These PUBLISH ACKS are se...">MQTT_SerializeAck</a> can be used directly.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[out]</td><td class="paramname">pRemainingLength</td><td>The remaining length of the packet to be serialized. </td></tr>
@@ -2456,7 +2460,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="comment">// Get the size requirement for the ack packet.</span></div>
 <div class="line">status = <a class="code hl_function" href="core__mqtt__serializer_8h.html#a4a2afce41b84962ce709dc23ab889b31">MQTT_GetAckPacketSize</a>(&amp;remainingLength,&amp;packetSize,maxPacketSize, ackPropertyLength);</div>
 <div class="line">}</div>
-<div class="ttc" id="acore__mqtt__serializer_8h_html_a4a2afce41b84962ce709dc23ab889b31"><div class="ttname"><a href="core__mqtt__serializer_8h.html#a4a2afce41b84962ce709dc23ab889b31">MQTT_GetAckPacketSize</a></div><div class="ttdeci">MQTTStatus_t MQTT_GetAckPacketSize(size_t *pRemainingLength, size_t *pPacketSize, uint32_t maxPacketSize, size_t ackPropertyLength)</div><div class="ttdoc">Serialize an MQTT PUBLISH ACK packet into the given buffer.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:4693</div></div>
+<div class="ttc" id="acore__mqtt__serializer_8h_html_a4a2afce41b84962ce709dc23ab889b31"><div class="ttname"><a href="core__mqtt__serializer_8h.html#a4a2afce41b84962ce709dc23ab889b31">MQTT_GetAckPacketSize</a></div><div class="ttdeci">MQTTStatus_t MQTT_GetAckPacketSize(size_t *pRemainingLength, size_t *pPacketSize, uint32_t maxPacketSize, size_t ackPropertyLength)</div><div class="ttdoc">Get the size of an outgoing PUBLISH ACK packet.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:4861</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -2521,7 +2525,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="keywordtype">size_t</span> remainingLength = 0;</div>
 <div class="line"><span class="keywordtype">size_t</span> packetSize = 0;</div>
 <div class="line">uint32_t maxPacketSize;</div>
-<div class="line"><a class="code hl_struct" href="struct_m_q_t_t_prop_builder__t.html">MQTTPropBuilder_t</a> disconnectProperties ; </div>
+<div class="line"><a class="code hl_struct" href="struct_m_q_t_t_prop_builder__t.html">MQTTPropBuilder_t</a> disconnectProperties ;</div>
 <div class="line"><a class="code hl_enumeration" href="group__mqtt__enum__types.html#ga377edfeeb661cf054a3c7c598637450e">MQTTSuccessFailReasonCode_t</a> reasonCode;</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">//Set property builder. The details are out of scope for this example.</span></div>
@@ -2529,14 +2533,14 @@ Functions</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="comment">//Set the parameters.</span></div>
 <div class="line"><span class="comment">// Get the size requirement for the disconnect packet.</span></div>
-<div class="line">status = <a class="code hl_function" href="core__mqtt__serializer_8h.html#a85c60cc9ad2a5c95a25c582fd67a4ba6">MQTT_GetDisconnectPacketSize</a>(&amp;disconnectProperties, &amp;remainingLength,&amp;packetSize,maxPacketSize, reasonCode);   </div>
+<div class="line">status = <a class="code hl_function" href="core__mqtt__serializer_8h.html#a85c60cc9ad2a5c95a25c582fd67a4ba6">MQTT_GetDisconnectPacketSize</a>(&amp;disconnectProperties, &amp;remainingLength,&amp;packetSize,maxPacketSize, reasonCode);</div>
 <div class="line"> </div>
 <div class="line"><span class="keywordflow">if</span>( status == <a class="code hl_enumvalue" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a> )</div>
 <div class="line">{</div>
 <div class="line">     <span class="comment">// Send the disconnect packet.</span></div>
 <div class="line">}</div>
-<div class="ttc" id="acore__mqtt__serializer_8h_html_a85c60cc9ad2a5c95a25c582fd67a4ba6"><div class="ttname"><a href="core__mqtt__serializer_8h.html#a85c60cc9ad2a5c95a25c582fd67a4ba6">MQTT_GetDisconnectPacketSize</a></div><div class="ttdeci">MQTTStatus_t MQTT_GetDisconnectPacketSize(const MQTTPropBuilder_t *pDisconnectProperties, size_t *pRemainingLength, size_t *pPacketSize, uint32_t maxPacketSize, MQTTSuccessFailReasonCode_t reasonCode)</div><div class="ttdoc">Get the size of an MQTT DISCONNECT packet.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:2805</div></div>
-<div class="ttc" id="agroup__mqtt__enum__types_html_ga377edfeeb661cf054a3c7c598637450e"><div class="ttname"><a href="group__mqtt__enum__types.html#ga377edfeeb661cf054a3c7c598637450e">MQTTSuccessFailReasonCode_t</a></div><div class="ttdeci">MQTTSuccessFailReasonCode_t</div><div class="ttdoc">MQTT reason codes.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:135</div></div>
+<div class="ttc" id="acore__mqtt__serializer_8h_html_a85c60cc9ad2a5c95a25c582fd67a4ba6"><div class="ttname"><a href="core__mqtt__serializer_8h.html#a85c60cc9ad2a5c95a25c582fd67a4ba6">MQTT_GetDisconnectPacketSize</a></div><div class="ttdeci">MQTTStatus_t MQTT_GetDisconnectPacketSize(const MQTTPropBuilder_t *pDisconnectProperties, size_t *pRemainingLength, size_t *pPacketSize, uint32_t maxPacketSize, MQTTSuccessFailReasonCode_t reasonCode)</div><div class="ttdoc">Get the size of an MQTT DISCONNECT packet.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:2908</div></div>
+<div class="ttc" id="agroup__mqtt__enum__types_html_ga377edfeeb661cf054a3c7c598637450e"><div class="ttname"><a href="group__mqtt__enum__types.html#ga377edfeeb661cf054a3c7c598637450e">MQTTSuccessFailReasonCode_t</a></div><div class="ttdeci">MQTTSuccessFailReasonCode_t</div><div class="ttdoc">MQTT reason codes.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:283</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -2601,7 +2605,7 @@ Functions</h2></td></tr>
 <div class="line">fixedBuffer.<a class="code hl_variable" href="struct_m_q_t_t_fixed_buffer__t.html#a0b0b6a93cc62751ebeb03095d5431636">size</a> = BUFFER_SIZE;</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Get the disconnect packet size.</span></div>
-<div class="line">status = <a class="code hl_function" href="core__mqtt__serializer_8h.html#a85c60cc9ad2a5c95a25c582fd67a4ba6">MQTT_GetDisconnectPacketSize</a>( &amp;disconnectProperties, </div>
+<div class="line">status = <a class="code hl_function" href="core__mqtt__serializer_8h.html#a85c60cc9ad2a5c95a25c582fd67a4ba6">MQTT_GetDisconnectPacketSize</a>( &amp;disconnectProperties,</div>
 <div class="line">                                       <a class="code hl_enumvalue" href="group__mqtt__enum__types.html#gga377edfeeb661cf054a3c7c598637450ea55edb84a47cdda9f150a12bfd2e38db1">MQTT_REASON_DISCONNECT_NORMAL_DISCONNECTION</a>,</div>
 <div class="line">                                       &amp;remainingLength,</div>
 <div class="line">                                       &amp;packetSize );</div>
@@ -2618,13 +2622,13 @@ Functions</h2></td></tr>
 <div class="line">{</div>
 <div class="line">     <span class="comment">// The disconnect packet can now be sent to the broker.</span></div>
 <div class="line">}</div>
-<div class="ttc" id="acore__mqtt__serializer_8h_html_a466b8d5dadd468bddcee3c5d706e0da3"><div class="ttname"><a href="core__mqtt__serializer_8h.html#a466b8d5dadd468bddcee3c5d706e0da3">MQTT_SerializeDisconnect</a></div><div class="ttdeci">MQTTStatus_t MQTT_SerializeDisconnect(const MQTTPropBuilder_t *pDisconnectProperties, MQTTSuccessFailReasonCode_t reasonCode, size_t remainingLength, const MQTTFixedBuffer_t *pFixedBuffer)</div><div class="ttdoc">Serialize an MQTT DISCONNECT packet into the given buffer.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:2882</div></div>
-<div class="ttc" id="agroup__mqtt__enum__types_html_gga377edfeeb661cf054a3c7c598637450ea55edb84a47cdda9f150a12bfd2e38db1"><div class="ttname"><a href="group__mqtt__enum__types.html#gga377edfeeb661cf054a3c7c598637450ea55edb84a47cdda9f150a12bfd2e38db1">MQTT_REASON_DISCONNECT_NORMAL_DISCONNECTION</a></div><div class="ttdeci">@ MQTT_REASON_DISCONNECT_NORMAL_DISCONNECTION</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:214</div></div>
+<div class="ttc" id="acore__mqtt__serializer_8h_html_a466b8d5dadd468bddcee3c5d706e0da3"><div class="ttname"><a href="core__mqtt__serializer_8h.html#a466b8d5dadd468bddcee3c5d706e0da3">MQTT_SerializeDisconnect</a></div><div class="ttdeci">MQTTStatus_t MQTT_SerializeDisconnect(const MQTTPropBuilder_t *pDisconnectProperties, MQTTSuccessFailReasonCode_t reasonCode, size_t remainingLength, const MQTTFixedBuffer_t *pFixedBuffer)</div><div class="ttdoc">Serialize an MQTT DISCONNECT packet into the given buffer.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:2990</div></div>
+<div class="ttc" id="agroup__mqtt__enum__types_html_gga377edfeeb661cf054a3c7c598637450ea55edb84a47cdda9f150a12bfd2e38db1"><div class="ttname"><a href="group__mqtt__enum__types.html#gga377edfeeb661cf054a3c7c598637450ea55edb84a47cdda9f150a12bfd2e38db1">MQTT_REASON_DISCONNECT_NORMAL_DISCONNECTION</a></div><div class="ttdeci">@ MQTT_REASON_DISCONNECT_NORMAL_DISCONNECTION</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:362</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
-<a id="a1f42b448bfca04d5604f03d556d64a5a" name="a1f42b448bfca04d5604f03d556d64a5a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1f42b448bfca04d5604f03d556d64a5a">&#9670;&#160;</a></span>MQTT_DeserializeDisconnect()</h2>
+<a id="a73f6ec7ed9e222865a35cdd6d03ea9ae" name="a73f6ec7ed9e222865a35cdd6d03ea9ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73f6ec7ed9e222865a35cdd6d03ea9ae">&#9670;&#160;</a></span>MQTT_DeserializeDisconnect()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2651,7 +2655,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="struct_m_q_t_t_prop_builder__t.html">MQTTPropBuilder_t</a> *&#160;</td>
-          <td class="paramname"><em>propBuffer</em>&#160;</td>
+          <td class="paramname"><em>pPropBuffer</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2667,11 +2671,11 @@ Functions</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">pPacket</td><td><a class="el" href="struct_m_q_t_t_packet_info__t.html" title="MQTT incoming packet parameters.">MQTTPacketInfo_t</a> containing the buffer. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">maxPacketSize</td><td>Maximum packet size allowed by the client. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">pDisconnectInfo</td><td>Struct containing disconnect reason code </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">propBuffer</td><td><a class="el" href="struct_m_q_t_t_prop_builder__t.html" title="Property builder for MQTT packets.">MQTTPropBuilder_t</a> to store the deserialized properties.</td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pPropBuffer</td><td><a class="el" href="struct_m_q_t_t_prop_builder__t.html" title="Property builder for MQTT packets.">MQTTPropBuilder_t</a> to store the deserialized properties.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa39030c93b0263b2699502a074f003b5">MQTTBadParameter</a>, <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca25a3d1747e308e99daa805fe576f84b9">MQTTServerRefused</a>, <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa5d7507e7664a14d63a8bc44b280093e">MQTTBadResponse</a> or <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a>.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa39030c93b0263b2699502a074f003b5">MQTTBadParameter</a>, <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa5d7507e7664a14d63a8bc44b280093e">MQTTBadResponse</a> or <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a>.</dd></dl>
 <p><b>Example</b> </p><div class="fragment"><div class="line"><span class="comment">// Variables used in this example.</span></div>
 <div class="line"><a class="code hl_enumeration" href="group__mqtt__enum__types.html#gaba7ec045874a1c3432f99173367f735c">MQTTStatus_t</a> status;</div>
 <div class="line"><a class="code hl_struct" href="struct_m_q_t_t_packet_info__t.html">MQTTPacketInfo_t</a> incomingPacket;</div>
@@ -2685,7 +2689,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="comment">// Deserialize disconnect information.</span></div>
 <div class="line"><span class="keywordflow">if</span>( ( incomingPacket.<a class="code hl_variable" href="struct_m_q_t_t_packet_info__t.html#a7fef40548c1aa0f0e7f812a6a7243758">type</a>) == <a class="code hl_define" href="group__mqtt__constants.html#gaed07155a3d6fa4b7624b9f36ed33ec6d">MQTT_PACKET_TYPE_DISCONNECT</a> )</div>
 <div class="line">{</div>
-<div class="line">     status = <a class="code hl_function" href="core__mqtt__serializer_8h.html#a1f42b448bfca04d5604f03d556d64a5a">MQTT_DeserializeDisconnect</a>(&amp;incomingPacket,</div>
+<div class="line">     status = <a class="code hl_function" href="core__mqtt__serializer_8h.html#a73f6ec7ed9e222865a35cdd6d03ea9ae">MQTT_DeserializeDisconnect</a>(&amp;incomingPacket,</div>
 <div class="line">                                         maxPacketSize,</div>
 <div class="line">                                         &amp;disconnectInfo,</div>
 <div class="line">                                         &amp;propBuffer);</div>
@@ -2694,13 +2698,13 @@ Functions</h2></td></tr>
 <div class="line">         <span class="comment">// Disconnect information is available.</span></div>
 <div class="line">     }</div>
 <div class="line">}</div>
-<div class="ttc" id="acore__mqtt__serializer_8h_html_a1f42b448bfca04d5604f03d556d64a5a"><div class="ttname"><a href="core__mqtt__serializer_8h.html#a1f42b448bfca04d5604f03d556d64a5a">MQTT_DeserializeDisconnect</a></div><div class="ttdeci">MQTTStatus_t MQTT_DeserializeDisconnect(const MQTTPacketInfo_t *pPacket, uint32_t maxPacketSize, MQTTReasonCodeInfo_t *pDisconnectInfo, MQTTPropBuilder_t *propBuffer)</div><div class="ttdoc">Deserialize an MQTT Disconnect packet.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:4772</div></div>
-<div class="ttc" id="agroup__mqtt__constants_html_gaed07155a3d6fa4b7624b9f36ed33ec6d"><div class="ttname"><a href="group__mqtt__constants.html#gaed07155a3d6fa4b7624b9f36ed33ec6d">MQTT_PACKET_TYPE_DISCONNECT</a></div><div class="ttdeci">#define MQTT_PACKET_TYPE_DISCONNECT</div><div class="ttdoc">DISCONNECT (client-to-server).</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:67</div></div>
+<div class="ttc" id="acore__mqtt__serializer_8h_html_a73f6ec7ed9e222865a35cdd6d03ea9ae"><div class="ttname"><a href="core__mqtt__serializer_8h.html#a73f6ec7ed9e222865a35cdd6d03ea9ae">MQTT_DeserializeDisconnect</a></div><div class="ttdeci">MQTTStatus_t MQTT_DeserializeDisconnect(const MQTTPacketInfo_t *pPacket, uint32_t maxPacketSize, MQTTReasonCodeInfo_t *pDisconnectInfo, MQTTPropBuilder_t *pPropBuffer)</div><div class="ttdoc">Deserialize an MQTT Disconnect packet.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:4940</div></div>
+<div class="ttc" id="agroup__mqtt__constants_html_gaed07155a3d6fa4b7624b9f36ed33ec6d"><div class="ttname"><a href="group__mqtt__constants.html#gaed07155a3d6fa4b7624b9f36ed33ec6d">MQTT_PACKET_TYPE_DISCONNECT</a></div><div class="ttdeci">#define MQTT_PACKET_TYPE_DISCONNECT</div><div class="ttdoc">DISCONNECT (client-to-server).</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.h:66</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
-<a id="a5c5802e11c75b3c0e3e979865cd0421b" name="a5c5802e11c75b3c0e3e979865cd0421b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5c5802e11c75b3c0e3e979865cd0421b">&#9670;&#160;</a></span>updateContextWithConnectProps()</h2>
+<a id="ad0d40d4e24e129696094e9a3f51c4e31" name="ad0d40d4e24e129696094e9a3f51c4e31"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0d40d4e24e129696094e9a3f51c4e31">&#9670;&#160;</a></span>updateContextWithConnectProps()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2714,7 +2718,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="struct_m_q_t_t_connect_properties__t.html">MQTTConnectProperties_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="struct_m_q_t_t_connection_properties__t.html">MQTTConnectionProperties_t</a> *&#160;</td>
           <td class="paramname"><em>pConnectProperties</em>&#160;</td>
         </tr>
         <tr>
@@ -2742,20 +2746,21 @@ Functions</h2></td></tr>
 <p><b>Example</b> </p><div class="fragment"><div class="line"><span class="comment">// Variables used in this example.</span></div>
 <div class="line"><a class="code hl_enumeration" href="group__mqtt__enum__types.html#gaba7ec045874a1c3432f99173367f735c">MQTTStatus_t</a> status;</div>
 <div class="line"><a class="code hl_struct" href="struct_m_q_t_t_prop_builder__t.html">MQTTPropBuilder_t</a> propBuilder = { 0 };</div>
-<div class="line"><a class="code hl_struct" href="struct_m_q_t_t_connect_properties__t.html">MQTTConnectProperties_t</a> connectProperties = { 0 };</div>
+<div class="line"><a class="code hl_struct" href="struct_m_q_t_t_connection_properties__t.html">MQTTConnectionProperties_t</a> connectionProperties = { 0 };</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Initialize property builder with desired properties</span></div>
 <div class="line"><span class="comment">// ...</span></div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Update connect properties</span></div>
-<div class="line">status = <a class="code hl_function" href="core__mqtt__serializer_8h.html#a5c5802e11c75b3c0e3e979865cd0421b">updateContextWithConnectProps</a>(&amp;propBuilder, &amp;connectProperties);</div>
+<div class="line">status = <a class="code hl_function" href="core__mqtt__serializer_8h.html#ad0d40d4e24e129696094e9a3f51c4e31">updateContextWithConnectProps</a>(&amp;propBuilder, &amp;connectionProperties);</div>
 <div class="line"> </div>
 <div class="line"><span class="keywordflow">if</span>(status == <a class="code hl_enumvalue" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a>)</div>
 <div class="line">{</div>
 <div class="line">    <span class="comment">// Properties successfully updated in the context</span></div>
 <div class="line">}</div>
-<div class="ttc" id="acore__mqtt__serializer_8h_html_a5c5802e11c75b3c0e3e979865cd0421b"><div class="ttname"><a href="core__mqtt__serializer_8h.html#a5c5802e11c75b3c0e3e979865cd0421b">updateContextWithConnectProps</a></div><div class="ttdeci">MQTTStatus_t updateContextWithConnectProps(const MQTTPropBuilder_t *pPropBuilder, MQTTConnectProperties_t *pConnectProperties)</div><div class="ttdoc">Updates the MQTT context with connect properties from the property builder.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:4225</div></div>
-</div><!-- fragment --> 
+<div class="ttc" id="acore__mqtt__serializer_8h_html_ad0d40d4e24e129696094e9a3f51c4e31"><div class="ttname"><a href="core__mqtt__serializer_8h.html#ad0d40d4e24e129696094e9a3f51c4e31">updateContextWithConnectProps</a></div><div class="ttdeci">MQTTStatus_t updateContextWithConnectProps(const MQTTPropBuilder_t *pPropBuilder, MQTTConnectionProperties_t *pConnectProperties)</div><div class="ttdoc">Updates the MQTT context with connect properties from the property builder.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:4372</div></div>
+</div><!-- fragment --> <p>This value shall get overwritten if the server sends a sessionExpiry in the CONNACK.</p>
+
 </div>
 </div>
 <a id="aeb58017c48bafc412e9c36a360530c38" name="aeb58017c48bafc412e9c36a360530c38"></a>
@@ -2811,7 +2816,7 @@ Functions</h2></td></tr>
 <div class="line">{</div>
 <div class="line">    <span class="comment">// Subscription Identifier successfully added</span></div>
 <div class="line">}</div>
-<div class="ttc" id="acore__mqtt__serializer_8h_html_aeb58017c48bafc412e9c36a360530c38"><div class="ttname"><a href="core__mqtt__serializer_8h.html#aeb58017c48bafc412e9c36a360530c38">MQTTPropAdd_SubscribeId</a></div><div class="ttdeci">MQTTStatus_t MQTTPropAdd_SubscribeId(MQTTPropBuilder_t *pPropertyBuilder, size_t subscriptionId)</div><div class="ttdoc">Adds a Subscription Identifier property to the MQTT property builder.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:4884</div></div>
+<div class="ttc" id="acore__mqtt__serializer_8h_html_aeb58017c48bafc412e9c36a360530c38"><div class="ttname"><a href="core__mqtt__serializer_8h.html#aeb58017c48bafc412e9c36a360530c38">MQTTPropAdd_SubscribeId</a></div><div class="ttdeci">MQTTStatus_t MQTTPropAdd_SubscribeId(MQTTPropBuilder_t *pPropertyBuilder, size_t subscriptionId)</div><div class="ttdoc">Adds a Subscription Identifier property to the MQTT property builder.</div><div class="ttdef"><b>Definition:</b> core_mqtt_serializer.c:5065</div></div>
 </div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>This property is only valid for MQTT v5.0 and above. </dd>
 <dd>
 The Subscription Identifier can be used in SUBSCRIBE packets and will be returned in matched PUBLISH packets. </dd></dl>
@@ -3652,6 +3657,7 @@ The Subscription Identifier can be used in SUBSCRIBE packets and will be returne
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns one of the following:<ul>
 <li><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a> if the properties are valid</li>
+<li><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa39030c93b0263b2699502a074f003b5">MQTTBadParameter</a> if invalid parameters are passed</li>
 <li><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa5d7507e7664a14d63a8bc44b280093e">MQTTBadResponse</a> if an invalid packet is read </li>
 </ul>
 </dd></dl>
@@ -3758,7 +3764,7 @@ The Subscription Identifier can be used in SUBSCRIBE packets and will be returne
       </table>
 </div><div class="memdoc">
 
-<p>Validates the properties specified for an WILL Properties in the MQTT CONNECT packet. </p>
+<p>Validates the properties specified for WILL Properties in the MQTT CONNECT packet. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">pPropertyBuilder</td><td>Pointer to the property builder structure containing will properties.</td></tr>
@@ -4765,7 +4771,7 @@ The Subscription Identifier can be used in SUBSCRIBE packets and will be returne
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>MQTTSuccess if property was found and retrieved successfully MQTTBadParameter if propBuffer or isSharedSubAvailable is NULL MQTTBadResponse if property value is invalid in buffer </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a> if property was found and retrieved successfully <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa39030c93b0263b2699502a074f003b5">MQTTBadParameter</a> if propBuffer or isSharedSubAvailable is NULL <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa5d7507e7664a14d63a8bc44b280093e">MQTTBadResponse</a> if property value is invalid in buffer </dd></dl>
 
 </div>
 </div>
@@ -4803,7 +4809,7 @@ The Subscription Identifier can be used in SUBSCRIBE packets and will be returne
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>MQTTSuccess if property was found and retrieved successfully MQTTBadParameter if propBuffer or serverKeepAlive is NULL MQTTBadResponse if property value is invalid in buffer </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a> if property was found and retrieved successfully <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa39030c93b0263b2699502a074f003b5">MQTTBadParameter</a> if propBuffer or serverKeepAlive is NULL <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa5d7507e7664a14d63a8bc44b280093e">MQTTBadResponse</a> if property value is invalid in buffer </dd></dl>
 
 </div>
 </div>
@@ -4848,7 +4854,7 @@ The Subscription Identifier can be used in SUBSCRIBE packets and will be returne
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>MQTTSuccess if property was found and retrieved successfully MQTTBadParameter if propBuffer, pResponseInfo, or responseInfoLength is NULL MQTTBadResponse if property value is invalid in buffer </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a> if property was found and retrieved successfully <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa39030c93b0263b2699502a074f003b5">MQTTBadParameter</a> if propBuffer, pResponseInfo, or responseInfoLength is NULL <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa5d7507e7664a14d63a8bc44b280093e">MQTTBadResponse</a> if property value is invalid in buffer </dd></dl>
 
 </div>
 </div>
@@ -4893,7 +4899,7 @@ The Subscription Identifier can be used in SUBSCRIBE packets and will be returne
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>MQTTSuccess if property was found and retrieved successfully MQTTBadParameter if propBuffer, pAuthMethod, or authMethodLength is NULL MQTTBadResponse if property value is invalid in buffer </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a> if property was found and retrieved successfully <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa39030c93b0263b2699502a074f003b5">MQTTBadParameter</a> if propBuffer, pAuthMethod, or authMethodLength is NULL <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa5d7507e7664a14d63a8bc44b280093e">MQTTBadResponse</a> if property value is invalid in buffer </dd></dl>
 
 </div>
 </div>
@@ -4938,7 +4944,7 @@ The Subscription Identifier can be used in SUBSCRIBE packets and will be returne
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>MQTTSuccess if property was found and retrieved successfully MQTTBadParameter if propBuffer, pAuthData, or authDataLength is NULL MQTTBadResponse if property value is invalid in buffer </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a> if property was found and retrieved successfully <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa39030c93b0263b2699502a074f003b5">MQTTBadParameter</a> if propBuffer, pAuthData, or authDataLength is NULL <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa5d7507e7664a14d63a8bc44b280093e">MQTTBadResponse</a> if property value is invalid in buffer </dd></dl>
 
 </div>
 </div>
@@ -4980,7 +4986,133 @@ The Subscription Identifier can be used in SUBSCRIBE packets and will be returne
 <dl class="section return"><dt>Returns</dt><dd>Returns one of the following:<ul>
 <li><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a> if the next property identifier was successfully retrieved</li>
 <li><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa39030c93b0263b2699502a074f003b5">MQTTBadParameter</a> if an invalid parameter is passed</li>
-<li>MQTTEndOfProperties if there are no more properties to retrieve </li>
+<li><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caeb817a941b956ae02f011976fa1ce645">MQTTEndOfProperties</a> if there are no more properties to retrieve </li>
+</ul>
+</dd></dl>
+
+</div>
+</div>
+<a id="a1f298e44147e62b8a4cbf735fa4fde57" name="a1f298e44147e62b8a4cbf735fa4fde57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f298e44147e62b8a4cbf735fa4fde57">&#9670;&#160;</a></span>MQTTPropertyBuilder_Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__mqtt__enum__types.html#gaba7ec045874a1c3432f99173367f735c">MQTTStatus_t</a> MQTTPropertyBuilder_Init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_m_q_t_t_prop_builder__t.html">MQTTPropBuilder_t</a> *&#160;</td>
+          <td class="paramname"><em>pPropertyBuilder</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>length</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize the property builder. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">pPropertyBuilder</td><td>Property builder to initialize. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">buffer</td><td>Buffer to store the properties. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">length</td><td>Length of the buffer.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><ul>
+<li><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa39030c93b0263b2699502a074f003b5">MQTTBadParameter</a> if invalid parameters are passed.</li>
+<li><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a> otherwise. </li>
+</ul>
+</dd></dl>
+
+</div>
+</div>
+<a id="a383b1386f8d0aa066b70da0e03459b32" name="a383b1386f8d0aa066b70da0e03459b32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a383b1386f8d0aa066b70da0e03459b32">&#9670;&#160;</a></span>decodeSubackPropertyLength()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__mqtt__enum__types.html#gaba7ec045874a1c3432f99173367f735c">MQTTStatus_t</a> decodeSubackPropertyLength </td>
+          <td>(</td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>pIndex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>remainingLength</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t *&#160;</td>
+          <td class="paramname"><em>subackPropertyLength</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Decodes the property length field in a SUBACK packet. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pIndex</td><td>Pointer to the start of the properties in the SUBACK packet. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">remainingLength</td><td>The remaining length of the MQTT packet being parsed, without Packet ID. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">subackPropertyLength</td><td>The decoded property length including the size of its encoded representation.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a> if the property length is successfully decoded; <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa5d7507e7664a14d63a8bc44b280093e">MQTTBadResponse</a> if the decoded property length is greater than the remaining length. </dd></dl>
+
+</div>
+</div>
+<a id="ad2cb962fb1564e92cb7d931ef1759d5e" name="ad2cb962fb1564e92cb7d931ef1759d5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2cb962fb1564e92cb7d931ef1759d5e">&#9670;&#160;</a></span>MQTT_InitConnect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__mqtt__enum__types.html#gaba7ec045874a1c3432f99173367f735c">MQTTStatus_t</a> MQTT_InitConnect </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_m_q_t_t_connection_properties__t.html">MQTTConnectionProperties_t</a> *&#160;</td>
+          <td class="paramname"><em>pConnectProperties</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize an <a class="el" href="struct_m_q_t_t_connection_properties__t.html" title="Struct to hold connect and connack properties.">MQTTConnectionProperties_t</a>. </p>
+<dl class="section note"><dt>Note</dt><dd>This function initializes the connect properties to default values. This function should only be used if using only serializer functions throughout the connection. It is also important to only call this function before sending the connect packet.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pConnectProperties</td><td>The connect properties to initialize.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><ul>
+<li><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa39030c93b0263b2699502a074f003b5">MQTTBadParameter</a> if pConnectProperties is NULL.</li>
+<li><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a> otherwise. </li>
 </ul>
 </dd></dl>
 

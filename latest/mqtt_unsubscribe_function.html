@@ -122,15 +122,21 @@ $(document).ready(function(){initNavTree('mqtt_unsubscribe_function.html',''); i
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><ul>
-<li><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa39030c93b0263b2699502a074f003b5">MQTTBadParameter</a> if invalid parameters are passed;</li>
-<li><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa5d7507e7664a14d63a8bc44b280093e">MQTTBadResponse</a> if invalid properties are parsed;</li>
-<li><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735cafd06b63fe9677fa2af06b0f4c7d4ad55">MQTTSendFailed</a> if transport write failed;</li>
-<li><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca074273b04f70b93c1f20702096cac273">MQTTStatusNotConnected</a> if the connection is not established yet</li>
-<li><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca230baa3eaabf50e6b319f792a82bb863">MQTTStatusDisconnectPending</a> if the user is expected to call MQTT_Disconnect before calling any other API</li>
-<li><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a> otherwise.</li>
+<li><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa39030c93b0263b2699502a074f003b5">MQTTBadParameter</a> if invalid parameters are passed;<br  />
+</li>
+<li><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa5d7507e7664a14d63a8bc44b280093e">MQTTBadResponse</a> if invalid properties are parsed;<br  />
+</li>
+<li><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735cafd06b63fe9677fa2af06b0f4c7d4ad55">MQTTSendFailed</a> if transport write failed;<br  />
+</li>
+<li><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca074273b04f70b93c1f20702096cac273">MQTTStatusNotConnected</a> if the connection is not established yet<br  />
+</li>
+<li><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca230baa3eaabf50e6b319f792a82bb863">MQTTStatusDisconnectPending</a> if the user is expected to call MQTT_Disconnect before calling any other API<br  />
+</li>
+<li><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a> otherwise.<br  />
+</li>
 </ul>
 </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Functions to add optional properties to the UNSUBSCRIBE packet are:</dd></dl>
+<p>Functions to add optional properties to the UNSUBSCRIBE packet are:</p>
 <ul>
 <li><a class="el" href="core__mqtt__serializer_8h.html#a0dbffa853c25206a99f87a44a5280438" title="Adds User Property to the MQTT property builder.">MQTTPropAdd_UserProp</a></li>
 </ul>

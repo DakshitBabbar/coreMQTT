@@ -5845,9 +5845,39 @@
     <filename>mqtt_functions.html</filename>
   </compound>
   <compound kind="page">
+    <name>mqtt_primaryfunctions</name>
+    <title>Primary functions</title>
+    <filename>mqtt_primaryfunctions.html</filename>
+  </compound>
+  <compound kind="page">
+    <name>mqtt_serializerfunctions</name>
+    <title>Serializer functions</title>
+    <filename>mqtt_serializerfunctions.html</filename>
+  </compound>
+  <compound kind="page">
+    <name>mqtt_propertyaddfunctions</name>
+    <title>Property Add functions</title>
+    <filename>mqtt_propertyaddfunctions.html</filename>
+  </compound>
+  <compound kind="page">
+    <name>mqtt_propertygetfunctions</name>
+    <title>Property Get functions</title>
+    <filename>mqtt_propertygetfunctions.html</filename>
+  </compound>
+  <compound kind="page">
     <name>mqtt_init_function</name>
     <title>MQTT_Init</title>
     <filename>mqtt_init_function.html</filename>
+  </compound>
+  <compound kind="page">
+    <name>mqtt_initstatefulqos_function</name>
+    <title>MQTT_InitStatefulQoS</title>
+    <filename>mqtt_initstatefulqos_function.html</filename>
+  </compound>
+  <compound kind="page">
+    <name>mqtt_initretransmits_function</name>
+    <title>MQTT_InitRetransmits</title>
+    <filename>mqtt_initretransmits_function.html</filename>
   </compound>
   <compound kind="page">
     <name>mqtt_connect_function</name>

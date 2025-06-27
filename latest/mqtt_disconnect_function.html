@@ -117,8 +117,14 @@ $(document).ready(function(){initNavTree('mqtt_disconnect_function.html',''); in
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa39030c93b0263b2699502a074f003b5">MQTTBadParameter</a> if invalid parameters are passed; <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa5d7507e7664a14d63a8bc44b280093e">MQTTBadResponse</a> if invalid properties are parsed; <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735cafd06b63fe9677fa2af06b0f4c7d4ad55">MQTTSendFailed</a> if transport send failed; <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca074273b04f70b93c1f20702096cac273">MQTTStatusNotConnected</a> if the connection is not established yet and a PING or an ACK is being sent. <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca230baa3eaabf50e6b319f792a82bb863">MQTTStatusDisconnectPending</a> if the user is expected to call MQTT_Disconnect before calling any other API <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a> otherwise.</dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Functions to add optional properties to the DISCONNECT packet are:</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa39030c93b0263b2699502a074f003b5">MQTTBadParameter</a> if invalid parameters are passed;<br  />
+ <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735caa5d7507e7664a14d63a8bc44b280093e">MQTTBadResponse</a> if invalid properties are parsed;<br  />
+ <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735cafd06b63fe9677fa2af06b0f4c7d4ad55">MQTTSendFailed</a> if transport send failed;<br  />
+ <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca074273b04f70b93c1f20702096cac273">MQTTStatusNotConnected</a> if the connection is not established yet and a PING or an ACK is being sent.<br  />
+ <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca230baa3eaabf50e6b319f792a82bb863">MQTTStatusDisconnectPending</a> if the user is expected to call MQTT_Disconnect before calling any other API<br  />
+ <a class="el" href="group__mqtt__enum__types.html#ggaba7ec045874a1c3432f99173367f735ca484e062cb4f3fccc1858dd25cfeee056">MQTTSuccess</a> otherwise.<br  />
+</dd></dl>
+<p>Functions to add optional properties to the DISCONNECT packet are:</p>
 <ul>
 <li><a class="el" href="core__mqtt__serializer_8h.html#a17c03872f40100ab2d56c1cb829cba4f" title="Adds Session Expiry Interval property to the MQTT property builder.">MQTTPropAdd_SessionExpiry</a></li>
 <li><a class="el" href="core__mqtt__serializer_8h.html#ae8c80019e58eb6d2d4771e535395b061" title="Adds Reason String property to the MQTT property builder.">MQTTPropAdd_ReasonString</a></li>

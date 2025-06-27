@@ -1,0 +1,28 @@
+var mqtt_propertygetfunctions =
+[
+    [ "MQTT_IncomingGetNextProp", "mqtt_incominggetnextprop_function.html", null ],
+    [ "MQTTPropGet_PubTopicAlias", "mqttpropget_pubtopicalias_function.html", null ],
+    [ "MQTTPropGet_PubPayloadFormatIndicator", "mqttpropget_pubpayloadformat_function.html", null ],
+    [ "MQTTPropGet_PubResponseTopic", "mqttpropget_pubresponsetopic_function.html", null ],
+    [ "MQTTPropGet_PubCorrelationData", "mqttpropget_pubcorrelationdata_function.html", null ],
+    [ "MQTTPropGet_PubMessageExpiryInterval", "mqttpropget_pubmessageexpiryinterval_function.html", null ],
+    [ "MQTTPropGet_PubContentType", "mqttpropget_pubcontenttype_function.html", null ],
+    [ "MQTTPropGet_PubSubscriptionId", "mqttpropget_pubsubscriptionid_function.html", null ],
+    [ "MQTTPropGet_UserProp", "mqttpropget_userprop_function.html", null ],
+    [ "MQTTPropGet_ReasonString", "mqttpropget_reasonstring_function.html", null ],
+    [ "MQTTPropGet_ServerRef", "mqttpropget_disconnectserverref_function.html", null ],
+    [ "MQTTPropGet_SessionExpiry", "mqttpropget_sessionexpiry_function.html", null ],
+    [ "MQTTPropGet_ConnTopicAliasMax", "mqttpropget_conntopicaliasmax_function.html", null ],
+    [ "MQTTPropGet_ConnReceiveMax", "mqttpropget_connreceivemax_function.html", null ],
+    [ "MQTTPropGet_ConnMaxQos", "mqttpropget_connmaxqos_function.html", null ],
+    [ "MQTTPropGet_ConnRetainAvailable", "mqttpropget_connretainavailable_function.html", null ],
+    [ "MQTTPropGet_ConnMaxPacketSize", "mqttpropget_connmaxpacketsize_function.html", null ],
+    [ "MQTTPropGet_ConnClientId", "mqttpropget_connclientid_function.html", null ],
+    [ "MQTTPropGet_ConnWildcard", "mqttpropget_connwildcard_function.html", null ],
+    [ "MQTTPropGet_ConnSubId", "mqttpropget_connsubid_function.html", null ],
+    [ "MQTTPropGet_ConnSharedSubAvailable", "mqttpropget_connsharedsubavailable_function.html", null ],
+    [ "MQTTPropGet_ConnServerKeepAlive", "mqttpropget_connserverkeepalive_function.html", null ],
+    [ "MQTTPropGet_ConnResponseInfo", "mqttpropget_connresponseinfo_function.html", null ],
+    [ "MQTTPropGet_ConnAuthMethod", "mqttpropget_connauthmethod_function.html", null ],
+    [ "MQTTPropGet_ConnAuthData", "mqttpropget_connauthdata_function.html", null ]
+];

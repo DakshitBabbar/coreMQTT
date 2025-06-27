@@ -12,13 +12,14 @@ var searchData=
   ['sendunsubscribewithoutcopy_9',['sendUnsubscribeWithoutCopy',['../core__mqtt_8c.html#ac7c4ff056a557b829428ed9a1c3a720f',1,'core_mqtt.c']]],
   ['serializeconnectpacket_10',['serializeConnectPacket',['../core__mqtt__serializer_8c.html#a0738cc127442cf185aa0d5e63dd4b022',1,'core_mqtt_serializer.c']]],
   ['serializepublishcommon_11',['serializePublishCommon',['../core__mqtt__serializer_8c.html#a10a6935b9af1ff6ecfcc72971a4d4566',1,'core_mqtt_serializer.c']]],
-  ['serverkeepalive_12',['serverKeepAlive',['../struct_m_q_t_t_connection_properties__t.html#aa9567f22d2dc102b99893d619d7bebcc',1,'MQTTConnectionProperties_t']]],
-  ['servermaxpacketsize_13',['serverMaxPacketSize',['../struct_m_q_t_t_connection_properties__t.html#aae7d346ecae1a5dd809784d2d34aebbc',1,'MQTTConnectionProperties_t']]],
-  ['servermaxqos_14',['serverMaxQos',['../struct_m_q_t_t_connection_properties__t.html#a3123b62b6ebae1b8183f592c041a0b4a',1,'MQTTConnectionProperties_t']]],
-  ['serverreceivemax_15',['serverReceiveMax',['../struct_m_q_t_t_connection_properties__t.html#add994c9e0f9c3993960bd35496486e04',1,'MQTTConnectionProperties_t']]],
-  ['servertopicaliasmax_16',['serverTopicAliasMax',['../struct_m_q_t_t_connection_properties__t.html#a28b3da2cb05b3b9116204ded988831e2',1,'MQTTConnectionProperties_t']]],
-  ['sessionexpiry_17',['sessionExpiry',['../struct_m_q_t_t_connection_properties__t.html#ac7c25d5c5a9538184437879bb05281a2',1,'MQTTConnectionProperties_t']]],
-  ['size_18',['size',['../struct_m_q_t_t_fixed_buffer__t.html#a0b0b6a93cc62751ebeb03095d5431636',1,'MQTTFixedBuffer_t']]],
-  ['stateselect_19',['stateSelect',['../core__mqtt__state_8c.html#adfc09b0c75d5de09cd73650f944699c0',1,'core_mqtt_state.c']]],
-  ['storefunction_20',['storeFunction',['../struct_m_q_t_t_context__t.html#ac205fc33078b0cfa0dfc62807bd9574f',1,'MQTTContext_t']]]
+  ['serializer_20functions_12',['Serializer functions',['../mqtt_serializerfunctions.html',1,'mqtt_functions']]],
+  ['serverkeepalive_13',['serverKeepAlive',['../struct_m_q_t_t_connection_properties__t.html#aa9567f22d2dc102b99893d619d7bebcc',1,'MQTTConnectionProperties_t']]],
+  ['servermaxpacketsize_14',['serverMaxPacketSize',['../struct_m_q_t_t_connection_properties__t.html#aae7d346ecae1a5dd809784d2d34aebbc',1,'MQTTConnectionProperties_t']]],
+  ['servermaxqos_15',['serverMaxQos',['../struct_m_q_t_t_connection_properties__t.html#a3123b62b6ebae1b8183f592c041a0b4a',1,'MQTTConnectionProperties_t']]],
+  ['serverreceivemax_16',['serverReceiveMax',['../struct_m_q_t_t_connection_properties__t.html#add994c9e0f9c3993960bd35496486e04',1,'MQTTConnectionProperties_t']]],
+  ['servertopicaliasmax_17',['serverTopicAliasMax',['../struct_m_q_t_t_connection_properties__t.html#a28b3da2cb05b3b9116204ded988831e2',1,'MQTTConnectionProperties_t']]],
+  ['sessionexpiry_18',['sessionExpiry',['../struct_m_q_t_t_connection_properties__t.html#ac7c25d5c5a9538184437879bb05281a2',1,'MQTTConnectionProperties_t']]],
+  ['size_19',['size',['../struct_m_q_t_t_fixed_buffer__t.html#a0b0b6a93cc62751ebeb03095d5431636',1,'MQTTFixedBuffer_t']]],
+  ['stateselect_20',['stateSelect',['../core__mqtt__state_8c.html#adfc09b0c75d5de09cd73650f944699c0',1,'core_mqtt_state.c']]],
+  ['storefunction_21',['storeFunction',['../struct_m_q_t_t_context__t.html#ac205fc33078b0cfa0dfc62807bd9574f',1,'MQTTContext_t']]]
 ];

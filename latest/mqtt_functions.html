@@ -100,99 +100,13 @@ $(document).ready(function(){initNavTree('mqtt_functions.html',''); initResizabl
   <div class="headertitle"><div class="title">Functions </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>Primary functions of the MQTT library:<br  />
-<br  />
- <a class="el" href="mqtt_init_function.html">MQTT_Init</a> <br  />
- <a class="el" href="mqttpropertybuilder_init_function.html">MQTTPropertyBuilder_Init</a> <br  />
- <a class="el" href="mqtt_connect_function.html">MQTT_Connect</a> <br  />
- <a class="el" href="mqtt_subscribe_function.html">MQTT_Subscribe</a> <br  />
- <a class="el" href="mqtt_publish_function.html">MQTT_Publish</a> <br  />
- <a class="el" href="mqtt_ping_function.html">MQTT_Ping</a> <br  />
- <a class="el" href="mqtt_unsubscribe_function.html">MQTT_Unsubscribe</a> <br  />
- <a class="el" href="mqtt_disconnect_function.html">MQTT_Disconnect</a> <br  />
- <a class="el" href="mqtt_processloop_function.html">MQTT_ProcessLoop</a> <br  />
- <a class="el" href="mqtt_receiveloop_function.html">MQTT_ReceiveLoop</a> <br  />
- <a class="el" href="mqtt_getpacketid_function.html">MQTT_GetPacketId</a> <br  />
- <a class="el" href="mqtt_getsubackstatuscodes_function.html">MQTT_GetSubAckStatusCodes</a> <br  />
- <a class="el" href="mqtt_status_strerror_function.html">MQTT_Status_strerror</a> <br  />
- <a class="el" href="mqtt_publishtoresend_function.html">MQTT_PublishToResend</a> <br  />
-<br  />
-</p>
-<p>Serializer functions of the MQTT library:<br  />
-<br  />
- <a class="el" href="mqtt_getconnectpacketsize_function.html">MQTT_GetConnectPacketSize</a> <br  />
- <a class="el" href="mqtt_serializeconnect_function.html">MQTT_SerializeConnect</a> <br  />
- <a class="el" href="mqtt_getsubscribepacketsize_function.html">MQTT_GetSubscribePacketSize</a> <br  />
- <a class="el" href="mqtt_serializesubscribe_function.html">MQTT_SerializeSubscribe</a> <br  />
- <a class="el" href="mqtt_validatesubscribeproperties_function.html">MQTT_ValidateSubscribeProperties</a> <br  />
- <a class="el" href="mqtt_getunsubscribepacketsize_function.html">MQTT_GetUnsubscribePacketSize</a> <br  />
- <a class="el" href="mqtt_serializeunsubscribe_function.html">MQTT_SerializeUnsubscribe</a> <br  />
- <a class="el" href="mqtt_getpublishpacketsize_function.html">MQTT_GetPublishPacketSize</a> <br  />
- <a class="el" href="mqtt_serializepublish_function.html">MQTT_SerializePublish</a> <br  />
- <a class="el" href="mqtt_serializepublishheader_function.html">MQTT_SerializePublishHeader</a> <br  />
- <a class="el" href="mqtt_serializepublishheaderwithouttopic_function.html">MQTT_SerializePublishHeaderWithoutTopic</a> <br  />
- <a class="el" href="mqtt_validatepublishparams_function.html">MQTT_ValidatePublishParams</a> <br  />
- <a class="el" href="mqtt_validatepublishproperties_function.html">MQTT_ValidatePublishProperties</a> <br  />
- <a class="el" href="mqtt_serializeack_function.html">MQTT_SerializeAck</a> <br  />
- <a class="el" href="mqtt_getackpacketsize_function.html">MQTT_GetAckPacketSize</a> <br  />
- <a class="el" href="mqtt_getdisconnectpacketsize_function.html">MQTT_GetDisconnectPacketSize</a> <br  />
- <a class="el" href="mqtt_getpingreqpacketsize_function.html">MQTT_GetPingreqPacketSize</a> <br  />
- <a class="el" href="mqtt_serializepingreq_function.html">MQTT_SerializePingreq</a> <br  />
- <a class="el" href="mqtt_deserializepublish_function.html">MQTT_DeserializePublish</a> <br  />
- <a class="el" href="mqtt_deserializeack_function.html">MQTT_DeserializeAck</a> <br  />
- <a class="el" href="mqtt_deserializedisconnect_function.html">MQTT_DeserializeDisconnect</a> <br  />
- <a class="el" href="mqtt_getincomingpackettypeandlength_function.html">MQTT_GetIncomingPacketTypeAndLength</a> <br  />
- <a class="el" href="mqtt_initconnect_function.html">MQTT_InitConnect</a> <br  />
-</p>
-<p>Property Add functions:<br  />
-<br  />
- <a class="el" href="mqttpropadd_subscribeid_function.html">MQTTPropAdd_SubscribeId</a> <br  />
- <a class="el" href="mqttpropadd_userprop_function.html">MQTTPropAdd_UserProp</a> <br  />
- <a class="el" href="mqttpropadd_sessionexpiry_function.html">MQTTPropAdd_SessionExpiry</a> <br  />
- <a class="el" href="mqttpropadd_connreceivemax_function.html">MQTTPropAdd_ConnReceiveMax</a> <br  />
- <a class="el" href="mqttpropadd_connmaxpacketsize_function.html">MQTTPropAdd_ConnMaxPacketSize</a> <br  />
- <a class="el" href="mqttpropadd_conntopicaliasmax_function.html">MQTTPropAdd_ConnTopicAliasMax</a> <br  />
- <a class="el" href="mqttpropadd_connrequestrespinfo_function.html">MQTTPropAdd_ConnRequestRespInfo</a> <br  />
- <a class="el" href="mqttpropadd_connrequestprobinfo_function.html">MQTTPropAdd_ConnRequestProbInfo</a> <br  />
- <a class="el" href="mqttpropadd_connauthmethod_function.html">MQTTPropAdd_ConnAuthMethod</a> <br  />
- <a class="el" href="mqttpropadd_connauthdata_function.html">MQTTPropAdd_ConnAuthData</a> <br  />
- <a class="el" href="mqttpropadd_willdelayinterval_function.html">MQTTPropAdd_WillDelayInterval</a> <br  />
- <a class="el" href="mqttpropadd_pubpayloadformat_function.html">MQTTPropAdd_PubPayloadFormat</a> <br  />
- <a class="el" href="mqttpropadd_pubmessageexpiry_function.html">MQTTPropAdd_PubMessageExpiry</a> <br  />
- <a class="el" href="mqttpropadd_pubtopicalias_function.html">MQTTPropAdd_PubTopicAlias</a> <br  />
- <a class="el" href="mqttpropadd_pubresponsetopic_function.html">MQTTPropAdd_PubResponseTopic</a> <br  />
- <a class="el" href="mqttpropadd_pubcorrelationdata_function.html">MQTTPropAdd_PubCorrelationData</a> <br  />
- <a class="el" href="mqttpropadd_pubcontenttype_function.html">MQTTPropAdd_PubContentType</a> <br  />
- <a class="el" href="mqttpropadd_reasonstring_function.html">MQTTPropAdd_ReasonString</a> <br  />
-</p>
-<p>Property Get functions:<br  />
-<br  />
- <a class="el" href="mqtt_incominggetnextprop_function.html">MQTT_IncomingGetNextProp</a> <br  />
- <a class="el" href="mqttpropget_pubtopicalias_function.html">MQTTPropGet_PubTopicAlias</a> <br  />
- <a class="el" href="mqttpropget_pubpayloadformat_function.html">MQTTPropGet_PubPayloadFormatIndicator</a> <br  />
- <a class="el" href="mqttpropget_pubresponsetopic_function.html">MQTTPropGet_PubResponseTopic</a> <br  />
- <a class="el" href="mqttpropget_pubcorrelationdata_function.html">MQTTPropGet_PubCorrelationData</a> <br  />
- <a class="el" href="mqttpropget_pubmessageexpiryinterval_function.html">MQTTPropGet_PubMessageExpiryInterval</a> <br  />
- <a class="el" href="mqttpropget_pubcontenttype_function.html">MQTTPropGet_PubContentType</a> <br  />
- <a class="el" href="mqttpropget_pubsubscriptionid_function.html">MQTTPropGet_PubSubscriptionId</a> <br  />
- <a class="el" href="mqttpropget_userprop_function.html">MQTTPropGet_UserProp</a> <br  />
- <a class="el" href="mqttpropget_reasonstring_function.html">MQTTPropGet_ReasonString</a> <br  />
- <a class="el" href="mqttpropget_disconnectserverref_function.html">MQTTPropGet_ServerRef</a> <br  />
- <a class="el" href="mqttpropget_sessionexpiry_function.html">MQTTPropGet_SessionExpiry</a> <br  />
- <a class="el" href="mqttpropget_conntopicaliasmax_function.html">MQTTPropGet_ConnTopicAliasMax</a> <br  />
- <a class="el" href="mqttpropget_connreceivemax_function.html">MQTTPropGet_ConnReceiveMax</a> <br  />
- <a class="el" href="mqttpropget_connmaxqos_function.html">MQTTPropGet_ConnMaxQos</a> <br  />
- <a class="el" href="mqttpropget_connretainavailable_function.html">MQTTPropGet_ConnRetainAvailable</a> <br  />
- <a class="el" href="mqttpropget_connmaxpacketsize_function.html">MQTTPropGet_ConnMaxPacketSize</a> <br  />
- <a class="el" href="mqttpropget_connclientid_function.html">MQTTPropGet_ConnClientId</a> <br  />
- <a class="el" href="mqttpropget_connwildcard_function.html">MQTTPropGet_ConnWildcard</a> <br  />
- <a class="el" href="mqttpropget_connsubid_function.html">MQTTPropGet_ConnSubId</a> <br  />
- <a class="el" href="mqttpropget_connsharedsubavailable_function.html">MQTTPropGet_ConnSharedSubAvailable</a> <br  />
- <a class="el" href="mqttpropget_connserverkeepalive_function.html">MQTTPropGet_ConnServerKeepAlive</a> <br  />
- <a class="el" href="mqttpropget_connresponseinfo_function.html">MQTTPropGet_ConnResponseInfo</a> <br  />
- <a class="el" href="mqttpropget_connauthmethod_function.html">MQTTPropGet_ConnAuthMethod</a> <br  />
- <a class="el" href="mqttpropget_connauthdata_function.html">MQTTPropGet_ConnAuthData</a> <br  />
- </p>
+<div class="textblock"><p>The functions of the MQTT Library are categorised as follows.</p>
+<ul>
+<li><a class="el" href="mqtt_primaryfunctions.html">Primary functions</a></li>
+<li><a class="el" href="mqtt_serializerfunctions.html">Serializer functions</a></li>
+<li><a class="el" href="mqtt_propertyaddfunctions.html">Property Add functions</a></li>
+<li><a class="el" href="mqtt_propertygetfunctions.html">Property Get functions</a> </li>
+</ul>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
